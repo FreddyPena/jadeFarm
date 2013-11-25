@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.jsft</groupId>
+  <artifactId>jadeFarm</artifactId>
+  <version>1.0.1</version>
+  <packaging>jar</packaging>
+
+  <name>jadeFarm</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+      <build>        
+        <plugins>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.jadesoft.jadeSys.main.App</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            
+       
+           
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+        </plugins>
+        
+        
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*.jrxml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        
+    </build>
+    <contributors>
+        <contributor>
+            <name>Lic. Freddy Pena</name>
+            <email>f.ant.pena@gmail.com</email>
+            <roles>
+                <role>developers</role>
+            </roles>
+        </contributor>
+        <contributor>
+            <name>Hector Ventura</name>
+            <email>hectorvent@gmail.com</email>
+            <roles>
+                <role>developers</role>
+            </roles>
+        </contributor>
+    </contributors>
+  <repositories>
+
+  </repositories>
+  <dependencies>
+
+     <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swingx</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        
+      <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.23</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.sf.barcode4j</groupId>
+            <artifactId>barcode4j-fop-ext-complete</artifactId>
+            <version>2.0</version>
+        </dependency>
+    
+            <dependency>
+            <groupId>com.jadesoft</groupId>
+            <artifactId>jadelib</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jadesoft</groupId>
+            <artifactId>jadeJdbc</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+  </dependencies>
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2013 2:01:10 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.js.shared.models.PersonaTipoPersona" table="persona_tipo_persona" catalog="jadefarm">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tipoPersona" class="com.js.shared.models.TipoPersona" fetch="select">
+            <column name="tipo_persona" not-null="true" />
+        </many-to-one>
+        <many-to-one name="persona" class="com.js.shared.models.Persona" fetch="select">
+            <column name="persona" not-null="true" />
+        </many-to-one>
+        <property name="auxiliar" type="string">
+            <column name="auxiliar" length="45" />
+        </property>
+        <property name="limite" type="java.lang.Double">
+            <column name="limite" precision="22" scale="0" />
+        </property>
+        <property name="habilitado" type="java.lang.Boolean">
+            <column name="habilitado" />
+        </property>
+    </class>
+</hibernate-mapping>

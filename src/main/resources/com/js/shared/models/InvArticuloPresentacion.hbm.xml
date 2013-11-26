@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2013 2:01:10 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.js.shared.models.InvArticuloPresentacion" table="inv_articulo_presentacion" catalog="jadefarm">
+        <id name="codigo" type="int">
+            <column name="codigo" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="invPresentacion" class="com.js.shared.models.InvPresentacion" fetch="select">
+            <column name="presentacion" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invArticulo" class="com.js.shared.models.InvArticulo" fetch="select">
+            <column name="articulo" not-null="true" />
+        </many-to-one>
+        <property name="precio1" type="double">
+            <column name="precio1" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="precio2" type="double">
+            <column name="precio2" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="precio3" type="double">
+            <column name="precio3" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="pocentaje1" type="double">
+            <column name="pocentaje1" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="porcentaje2" type="double">
+            <column name="porcentaje2" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="porcentaje3" type="double">
+            <column name="porcentaje3" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="barra" type="string">
+            <column name="barra" length="25" />
+        </property>
+        <property name="costo" type="java.lang.Double">
+            <column name="costo" precision="22" scale="0" />
+        </property>
+        <set name="invPedidoDetalles" table="inv_pedido_detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="presentacion_articulo" not-null="true" />
+            </key>
+            <one-to-many class="com.js.shared.models.InvPedidoDetalle" />
+        </set>
+        <set name="invMovimientoDetalles" table="inv_movimiento_detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="articulo_presentacion" not-null="true" />
+            </key>
+            <one-to-many class="com.js.shared.models.InvMovimientoDetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

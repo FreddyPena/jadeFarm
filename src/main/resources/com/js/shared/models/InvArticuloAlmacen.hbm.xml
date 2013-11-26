@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2013 2:01:10 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.js.shared.models.InvArticuloAlmacen" table="inv_articulo_almacen" catalog="jadefarm">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="invArticulo" class="com.js.shared.models.InvArticulo" fetch="select">
+            <column name="articulo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invAlmacen" class="com.js.shared.models.InvAlmacen" fetch="select">
+            <column name="almacen" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invUbicacion" class="com.js.shared.models.InvUbicacion" fetch="select">
+            <column name="ubicacion" not-null="true" />
+        </many-to-one>
+        <property name="existencia" type="double">
+            <column name="existencia" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="invLoteArticuloAlmacens" table="inv_lote_articulo_almacen" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="articulo_almacen" not-null="true" />
+            </key>
+            <one-to-many class="com.js.shared.models.InvLoteArticuloAlmacen" />
+        </set>
+    </class>
+</hibernate-mapping>

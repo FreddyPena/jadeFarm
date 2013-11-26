@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2013 2:01:10 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.js.shared.models.InvDetalleCotizacion" table="inv_detalle_cotizacion" catalog="jadefarm">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="invPedidoDetalle" class="com.js.shared.models.InvPedidoDetalle" fetch="select">
+            <column name="pedido_detalle" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invCotizacion" class="com.js.shared.models.InvCotizacion" fetch="select">
+            <column name="cotizacion" not-null="true" />
+        </many-to-one>
+        <property name="precio" type="java.lang.Double">
+            <column name="precio" precision="22" scale="0" />
+        </property>
+        <property name="descuento" type="java.lang.Double">
+            <column name="descuento" precision="22" scale="0" />
+        </property>
+        <property name="oferta" type="java.lang.Integer">
+            <column name="oferta" />
+        </property>
+        <property name="itbis" type="java.lang.Double">
+            <column name="itbis" precision="22" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="22" scale="0" />
+        </property>
+        <property name="seleccion" type="java.lang.Boolean">
+            <column name="seleccion" />
+        </property>
+        <property name="cantidad" type="java.lang.Integer">
+            <column name="cantidad" />
+        </property>
+    </class>
+</hibernate-mapping>

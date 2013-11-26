@@ -1,20 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.jsft</groupId>
-  <artifactId>jadeFarm</artifactId>
-  <version>1.0.1</version>
-  <packaging>jar</packaging>
+    <groupId>com.jsft</groupId>
+    <artifactId>jadeFarm</artifactId>
+    <version>1.0.1</version>
+    <packaging>jar</packaging>
 
-  <name>jadeFarm</name>
-  <url>http://maven.apache.org</url>
+    <name>jadeFarm</name>
+    <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
   
-      <build>        
+    <build>        
         <plugins>
             
             <plugin>
@@ -36,7 +36,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.jadesoft.jadeSys.main.App</mainClass>
+                            <mainClass>com.js.shared.main.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -94,44 +94,61 @@
             </roles>
         </contributor>
     </contributors>
-  <repositories>
+    <repositories>
+        <repository>
+            <url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
+            <id>eclipselink</id>
+            <layout>default</layout>
+            <name>Repository for library EclipseLink (JPA 2.1)</name>
+        </repository>
+    </repositories>
+    <dependencies>
 
-  </repositories>
-  <dependencies>
-
-     <dependency>
+        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-
         <dependency>
             <groupId>org.swinglabs</groupId>
             <artifactId>swingx</artifactId>
             <version>1.6.1</version>
-        </dependency>
-        
-      <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.23</version>
-        </dependency>
-        
+        </dependency>                
         <dependency>
             <groupId>net.sf.barcode4j</groupId>
             <artifactId>barcode4j-fop-ext-complete</artifactId>
             <version>2.0</version>
-        </dependency>
-    
-            <dependency>
+        </dependency>    
+        <dependency>
             <groupId>com.jadesoft</groupId>
             <artifactId>jadelib</artifactId>
             <version>1.0.1</version>
         </dependency>
+
         <dependency>
-            <groupId>com.jadesoft</groupId>
-            <artifactId>jadeJdbc</artifactId>
+            <groupId>com.jadesoft.jadedao</groupId>
+            <artifactId>jadeDAO</artifactId>
             <version>1.0.1</version>
         </dependency>
-  </dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.23</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.2.7.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>3.2.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.5.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

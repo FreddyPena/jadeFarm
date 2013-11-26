@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="jadefarm"/>
+  <table-filter match-name="inv_ubicacion"/>
+  <table-filter match-name="unidad"/>
+  <table-filter match-name="tipo_documento"/>
+  <table-filter match-name="persona"/>
+  <table-filter match-name="inv_articulo"/>
+  <table-filter match-name="inv_articulo_presentacion"/>
+  <table-filter match-name="inv_clasificacion"/>
+  <table-filter match-name="inv_almacen"/>
+  <table-filter match-name="inv_articulo_almacen"/>
+  <table-filter match-name="inv_inventario_fisico_detalle"/>
+  <table-filter match-name="inv_orden_compra"/>
+  <table-filter match-name="inv_lotes"/>
+  <table-filter match-name="inv_movimiento"/>
+  <table-filter match-name="tipo_persona"/>
+  <table-filter match-name="recibo_ingreso"/>
+  <table-filter match-name="inv_ingrediente_activo"/>
+  <table-filter match-name="forma_pago"/>
+  <table-filter match-name="inv_orden_compra_detalle"/>
+  <table-filter match-name="inv_renglon"/>
+  <table-filter match-name="inv_detalle_cotizacion"/>
+  <table-filter match-name="inv_pedido"/>
+  <table-filter match-name="inv_familia"/>
+  <table-filter match-name="inv_lote_articulo_almacen"/>
+  <table-filter match-name="inv_marca"/>
+  <table-filter match-name="inv_cotizacion"/>
+  <table-filter match-name="recibo_ingreso_detalle"/>
+  <table-filter match-name="inv_presentacion"/>
+  <table-filter match-name="inv_pedido_detalle"/>
+  <table-filter match-name="persona_tipo_persona"/>
+  <table-filter match-name="inv_inventario_fisico"/>
+  <table-filter match-name="recibo_ingreso_formapago"/>
+  <table-filter match-name="inv_movimiento_detalle"/>
+</hibernate-reverse-engineering>

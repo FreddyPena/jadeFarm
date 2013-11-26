@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2013 2:01:10 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.js.shared.models.InvMarca" table="inv_marca" catalog="jadefarm">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="identificador" type="string">
+            <column name="identificador" length="11" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" />
+        </property>
+        <set name="invArticulos" table="inv_articulo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="marca" not-null="true" />
+            </key>
+            <one-to-many class="com.js.shared.models.InvArticulo" />
+        </set>
+    </class>
+</hibernate-mapping>

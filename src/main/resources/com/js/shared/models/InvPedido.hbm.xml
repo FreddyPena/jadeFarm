@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2013 2:01:10 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.js.shared.models.InvPedido" table="inv_pedido" catalog="jadefarm">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" />
+        </property>
+        <property name="solicitante" type="java.lang.Integer">
+            <column name="solicitante" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" length="45" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="45" />
+        </property>
+        <set name="invCotizacions" table="inv_cotizacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pedido" not-null="true" />
+            </key>
+            <one-to-many class="com.js.shared.models.InvCotizacion" />
+        </set>
+        <set name="invPedidoDetalles" table="inv_pedido_detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pedido" not-null="true" />
+            </key>
+            <one-to-many class="com.js.shared.models.InvPedidoDetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

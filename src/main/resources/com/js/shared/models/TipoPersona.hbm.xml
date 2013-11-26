@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2013 2:01:10 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.js.shared.models.TipoPersona" table="tipo_persona" catalog="jadefarm">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="45" />
+        </property>
+        <set name="personaTipoPersonas" table="persona_tipo_persona" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tipo_persona" not-null="true" />
+            </key>
+            <one-to-many class="com.js.shared.models.PersonaTipoPersona" />
+        </set>
+    </class>
+</hibernate-mapping>

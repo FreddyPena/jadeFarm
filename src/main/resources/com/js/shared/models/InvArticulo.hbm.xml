@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2013 2:01:10 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.js.shared.models.InvArticulo" table="inv_articulo" catalog="jadefarm">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="invIngredienteActivo" class="com.js.shared.models.InvIngredienteActivo" fetch="select">
+            <column name="ingrediente_activo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invMarca" class="com.js.shared.models.InvMarca" fetch="select">
+            <column name="marca" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invFamilia" class="com.js.shared.models.InvFamilia" fetch="select">
+            <column name="familia" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invRenglon" class="com.js.shared.models.InvRenglon" fetch="select">
+            <column name="renglon" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invClasificacion" class="com.js.shared.models.InvClasificacion" fetch="select">
+            <column name="clasificacion" not-null="true" />
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="45" not-null="true" />
+        </property>
+        <property name="barra" type="string">
+            <column name="barra" length="45" />
+        </property>
+        <property name="laboratorio" type="java.lang.Integer">
+            <column name="laboratorio" />
+        </property>
+        <property name="activo" type="boolean">
+            <column name="activo" not-null="true" />
+        </property>
+        <property name="permiteVencimiento" type="boolean">
+            <column name="permite_vencimiento" not-null="true" />
+        </property>
+        <property name="ventaDetallado" type="boolean">
+            <column name="venta_detallado" not-null="true" />
+        </property>
+        <property name="exentoItbis" type="boolean">
+            <column name="exento_itbis" not-null="true" />
+        </property>
+        <set name="invArticuloAlmacens" table="inv_articulo_almacen" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="articulo" not-null="true" />
+            </key>
+            <one-to-many class="com.js.shared.models.InvArticuloAlmacen" />
+        </set>
+        <set name="invArticuloPresentacions" table="inv_articulo_presentacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="articulo" not-null="true" />
+            </key>
+            <one-to-many class="com.js.shared.models.InvArticuloPresentacion" />
+        </set>
+    </class>
+</hibernate-mapping>

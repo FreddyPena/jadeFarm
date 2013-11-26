@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2013 2:01:10 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.js.shared.models.InvMovimientoDetalle" table="inv_movimiento_detalle" catalog="jadefarm">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="invArticuloPresentacion" class="com.js.shared.models.InvArticuloPresentacion" fetch="select">
+            <column name="articulo_presentacion" not-null="true" />
+        </many-to-one>
+        <many-to-one name="invMovimiento" class="com.js.shared.models.InvMovimiento" fetch="select">
+            <column name="moviento_articulo" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="java.lang.Double">
+            <column name="cantidad" precision="22" scale="0" />
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="precio" precision="22" scale="0" />
+        </property>
+        <property name="descuento" type="java.lang.Double">
+            <column name="descuento" precision="22" scale="0" />
+        </property>
+        <property name="itbis1" type="java.lang.Double">
+            <column name="itbis1" precision="22" scale="0" />
+        </property>
+        <property name="itbis2" type="java.lang.Double">
+            <column name="itbis2" precision="22" scale="0" />
+        </property>
+        <property name="costo" type="java.lang.Double">
+            <column name="costo" precision="22" scale="0" />
+        </property>
+        <property name="tipoMovimiento" type="java.lang.Character">
+            <column name="tipo_movimiento" length="1">
+                <comment>E = Entrada S = Salida</comment>
+            </column>
+        </property>
+        <property name="existencia" type="java.lang.Double">
+            <column name="existencia" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

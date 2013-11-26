@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-  <persistence-unit name="com.jadesoft_jadeFarmacia_jar_1.0.1PU" transaction-type="RESOURCE_LOCAL">
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.jsft_jadeFarm_jar_1.0.1PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.jsft.gen.entity.Persona</class>
-    <class>com.jsft.gen.entity.TipoPersona</class>
-    <class>com.jsft.gen.entity.PersonaTipoPersona</class>
+    <class>com.js.shared.models.InvOrdenCompraDetalle</class>
+    <class>com.js.shared.models.InvInventarioFisicoDetalle</class>
+    <class>com.js.shared.models.InvLotes</class>
+    <class>com.js.shared.models.ReciboIngresoFormapago</class>
+    <class>com.js.shared.models.InvPedidoDetalle</class>
+    <class>com.js.shared.models.InvArticuloAlmacen</class>
+    <class>com.js.shared.models.InvInventarioFisico</class>
+    <class>com.js.shared.models.InvArticulo</class>
+    <class>com.js.shared.models.InvIngredienteActivo</class>
+    <class>com.js.shared.models.Persona</class>
+    <class>com.js.shared.models.InvPedido</class>
+    <class>com.js.shared.models.ReciboIngreso</class>
+    <class>com.js.shared.models.InvUbicacion</class>
+    <class>com.js.shared.models.Unidad</class>
+    <class>com.js.shared.models.FormaPago</class>
+    <class>com.js.shared.models.InvClasificacion</class>
+    <class>com.js.shared.models.InvPresentacion</class>
+    <class>com.js.shared.models.InvRenglon</class>
+    <class>com.js.shared.models.InvMovimientoDetalle</class>
+    <class>com.js.shared.models.TipoDocumento</class>
+    <class>com.js.shared.models.InvCotizacion</class>
+    <class>com.js.shared.models.InvOrdenCompra</class>
+    <class>com.js.shared.models.InvMarca</class>
+    <class>com.js.shared.models.InvAlmacen</class>
+    <class>com.js.shared.models.InvLoteArticuloAlmacen</class>
+    <class>com.js.shared.models.InvDetalleCotizacion</class>
+    <class>com.js.shared.models.InvMovimiento</class>
+    <class>com.js.shared.models.InvArticuloPresentacion</class>
+    <class>com.js.shared.models.TipoPersona</class>
+    <class>com.js.shared.models.PersonaTipoPersona</class>
+    <class>com.js.shared.models.ReciboIngresoDetalle</class>
+    <class>com.js.shared.models.InvFamilia</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/farmacia"/>
-      <property name="javax.persistence.jdbc.password" value="quisquella"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jadefarm?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.password" value="higher"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
     </properties>

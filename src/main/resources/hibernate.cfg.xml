@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jadefarm?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">higher</property>
+    
+    <mapping class="com.js.shared.models.InvMovimiento"/>
+    <mapping class="com.js.shared.models.InvArticuloPresentacion"/>
+    <mapping class="com.js.shared.models.InvInventarioFisico"/>
+    <mapping class="com.js.shared.models.ReciboIngresoDetalle"/>
+    <mapping class="com.js.shared.models.Unidad"/>
+    <mapping class="com.js.shared.models.TipoPersona"/>
+    <mapping class="com.js.shared.models.InvIngredienteActivo"/>
+    <mapping class="com.js.shared.models.InvFamilia"/>
+    <mapping class="com.js.shared.models.InvArticuloAlmacen"/>
+    <mapping class="com.js.shared.models.Persona"/>
+    <mapping class="com.js.shared.models.InvPresentacion"/>
+    <mapping class="com.js.shared.models.InvOrdenCompraDetalle"/>
+    <mapping class="com.js.shared.models.InvPedidoDetalle"/>
+    <mapping class="com.js.shared.models.FormaPago"/>
+    <mapping class="com.js.shared.models.TipoDocumento"/>
+    <mapping class="com.js.shared.models.InvLotes"/>
+    <mapping class="com.js.shared.models.InvMovimientoDetalle"/>
+    <mapping class="com.js.shared.models.InvClasificacion"/>
+    <mapping class="com.js.shared.models.InvOrdenCompra"/>
+    <mapping class="com.js.shared.models.PersonaTipoPersona"/>
+    <mapping class="com.js.shared.models.InvMarca"/>
+    <mapping class="com.js.shared.models.ReciboIngreso"/>
+    <mapping class="com.js.shared.models.ReciboIngresoFormapago"/>
+    <mapping class="com.js.shared.models.InvRenglon"/>
+    <mapping class="com.js.shared.models.InvCotizacion"/>
+    <mapping class="com.js.shared.models.InvPedido"/>
+    <mapping class="com.js.shared.models.InvAlmacen"/>
+    <mapping class="com.js.shared.models.InvInventarioFisicoDetalle"/>
+    <mapping class="com.js.shared.models.InvLoteArticuloAlmacen"/>
+    <mapping class="com.js.shared.models.InvDetalleCotizacion"/>
+    <mapping class="com.js.shared.models.InvArticulo"/>
+    <mapping class="com.js.shared.models.InvUbicacion"/>
+  </session-factory>
+</hibernate-configuration>

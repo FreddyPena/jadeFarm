@@ -12,6 +12,7 @@ import com.jadesoft.jadelib.generales.General;
 import com.jadesoft.jadelib.generales.KeyEventDespachador;
 import com.jadesoft.jadelib.generales.ManejoFiltro;
 import com.js.inv.controllers.FamiliaController;
+import com.js.inv.tablemodel.ModeloFamilia;
 import com.js.shared.factory.DAOFactory;
 import com.js.shared.factory.DAOFactoryHibernate;
 import com.js.shared.models.InvFamilia;
@@ -19,6 +20,8 @@ import com.js.shared.utils.HibernateUtil;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -75,10 +78,9 @@ public class DgFamilia extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbFamilia = new com.jadesoft.jadelib.estandar.tablas.TableStandar<InvFamilia>();
-        jXLabel4 = new org.jdesktop.swingx.JXLabel();
-        jtFiltro = new com.jadesoft.jadelib.estandar.textField.TextFieldStandar();
         jXLabel5 = new org.jdesktop.swingx.JXLabel();
         cbFiltro = new com.jadesoft.jadelib.estandar.combobox.ComboBoxStandar<Filtro>();
+        jtFiltro = new com.jadesoft.jadelib.estandar.textField.JSearchTextField();
 
         jmpEdit.setText("Editar");
         jmpEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -247,9 +249,9 @@ public class DgFamilia extends javax.swing.JDialog {
                     .addComponent(jXLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                    .addComponent(jtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(166, 166, 166))
+                    .addComponent(jtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jXPanel1Layout.setVerticalGroup(
             jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,18 +287,15 @@ public class DgFamilia extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(tbFamilia);
 
-        jXLabel4.setText("Búsqueda");
-        jXLabel4.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        jXLabel5.setText("Criterio");
+        jXLabel5.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
-        jtFiltro.setName("67"); // NOI18N
+        jtFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/zoom_20.png"))); // NOI18N
         jtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtFiltroKeyReleased(evt);
             }
         });
-
-        jXLabel5.setText("Criterio");
-        jXLabel5.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -305,28 +304,25 @@ public class DgFamilia extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jXLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jXLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jXLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jXLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -339,9 +335,9 @@ public class DgFamilia extends javax.swing.JDialog {
             .addComponent(jXHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jtpStandard, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addComponent(jtpStandard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,9 +345,9 @@ public class DgFamilia extends javax.swing.JDialog {
                 .addComponent(jXHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jtpStandard, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addGap(5, 5, 5))
         );
 
         pack();
@@ -452,12 +448,11 @@ public class DgFamilia extends javax.swing.JDialog {
     private org.jdesktop.swingx.JXHeader jXHeader1;
     private org.jdesktop.swingx.JXLabel jXLabel2;
     private org.jdesktop.swingx.JXLabel jXLabel3;
-    private org.jdesktop.swingx.JXLabel jXLabel4;
     private org.jdesktop.swingx.JXLabel jXLabel5;
     private org.jdesktop.swingx.JXPanel jXPanel1;
     private javax.swing.JMenuItem jmpEdit;
     private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtDescripcion;
-    private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtFiltro;
+    private com.jadesoft.jadelib.estandar.textField.JSearchTextField jtFiltro;
     private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtIdentificador;
     private javax.swing.JTabbedPane jtpStandard;
     private com.jadesoft.jadelib.estandar.tablas.TableStandar<InvFamilia> tbFamilia;
@@ -487,8 +482,10 @@ public class DgFamilia extends javax.swing.JDialog {
         setGlassPane(new jGlassPane());
         tbFamilia.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbFamilia.doLayout();
-        //  tbFamilia.setModelStandar(new ModeloFamilia());
-        //tbFamilia.setElements(ManejoFamilia.getInstance().findAll());
+        tbFamilia.setModelStandar(new ModeloFamilia());
+
+        setElements();
+
         setColumnaWith(0, 150);
         setColumnaWith(1, 348);
 
@@ -597,7 +594,16 @@ public class DgFamilia extends javax.swing.JDialog {
             @Override
             public void run() {
                 getGlassPane().setVisible(true);
-                //   tbFamilia.setElements(ManejoFamilia.getInstance().findAll());
+                List lFamilia = new ArrayList();
+
+                // ING. Verifique este error que da cuando descomenta estas lines y lo ejecuta
+//                try {
+//                    lFamilia = familiaController.findAll();
+//                } catch (BussinessException ex) {
+//                    Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+
+                tbFamilia.setElements(lFamilia);
                 getGlassPane().setVisible(false);
             }
         };
@@ -622,12 +628,13 @@ public class DgFamilia extends javax.swing.JDialog {
 
         familia.setDescripcion(jtDescripcion.getText());
         familia.setIdentificador(jtIdentificador.getText());
+        
         try {
             familiaController.saveOrUpdate(familia);
         } catch (BussinessException ex) {
             Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         changeDisplacement = true;
         clean();
         fireTableDataChanged();
@@ -832,7 +839,7 @@ public class DgFamilia extends javax.swing.JDialog {
         if (jtpStandard.getSelectedIndex() == 1 && tbFamilia.getSelectedRow() == -1) {
             tbFamilia.changeSelection(0, 1, false, false);
             objectDisplacement.setLista(tbFamilia.getElements());
-            return;
+
         }
 
     }

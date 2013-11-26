@@ -48,10 +48,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jXHeader1" pref="0" max="32767" attributes="0"/>
           <Component id="jToolBar1" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Component id="jtpStandard" min="-2" pref="531" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="jtpStandard" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,9 +61,9 @@
               <Component id="jXHeader1" min="-2" pref="76" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jtpStandard" min="-2" pref="217" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -258,10 +258,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtIdentificador" alignment="0" pref="232" max="32767" attributes="0"/>
-                          <Component id="jtDescripcion" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jtIdentificador" min="-2" pref="169" max="-2" attributes="0"/>
+                          <Component id="jtDescripcion" min="-2" pref="297" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -330,36 +330,33 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" pref="506" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="443" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jXLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jtFiltro" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jXLabel5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="cbFiltro" min="-2" pref="146" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbFiltro" min="-2" pref="119" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="jtFiltro" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jXLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtFiltro" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jXLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbFiltro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jtFiltro" alignment="2" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jXLabel5" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbFiltro" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="132" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="139" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -393,22 +390,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="org.jdesktop.swingx.JXLabel" name="jXLabel4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="B&#xfa;squeda"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SansSerif" size="15" style="1"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="com.jadesoft.jadelib.estandar.textField.TextFieldStandar" name="jtFiltro">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="67" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtFiltroKeyReleased"/>
-              </Events>
-            </Component>
             <Component class="org.jdesktop.swingx.JXLabel" name="jXLabel5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Criterio"/>
@@ -421,6 +402,16 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Filtro&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="com.jadesoft.jadelib.estandar.textField.JSearchTextField" name="jtFiltro">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/jadesoft/jadeOther/icons/zoom_20.png"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtFiltroKeyReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

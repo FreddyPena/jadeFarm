@@ -483,12 +483,13 @@ public class DgFamilia extends javax.swing.JDialog {
         DAOFactory.setInstance(factory);
         familiaController = DAOFactory.getInstance().getFamiliaController();
 
+        
         setGlassPane(new jGlassPane());
         tbFamilia.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbFamilia.doLayout();
         tbFamilia.setModelStandar(new ModeloFamilia());
 
-    //    setElements();
+        setElements();
 
         setColumnaWith(0, 150);
         setColumnaWith(1, 348);
@@ -598,15 +599,12 @@ public class DgFamilia extends javax.swing.JDialog {
             @Override
             public void run() {
                 getGlassPane().setVisible(true);
-                List lFamilia = new ArrayList();
-
-                // ING. Verifique este error que da cuando descomenta estas lines y lo ejecuta
-//                try {
-//                    lFamilia = familiaController.findAll();
-//                } catch (BussinessException ex) {
-//                    Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-
+                List lFamilia = new ArrayList();              
+                try {
+                    lFamilia = familiaController.findAll();
+                } catch (BussinessException ex) {
+                    Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 tbFamilia.setElements(lFamilia);
                 getGlassPane().setVisible(false);
             }

@@ -11,20 +11,23 @@ import com.jadesoft.jadelib.generales.Filtro;
 import com.jadesoft.jadelib.generales.General;
 import com.jadesoft.jadelib.generales.KeyEventDespachador;
 import com.jadesoft.jadelib.generales.ManejoFiltro;
-import com.js.inv.controllers.FamiliaController;
 import com.js.inv.tablemodel.ModeloFamilia;
 import com.js.shared.factory.DAOFactory;
-import com.js.shared.factory.DAOFactoryHibernate;
+import com.js.shared.factory.DAOFactoryImpl;
 import com.js.shared.models.InvFamilia;
 import com.js.shared.utils.HibernateUtil;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -377,7 +380,7 @@ public class DgFamilia extends javax.swing.JDialog {
     }//GEN-LAST:event_btLastActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(eventDispatcher);
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(DAOFactory.getInstance().getKeyEventDespachador());
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -460,13 +463,10 @@ public class DgFamilia extends javax.swing.JDialog {
     private javax.swing.JTabbedPane jtpStandard;
     private com.jadesoft.jadelib.estandar.tablas.TableStandar<InvFamilia> tbFamilia;
     // End of variables declaration//GEN-END:variables
-    private KeyEventDespachador eventDispatcher;
     private InvFamilia familia;
     private DesplazamientoObject<InvFamilia> objectDisplacement;
     private boolean consultation;
     private boolean changeDisplacement = true;
-    private FamiliaController familiaController;
-    
 
     protected void setColumnaWith(int Column, int width) {
         tbFamilia.getColumnModel().getColumn(Column).setPreferredWidth(width);
@@ -479,15 +479,23 @@ public class DgFamilia extends javax.swing.JDialog {
     }
 
     private void initComp() {
-        DAOFactoryHibernate factory = new DAOFactoryHibernate();
+        DAOFactory factory = new DAOFactoryImpl();
         DAOFactory.setInstance(factory);
-        familiaController = DAOFactory.getInstance().getFamiliaController();
 
-        
         setGlassPane(new jGlassPane());
         tbFamilia.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbFamilia.doLayout();
         tbFamilia.setModelStandar(new ModeloFamilia());
+
+        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
+        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
+        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
+        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
+
+        System.out.println(DAOFactory.getInstance().getFamiliaController());
+        System.out.println(DAOFactory.getInstance().getFamiliaController());
+        System.out.println(DAOFactory.getInstance().getFamiliaController());
+        System.out.println(DAOFactory.getInstance().getFamiliaController());
 
         setElements();
 
@@ -599,9 +607,9 @@ public class DgFamilia extends javax.swing.JDialog {
             @Override
             public void run() {
                 getGlassPane().setVisible(true);
-                List lFamilia = new ArrayList();              
+                List lFamilia = new ArrayList();
                 try {
-                    lFamilia = familiaController.findAll();
+                    lFamilia = DAOFactory.getInstance().getFamiliaController().findAll();
                 } catch (BussinessException ex) {
                     Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -630,9 +638,9 @@ public class DgFamilia extends javax.swing.JDialog {
 
         familia.setDescripcion(jtDescripcion.getText());
         familia.setIdentificador(jtIdentificador.getText());
-        
+
         try {
-            familiaController.saveOrUpdate(familia);
+            DAOFactory.getInstance().getFamiliaController().saveOrUpdate(familia);
         } catch (BussinessException ex) {
             Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -672,126 +680,36 @@ public class DgFamilia extends javax.swing.JDialog {
     }
 
     private void keyEvents() {
-        eventDispatcher = new KeyEventDespachador();
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(eventDispatcher);
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(DAOFactory.getInstance().getKeyEventDespachador());
+        KeyStroke[] keyStrokes = new KeyStroke[]{
+            KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK),
+            KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK),
+            KeyStroke.getKeyStroke(KeyEvent.VK_I, KeyEvent.CTRL_DOWN_MASK),
+            KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_DOWN_MASK),
+            KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK),
+            KeyStroke.getKeyStroke(KeyEvent.VK_M, KeyEvent.CTRL_DOWN_MASK),
+            KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_DOWN_MASK),
+            KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.CTRL_DOWN_MASK),
+            KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK),
+            KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_DOWN_MASK)
+        };
+        JButton[] buttons = new JButton[]{btSave, btDelete, btNew, btPrint,
+            btConsultation, btEdit, btFirts, btBack, btNext, btLast};
 
-        KeyStroke cancel = KeyStroke.getKeyStroke(KeyEvent.VK_W, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(cancel, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btNew.isEnabled()) {
-                    btNew.doClick();
-                }
-            }
-        });
-
-        KeyStroke save = KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(save, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btSave.isEnabled()) {
-                    btSave.doClick();
-                }
-            }
-        });
-
-//        KeyStroke select = KeyStroke.getKeyStroke(KeyEvent.VK_E, KeyEvent.CTRL_DOWN_MASK);
-//        eventDispatcher.addactionMap(select, new AbstractAction() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if (btSelect.isEnabled()) {
-//                    disposeConsultation();
-//                }
-//            }
-//        });
-        KeyStroke delete = KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(delete, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btDelete.isEnabled()) {
-                    delete();
-                }
-            }
-        });
-
-        KeyStroke newElement = KeyStroke.getKeyStroke(KeyEvent.VK_I, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(newElement, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btNew.isEnabled()) {
-                    newElement();
-                }
-            }
-        });
-
-        KeyStroke print = KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(print, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btPrint.isEnabled()) {
-                    btPrint.doClick();
-                }
-            }
-        });
-        KeyStroke consultatio = KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(consultatio, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btConsultation.isEnabled()) {
-                    consultation();
-                }
-            }
-        });
-
-        KeyStroke edit = KeyStroke.getKeyStroke(KeyEvent.VK_M, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(edit, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btEdit.isEnabled()) {
-                    edit();
-                }
-            }
-        });
-        KeyStroke firts = KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(firts, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btFirts.isEnabled()) {
-                    setElement(objectDisplacement.getPrimero());
-                }
-            }
-        });
-
-        KeyStroke back = KeyStroke.getKeyStroke(KeyEvent.VK_B, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(back, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btBack.isEnabled()) {
-                    setElement(objectDisplacement.getAnterior());
-                }
-            }
-        });
-
-        KeyStroke next = KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(next, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btNext.isEnabled()) {
-                    setElement(objectDisplacement.getSiguiente());
-                }
-            }
-        });
-
-        KeyStroke last = KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_DOWN_MASK);
-        eventDispatcher.addactionMap(last, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (btLast.isEnabled()) {
-                    setElement(objectDisplacement.getUltimo());
-                }
-            }
-        });
-
+        int ks = 0;
+        for (final JButton bt : buttons) {
+            DAOFactory.getInstance().getKeyEventDespachador().addactionMap(
+                    keyStrokes[ks++], new AbstractAction() {
+                        @Override
+                        public void actionPerformed(ActionEvent e
+                        ) {
+                            if (bt.isEnabled()) {
+                                bt.doClick();
+                            }
+                        }
+                    }
+            );
+        }
     }
 
     private boolean validateField() {

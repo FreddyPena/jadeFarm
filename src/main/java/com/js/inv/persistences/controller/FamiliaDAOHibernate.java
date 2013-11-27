@@ -16,4 +16,5 @@ import com.js.shared.models.InvFamilia;
  */
 public class FamiliaDAOHibernate extends GenericDAOHibernate<InvFamilia, Integer> implements FamiliaDAO{
 
+
 }

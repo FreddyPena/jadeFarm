@@ -5,9 +5,8 @@
  */
 package com.js.shared.factory;
 
+import com.jadesoft.jadelib.generales.KeyEventDespachador;
 import com.js.inv.controllers.FamiliaController;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -15,7 +14,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public abstract class DAOFactory {
 
-    protected ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
     private static DAOFactory instance;
 
     protected DAOFactory() {
@@ -31,6 +29,10 @@ public abstract class DAOFactory {
         }
     }   
 
+    //Controllers
     public abstract FamiliaController getFamiliaController();
-
+    
+    //Clase JADESOFT
+    public abstract KeyEventDespachador getKeyEventDespachador();
+               
 }

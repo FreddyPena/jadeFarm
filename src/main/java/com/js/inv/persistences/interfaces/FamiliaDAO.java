@@ -14,5 +14,5 @@ import com.js.shared.models.InvFamilia;
  * @author JADESOFT
  */
 public interface FamiliaDAO extends GenericDAO<InvFamilia, Integer>{
-    
+
 }

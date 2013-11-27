@@ -10,9 +10,16 @@
     <!--Permite usar entre otras la anotación @Autowired -->
     <context:annotation-config/>
     <!--Permite usar entre otras las anotaciones @Component y @Controller -->
+    <context:component-scan base-package="com.jadesoft"/>
     <context:component-scan base-package="com.js"/>
+    
 
-     <bean class="com.js.shared.utils.HibernateUtil" factory-method="getSessionFactory"  />
-     <bean class="com.js.inv.persistences.controller.FamiliaDAOHibernate" />
+
+    <bean class="com.js.shared.utils.HibernateUtil" factory-method="getSessionFactory"  />
+    <bean class="com.js.inv.persistences.controller.FamiliaDAOHibernate" />   
+    
+    <!---Singleton -->
+    <bean class="com.jadesoft.jadelib.generales.KeyEventDespachador" />  
+  
 
 </beans>

@@ -424,9 +424,8 @@ public class DgFamilia extends javax.swing.JDialog {
         General.filtroTextField(cbFiltro.getSelectedItem(), jtFiltro, tbFamilia);
     }//GEN-LAST:event_jtFiltroKeyReleased
 
-    public static void main(String[] args) {
-        HibernateUtil.buildSessionFactory();
-        HibernateUtil.openSessionAndBindToThread();
+    public static void main(String[] args) {        
+        
         new DgFamilia((JDialog) null, true).setVisible(true);
 
     }

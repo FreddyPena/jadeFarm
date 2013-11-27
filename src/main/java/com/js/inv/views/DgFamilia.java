@@ -9,7 +9,6 @@ import com.jadesoft.jadelib.estandar.panel.jGlassPane;
 import com.jadesoft.jadelib.generales.DesplazamientoObject;
 import com.jadesoft.jadelib.generales.Filtro;
 import com.jadesoft.jadelib.generales.General;
-import com.jadesoft.jadelib.generales.KeyEventDespachador;
 import com.jadesoft.jadelib.generales.ManejoFiltro;
 import com.js.inv.tablemodel.ModeloFamilia;
 import com.js.shared.factory.DAOFactory;
@@ -20,10 +19,7 @@ import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -254,7 +250,7 @@ public class DgFamilia extends javax.swing.JDialog {
                 .addGroup(jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jXPanel1Layout.setVerticalGroup(
             jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +303,7 @@ public class DgFamilia extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jXLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -487,15 +483,15 @@ public class DgFamilia extends javax.swing.JDialog {
         tbFamilia.doLayout();
         tbFamilia.setModelStandar(new ModeloFamilia());
 
-        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
-        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
-        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
-        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
-
-        System.out.println(DAOFactory.getInstance().getFamiliaController());
-        System.out.println(DAOFactory.getInstance().getFamiliaController());
-        System.out.println(DAOFactory.getInstance().getFamiliaController());
-        System.out.println(DAOFactory.getInstance().getFamiliaController());
+//        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
+//        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
+//        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
+//        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
+//
+//        System.out.println(DAOFactory.getInstance().getFamiliaController());
+//        System.out.println(DAOFactory.getInstance().getFamiliaController());
+//        System.out.println(DAOFactory.getInstance().getFamiliaController());
+//        System.out.println(DAOFactory.getInstance().getFamiliaController());
 
         setElements();
 
@@ -570,21 +566,30 @@ public class DgFamilia extends javax.swing.JDialog {
 
     private void delete() {
         if (familia != null) {
-            int men = JOptionPane.showConfirmDialog(this, "Desea eliminar el nuevo registro?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-//            if (men == JOptionPane.YES_OPTION) {
-//                if(ManejoFamilia.getInstance().findDelete(familia) != null){
-//                    JOptionPane.showMessageDialog(null, "Existen artículos relacionados a esta Familia. No se puede borrar!", "Aviso",
-//                    JOptionPane.WARNING_MESSAGE);
-//                    return;
-//                }                
-//                familia.setIdentificador(jtIdentificador.getText());
-//                familia.setDescripcion(jtDescripcion.getText());
-//                ManejoFamilia.getInstance().delete(familia);
-//            }
-            clean();
-            setTablePanel(0, false);
-            setToolBar(false);
-            fireTableDataChanged();
+            int men = JOptionPane.showConfirmDialog(this,
+                    "Desea eliminar el nuevo registro?", null,
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (men == JOptionPane.NO_OPTION){
+                return;
+            }
+
+            try {
+                DAOFactory.getInstance().getFamiliaController().delete(familia.getCodigo());
+
+                clean();
+                setTablePanel(0, false);
+                setToolBar(false);
+                fireTableDataChanged();
+            } catch (BussinessException ex) {
+
+                JOptionPane.showMessageDialog(this, "Error al intentar borrar este regsitro", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
+
+                Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+
         }
     }
 
@@ -700,15 +705,13 @@ public class DgFamilia extends javax.swing.JDialog {
         for (final JButton bt : buttons) {
             DAOFactory.getInstance().getKeyEventDespachador().addactionMap(
                     keyStrokes[ks++], new AbstractAction() {
-                        @Override
-                        public void actionPerformed(ActionEvent e
-                        ) {
-                            if (bt.isEnabled()) {
-                                bt.doClick();
-                            }
-                        }
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (bt.isEnabled()) {
+                        bt.doClick();
                     }
-            );
+                }
+            });
         }
     }
 
@@ -759,7 +762,6 @@ public class DgFamilia extends javax.swing.JDialog {
         if (jtpStandard.getSelectedIndex() == 1 && tbFamilia.getSelectedRow() == -1) {
             tbFamilia.changeSelection(0, 1, false, false);
             objectDisplacement.setLista(tbFamilia.getElements());
-
         }
 
     }

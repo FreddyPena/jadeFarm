@@ -7,7 +7,6 @@ package com.js.shared.factory;
 
 import com.jadesoft.jadelib.generales.KeyEventDespachador;
 import com.js.inv.controllers.FamiliaController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

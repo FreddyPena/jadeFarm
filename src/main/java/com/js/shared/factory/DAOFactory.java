@@ -5,6 +5,7 @@
  */
 package com.js.shared.factory;
 
+import com.jadesoft.jadelib.displacement.DisplacementObject;
 import com.jadesoft.jadelib.generales.KeyEventDespachador;
 import com.js.inv.controllers.FamiliaController;
 
@@ -27,12 +28,14 @@ public abstract class DAOFactory {
         if (DAOFactory.instance == null) {
             DAOFactory.instance = factory;
         }
-    }   
+    }
 
     //Controllers
     public abstract FamiliaController getFamiliaController();
-    
+
     //Clase JADESOFT
     public abstract KeyEventDespachador getKeyEventDespachador();
-               
+
+    public abstract DisplacementObject getDisplacementObject();
+
 }

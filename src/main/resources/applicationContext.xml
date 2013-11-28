@@ -20,6 +20,7 @@
     
     <!---Singleton -->
     <bean class="com.jadesoft.jadelib.generales.KeyEventDespachador" />  
+    <bean class="com.jadesoft.jadelib.displacement.DisplacementObject" />  
   
 
 </beans>

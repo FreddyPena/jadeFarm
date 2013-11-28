@@ -5,21 +5,18 @@
 package com.js.inv.views;
 
 import com.jadesoft.jadedao.exception.BussinessException;
+import com.jadesoft.jadelib.displacement.Displacement;
 import com.jadesoft.jadelib.estandar.panel.jGlassPane;
-import com.jadesoft.jadelib.generales.DesplazamientoObject;
+import com.jadesoft.jadelib.displacement.DisplacementObject;
 import com.jadesoft.jadelib.generales.Filtro;
-import com.jadesoft.jadelib.generales.General;
-import com.jadesoft.jadelib.generales.ManejoFiltro;
+import com.jadesoft.jadelib.generales.FiltroController;
 import com.js.inv.tablemodel.ModeloFamilia;
 import com.js.shared.factory.DAOFactory;
 import com.js.shared.factory.DAOFactoryImpl;
 import com.js.shared.models.InvFamilia;
-import com.js.shared.utils.HibernateUtil;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -53,8 +50,6 @@ public class DgFamilia extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        jmpEdit = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         btNew = new javax.swing.JButton();
         btEdit = new javax.swing.JButton();
@@ -80,14 +75,6 @@ public class DgFamilia extends javax.swing.JDialog {
         jXLabel5 = new org.jdesktop.swingx.JXLabel();
         cbFiltro = new com.jadesoft.jadelib.estandar.combobox.ComboBoxStandar<Filtro>();
         jtFiltro = new com.jadesoft.jadelib.estandar.textField.JSearchTextField();
-
-        jmpEdit.setText("Editar");
-        jmpEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmpEditActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(jmpEdit);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -303,7 +290,7 @@ public class DgFamilia extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jXLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -360,19 +347,19 @@ public class DgFamilia extends javax.swing.JDialog {
     }//GEN-LAST:event_btSaveActionPerformed
 
     private void btFirtsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFirtsActionPerformed
-        setElement(objectDisplacement.getPrimero());
+        setElement(displacement.getFirst());
     }//GEN-LAST:event_btFirtsActionPerformed
 
     private void btNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNextActionPerformed
-        setElement(objectDisplacement.getSiguiente());
+        setElement(displacement.getNext());
     }//GEN-LAST:event_btNextActionPerformed
 
     private void btBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBackActionPerformed
-        setElement(objectDisplacement.getAnterior());
+        setElement(displacement.getPrevious());
     }//GEN-LAST:event_btBackActionPerformed
 
     private void btLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLastActionPerformed
-        setElement(objectDisplacement.getUltimo());
+        setElement(displacement.getLast());
     }//GEN-LAST:event_btLastActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -403,29 +390,23 @@ public class DgFamilia extends javax.swing.JDialog {
         edit();
     }//GEN-LAST:event_btEditActionPerformed
 
-    private void jmpEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmpEditActionPerformed
-        edit();
-    }//GEN-LAST:event_jmpEditActionPerformed
-
     private void tbFamiliaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFamiliaMouseClicked
-        objectDisplacement.setLista(tbFamilia.getElements());
         if (evt.getClickCount() == 2) {
-            setElement(tbFamilia.getSelectedElement());
             if (!consultation) {
-                setTablePanel(0, false);
-                setToolBar(false);
+                edit();
             } else {
+                this.familia = tbFamilia.getSelectedElement();
                 dispose();
             }
         }
     }//GEN-LAST:event_tbFamiliaMouseClicked
 
     private void jtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFiltroKeyReleased
-        General.filtroTextField(cbFiltro.getSelectedItem(), jtFiltro, tbFamilia);
+        tbFamilia.filterJTable(cbFiltro.getSelectedItem(), jtFiltro);
     }//GEN-LAST:event_jtFiltroKeyReleased
 
-    public static void main(String[] args) {        
-        
+    public static void main(String[] args) {
+
         new DgFamilia((JDialog) null, true).setVisible(true);
 
     }
@@ -442,7 +423,6 @@ public class DgFamilia extends javax.swing.JDialog {
     private javax.swing.JButton btSave;
     private com.jadesoft.jadelib.estandar.combobox.ComboBoxStandar<Filtro> cbFiltro;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar jToolBar1;
@@ -451,7 +431,6 @@ public class DgFamilia extends javax.swing.JDialog {
     private org.jdesktop.swingx.JXLabel jXLabel3;
     private org.jdesktop.swingx.JXLabel jXLabel5;
     private org.jdesktop.swingx.JXPanel jXPanel1;
-    private javax.swing.JMenuItem jmpEdit;
     private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtDescripcion;
     private com.jadesoft.jadelib.estandar.textField.JSearchTextField jtFiltro;
     private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtIdentificador;
@@ -459,19 +438,8 @@ public class DgFamilia extends javax.swing.JDialog {
     private com.jadesoft.jadelib.estandar.tablas.TableStandar<InvFamilia> tbFamilia;
     // End of variables declaration//GEN-END:variables
     private InvFamilia familia;
-    private DesplazamientoObject<InvFamilia> objectDisplacement;
+    private Displacement<InvFamilia> displacement;
     private boolean consultation;
-    private boolean changeDisplacement = true;
-
-    protected void setColumnaWith(int Column, int width) {
-        tbFamilia.getColumnModel().getColumn(Column).setPreferredWidth(width);
-    }
-
-    protected void setTablePanel(int panel, boolean status) {
-        jtpStandard.setSelectedIndex(panel);
-        jtpStandard.setEnabledAt(0, !status);
-        jtpStandard.setEnabledAt(1, status);
-    }
 
     private void initComp() {
         DAOFactory factory = new DAOFactoryImpl();
@@ -481,50 +449,46 @@ public class DgFamilia extends javax.swing.JDialog {
         tbFamilia.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbFamilia.doLayout();
         tbFamilia.setModelStandar(new ModeloFamilia());
-
-//        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
-//        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
-//        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
-//        System.out.println(DAOFactory.getInstance().getKeyEventDespachador());
-//
-//        System.out.println(DAOFactory.getInstance().getFamiliaController());
-//        System.out.println(DAOFactory.getInstance().getFamiliaController());
-//        System.out.println(DAOFactory.getInstance().getFamiliaController());
-//        System.out.println(DAOFactory.getInstance().getFamiliaController());
+        tbFamilia.columnWidth(new Integer[]{150, 325});
 
         setElements();
+        keyEvents();
 
-        setColumnaWith(0, 150);
-        setColumnaWith(1, 348);
-
-        ManejoFiltro filtro = new ManejoFiltro();
-        filtro.agregarFiltro(0, "Identificador");
-        filtro.agregarFiltro(1, "Descripción");
-        cbFiltro.setElements(filtro.getLists());
+        FiltroController filtro = new FiltroController();
+        filtro.setFiltros(new String[]{"Identificador", "Descripción"});
+        cbFiltro.setElements(filtro.getFiltros());
         cbFiltro.setSelectedIndex(0);
 
-        keyEvents();
-        setDisplacement(true);
-        objectDisplacement = new DesplazamientoObject<>();
-        jtFiltro.requestFocus();
-        setTablePanel(1, true);
-        setToolBar(true);
+        displacement = DAOFactory.getInstance().getDisplacementObject();
+        
+        jtpStandard.setSelectedIndex(1);
+        jtpStandard.setEnabledAt(0, false);
+        jtpStandard.setEnabledAt(1, true);
     }
 
     private void clean() {
-        familia = null;
-        setDisplacement(true);
-        cleanField();
-    }
-
-    private void cleanField() {
+        this.familia = null;
         jtIdentificador.setText("");
         jtDescripcion.setText("");
+        jtIdentificador.requestFocus();
+    }
+
+    private void setToolBarAndPanel(int panel, boolean b) {
+        jtpStandard.setSelectedIndex(panel);
+        jtpStandard.setEnabledAt(0, !b);
+        jtpStandard.setEnabledAt(1, b);
+        //ToolBar
+        btConsultation.setEnabled(!b);
+        btSave.setEnabled(!b);
+        btNew.setEnabled(b);
+        btEdit.setEnabled(b);
+        b = jtpStandard.getSelectedIndex() == 0 && this.familia != null;
+        btDelete.setEnabled(b);
     }
 
     private void consultation() {
-        setTablePanel(1, true);
-        setToolBar(true);
+        setToolBarAndPanel(1, true);
+        setDisplacement(false);
         clean();
         fireTableDataChanged();
     }
@@ -532,31 +496,18 @@ public class DgFamilia extends javax.swing.JDialog {
     private void edit() {
         if (tbFamilia.getSelectedElement() != null) {
             setDisplacement(true);
-            objectDisplacement.setLista(tbFamilia.getElements());
+            displacement.setDisplacement(tbFamilia.getElements());
             setElement(tbFamilia.getSelectedElement());
-            setTablePanel(0, false);
-            setToolBar(false);
-            changeDisplacement = true;
+            setToolBarAndPanel(0, false);
         }
     }
 
     private void newElement() {
-        setTablePanel(0, false);
-        setToolBar(false);
+        setToolBarAndPanel(0, false);
         clean();
     }
 
-    private void setToolBar(boolean b) {
-        btConsultation.setEnabled(!b);
-        btSave.setEnabled(!b);
-        btNew.setEnabled(b);
-        btEdit.setEnabled(b);
-
-        b = jtpStandard.getSelectedIndex() == 0 && familia != null;
-        btDelete.setEnabled(b);
-    }
-
-    public void setDisplacement(boolean b) {
+    private void setDisplacement(boolean b) {
         btBack.setEnabled(b);
         btNext.setEnabled(b);
         btLast.setEnabled(b);
@@ -564,60 +515,47 @@ public class DgFamilia extends javax.swing.JDialog {
     }
 
     private void delete() {
-        if (familia != null) {
+        if (this.familia != null) {
             int men = JOptionPane.showConfirmDialog(this,
-                    "Desea eliminar el nuevo registro?", null,
+                    "Desea eliminar el registro?", null,
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-            if (men == JOptionPane.NO_OPTION){
+            if (men == JOptionPane.NO_OPTION) {
                 return;
             }
 
             try {
-                DAOFactory.getInstance().getFamiliaController().delete(familia.getCodigo());
-
+                DAOFactory.getInstance().getFamiliaController().delete(this.familia.getCodigo());
+                tbFamilia.removeElement(this.familia);
                 clean();
-                setTablePanel(0, false);
-                setToolBar(false);
+                setToolBarAndPanel(1, true);
                 fireTableDataChanged();
             } catch (BussinessException ex) {
-
                 JOptionPane.showMessageDialog(this, "Error al intentar borrar este regsitro", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
-
                 Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-
         }
     }
 
     private void print() {
-        if (familia != null) {
+        if (this.familia != null) {
             //codigo de imprimir
         }
     }
 
-    private void select() {
-        if (changeDisplacement) {
-            objectDisplacement = new DesplazamientoObject<>(tbFamilia.getElements());
-            changeDisplacement = false;
-        }
-        setElement(tbFamilia.getSelectedElement());
-    }
-
-    protected void setElements() {
+    private void setElements() {
         Runnable run = new Runnable() {
             @Override
             public void run() {
                 getGlassPane().setVisible(true);
-                List lFamilia = new ArrayList();
                 try {
-                    lFamilia = DAOFactory.getInstance().getFamiliaController().findAll();
+                    tbFamilia.setElements(DAOFactory.getInstance().getFamiliaController().findAll());
                 } catch (BussinessException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al intentar recorrer los regsitros", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
                     Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                tbFamilia.setElements(lFamilia);
                 getGlassPane().setVisible(false);
             }
         };
@@ -629,37 +567,40 @@ public class DgFamilia extends javax.swing.JDialog {
             return;
         }
 
-        int men = JOptionPane.showConfirmDialog(this, familia == null ? "Desea guardar el nuevo registro?"
+        int men = JOptionPane.showConfirmDialog(this, this.familia == null ? "Desea guardar el nuevo registro?"
                 : "Desea guardar los cambios?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (men == JOptionPane.NO_OPTION) {
             return;
         }
 
-        if (familia == null) {
-            familia = new InvFamilia();
+        InvFamilia copyFamilia = this.familia;
+        if (this.familia == null) {
+            this.familia = new InvFamilia();
         }
 
-        familia.setDescripcion(jtDescripcion.getText());
-        familia.setIdentificador(jtIdentificador.getText());
+        this.familia.setDescripcion(jtDescripcion.getText());
+        this.familia.setIdentificador(jtIdentificador.getText());
 
-        try {
-            DAOFactory.getInstance().getFamiliaController().saveOrUpdate(familia);
-        } catch (BussinessException ex) {
-            Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
+        if (copyFamilia == null || !this.familia.equals(copyFamilia)) {
+            tbFamilia.addElement(this.familia);
+            try {
+                DAOFactory.getInstance().getFamiliaController().saveOrUpdate(this.familia);
+            } catch (BussinessException ex) {
+                JOptionPane.showMessageDialog(this, "Error al intentar guardar este regsitro", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
-        changeDisplacement = true;
         clean();
         fireTableDataChanged();
-        setTablePanel(1, true);
-        setToolBar(true);
+        setToolBarAndPanel(1, true);
     }
 
     private void fireTableDataChanged() {
-        setElements();
         jtFiltro.setText("");
-        General.filtroTextField(cbFiltro.getSelectedItem(), jtFiltro, tbFamilia);
+        tbFamilia.filterJTable(cbFiltro.getSelectedItem(), jtFiltro);
     }
 
     public void setSelectEnable(boolean enable) {
@@ -667,13 +608,7 @@ public class DgFamilia extends javax.swing.JDialog {
     }
 
     public InvFamilia getSelected() {
-        return familia;
-    }
-
-    private void disposeConsultation() {
-        if (consultation && familia != null) {
-            dispose();
-        }
+        return this.familia;
     }
 
     private void exit() {
@@ -704,13 +639,13 @@ public class DgFamilia extends javax.swing.JDialog {
         for (final JButton bt : buttons) {
             DAOFactory.getInstance().getKeyEventDespachador().addactionMap(
                     keyStrokes[ks++], new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (bt.isEnabled()) {
-                        bt.doClick();
-                    }
-                }
-            });
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (bt.isEnabled()) {
+                                bt.doClick();
+                            }
+                        }
+                    });
         }
     }
 
@@ -730,38 +665,36 @@ public class DgFamilia extends javax.swing.JDialog {
     }
 
     private void setElement(InvFamilia familia) {
-        selectRow();
         if (familia != null) {
             this.familia = familia;
             jtIdentificador.setText(familia.getIdentificador());
             jtDescripcion.setText(familia.getDescripcion());
-
-            //  objectDisplacement.setRegistroActual(familia);           
+            displacement.setCurrent(familia);
         }
     }
 
-    private void selectRow() {
-
-        if (familia != null) {
-            objectDisplacement.setRegistroActual(familia);
-            if (jtpStandard.getSelectedIndex() == 1) {
-
-                int row = 0;
-                for (InvFamilia f : tbFamilia.getElements()) {
-                    if (f.equals(familia)) {
-                        tbFamilia.changeSelection(row, 1, false, false);
-                        return;
-                    }
-                    row++;
-                }
-                return;
-            }
-        }
-
-        if (jtpStandard.getSelectedIndex() == 1 && tbFamilia.getSelectedRow() == -1) {
-            tbFamilia.changeSelection(0, 1, false, false);
-            objectDisplacement.setLista(tbFamilia.getElements());
-        }
-
-    }
+//    private void selectRow() {
+//
+//        if (familia != null) {
+//            objectDisplacement.setRegistroActual(familia);
+//            if (jtpStandard.getSelectedIndex() == 1) {
+//
+//                int row = 0;
+//                for (InvFamilia f : tbFamilia.getElements()) {
+//                    if (f.equals(familia)) {
+//                        tbFamilia.changeSelection(row, 1, false, false);
+//                        return;
+//                    }
+//                    row++;
+//                }
+//                return;
+//            }
+//        }
+//
+//        if (jtpStandard.getSelectedIndex() == 1 && tbFamilia.getSelectedRow() == -1) {
+//            tbFamilia.changeSelection(0, 1, false, false);
+//            objectDisplacement.setLista(tbFamilia.getElements());
+//        }
+//
+//    }
 }

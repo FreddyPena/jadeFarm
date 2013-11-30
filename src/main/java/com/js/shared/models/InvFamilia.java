@@ -104,10 +104,7 @@ public class InvFamilia implements Serializable {
             return false;
         }
         InvFamilia other = (InvFamilia) object;
-        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
-            return false;
-        }
-        return true;
+        return (this.codigo != null || other.codigo == null) && (this.codigo == null || this.codigo.equals(other.codigo));
     }
 
     @Override

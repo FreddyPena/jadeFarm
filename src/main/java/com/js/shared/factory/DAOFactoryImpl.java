@@ -5,6 +5,7 @@
  */
 package com.js.shared.factory;
 
+import com.jadesoft.jadelib.displacement.DisplacementObject;
 import com.jadesoft.jadelib.generales.KeyEventDespachador;
 import com.js.inv.controllers.FamiliaController;
 import org.springframework.context.ApplicationContext;
@@ -26,7 +27,12 @@ public class DAOFactoryImpl extends DAOFactory {
 
     //Clase JADESOFT
     @Override
-    public KeyEventDespachador getKeyEventDespachador() {        
-        return  this.context.getBean(KeyEventDespachador.class);
+    public KeyEventDespachador getKeyEventDespachador() {
+        return this.context.getBean(KeyEventDespachador.class);
+    }
+
+    @Override
+    public DisplacementObject getDisplacement() {
+        return this.context.getBean(DisplacementObject.class);
     }
 }

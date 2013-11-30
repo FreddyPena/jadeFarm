@@ -12,8 +12,7 @@ import java.util.Arrays;
 
 /**
  *
- * @author Hector Ventura
- * @author Freddy Pena
+ * @author JADESOFT
  */
 public final class ModeloFamilia extends TableModelStandar<InvFamilia> {
 

@@ -17,6 +17,8 @@
 
     <bean class="com.js.shared.utils.HibernateUtil" factory-method="getSessionFactory"  />
     <bean class="com.js.inv.persistences.controller.FamiliaDAOHibernate" />      
+    <bean class="com.js.inv.persistences.controller.MarcaDAOHibernate" />      
+    <bean class="com.js.inv.persistences.controller.ClasArticuloDAOHibernate" />      
     
     <!---Singleton -->
     <bean class="com.jadesoft.jadelib.generales.KeyEventDespachador" />  

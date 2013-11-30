@@ -203,14 +203,14 @@
     </Container>
     <Component class="org.jdesktop.swingx.JXHeader" name="jXHeader1">
       <Properties>
-        <Property name="description" type="java.lang.String" value="Registro y consulta de Familia"/>
+        <Property name="description" type="java.lang.String" value="Registro y consulta de Clasificaci&#xf3;n de Art&#xed;culos"/>
         <Property name="descriptionFont" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="14" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/jadesoft/jadeOther/icons/messenger_72.png"/>
         </Property>
-        <Property name="title" type="java.lang.String" value="Registro Familia"/>
+        <Property name="title" type="java.lang.String" value="Registro Clasificaci&#xf3;n Art&#xed;culos"/>
         <Property name="titleFont" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="20" style="1"/>
         </Property>
@@ -375,7 +375,7 @@
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbFamiliaMouseClicked"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;InvFamilia&gt;"/>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;InvClasificacion&gt;"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

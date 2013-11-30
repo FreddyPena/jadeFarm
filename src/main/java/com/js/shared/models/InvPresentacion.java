@@ -52,7 +52,7 @@ public class InvPresentacion implements Serializable {
     private double factor;
     @JoinColumn(name = "unidad", referencedColumnName = "codigo")
     @ManyToOne
-    private Unidad unidad;
+    private InvUnidad unidad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "presentacion")
     private List<InvArticuloPresentacion> invArticuloPresentacionList;
 
@@ -93,11 +93,11 @@ public class InvPresentacion implements Serializable {
         this.factor = factor;
     }
 
-    public Unidad getUnidad() {
+    public InvUnidad getUnidad() {
         return unidad;
     }
 
-    public void setUnidad(Unidad unidad) {
+    public void setUnidad(InvUnidad unidad) {
         this.unidad = unidad;
     }
 

@@ -7,9 +7,11 @@ package com.js.shared.factory;
 
 import com.jadesoft.jadelib.displacement.DisplacementObject;
 import com.jadesoft.jadelib.generales.KeyEventDespachador;
+import com.js.inv.controllers.AlmacenController;
 import com.js.inv.controllers.ClasArticuloController;
 import com.js.inv.controllers.FamiliaController;
 import com.js.inv.controllers.MarcaController;
+import com.js.inv.controllers.RenglonController;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,7 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author JADESOFT
  */
-public class DAOFactoryImpl extends DAOFactory {
+public class FactoryObjectImpl extends FactoryObject {
 
     private final ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 
@@ -35,6 +37,16 @@ public class DAOFactoryImpl extends DAOFactory {
     @Override
     public ClasArticuloController getClasArticuloController() {
         return this.context.getBean(ClasArticuloController.class);
+    }
+
+    @Override
+    public RenglonController getRenglonController() {
+        return this.context.getBean(RenglonController.class);
+    }
+
+    @Override
+    public AlmacenController getAlmacenController() {
+        return this.context.getBean(AlmacenController.class);
     }
 
     //Clase JADESOFT

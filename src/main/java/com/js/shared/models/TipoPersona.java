@@ -34,6 +34,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "TipoPersona.findAll", query = "SELECT t FROM TipoPersona t")})
 public class TipoPersona implements Serializable {
+    @Size(max = 11)
+    @Column(name = "identificador")
+    private String identificador;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,6 +105,14 @@ public class TipoPersona implements Serializable {
     @Override
     public String toString() {
         return "com.js.shared.models.TipoPersona[ codigo=" + codigo + " ]";
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
 }

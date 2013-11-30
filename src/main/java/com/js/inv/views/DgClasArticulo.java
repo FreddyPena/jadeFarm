@@ -10,8 +10,8 @@ import com.jadesoft.jadelib.estandar.panel.jGlassPane;
 import com.jadesoft.jadelib.generales.Filtro;
 import com.jadesoft.jadelib.generales.FiltroController;
 import com.js.inv.tablemodel.ModeloClasArticulo;
-import com.js.shared.factory.DAOFactory;
-import com.js.shared.factory.DAOFactoryImpl;
+import com.js.shared.factory.FactoryObject;
+import com.js.shared.factory.FactoryObjectImpl;
 import com.js.shared.models.InvClasificacion;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
@@ -367,7 +367,7 @@ public class DgClasArticulo extends javax.swing.JDialog {
     }//GEN-LAST:event_btLastActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(DAOFactory.getInstance().getKeyEventDespachador());
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDespachador());
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -456,8 +456,8 @@ public class DgClasArticulo extends javax.swing.JDialog {
     private boolean consultation;
 
     private void initComp() {
-        DAOFactory factory = new DAOFactoryImpl();
-        DAOFactory.setInstance(factory);
+        FactoryObject factory = new FactoryObjectImpl();
+        FactoryObject.setInstance(factory);
 
         setGlassPane(new jGlassPane());
         tbFamilia.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -473,7 +473,7 @@ public class DgClasArticulo extends javax.swing.JDialog {
         cbFiltro.setElements(filtro.getFiltros());
         cbFiltro.setSelectedIndex(0);
 
-        displacement = DAOFactory.getInstance().getDisplacement();
+        displacement = FactoryObject.getInstance().getDisplacement();
 
         jtpStandard.setSelectedIndex(1);
         jtpStandard.setEnabledAt(0, false);
@@ -539,7 +539,7 @@ public class DgClasArticulo extends javax.swing.JDialog {
             }
 
             try {
-                DAOFactory.getInstance().getClasArticuloController().delete(this.clasArticulo.getCodigo());
+                FactoryObject.getInstance().getClasArticuloController().delete(this.clasArticulo.getCodigo());
             } catch (BussinessException ex) {
                 JOptionPane.showMessageDialog(this, "Error al intentar borrar este regsitro", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
@@ -565,7 +565,7 @@ public class DgClasArticulo extends javax.swing.JDialog {
             public void run() {
                 getGlassPane().setVisible(true);
                 try {
-                    tbFamilia.setElements(DAOFactory.getInstance().getClasArticuloController().findAll());
+                    tbFamilia.setElements(FactoryObject.getInstance().getClasArticuloController().findAll());
                 } catch (BussinessException ex) {
                     JOptionPane.showMessageDialog(null, "Error al intentar recorrer los regsitros", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
@@ -599,7 +599,7 @@ public class DgClasArticulo extends javax.swing.JDialog {
 
         if (copyClas == null || !this.clasArticulo.equals(copyClas)) {
             try {
-                DAOFactory.getInstance().getClasArticuloController().saveOrUpdate(this.clasArticulo);
+                FactoryObject.getInstance().getClasArticuloController().saveOrUpdate(this.clasArticulo);
             } catch (BussinessException ex) {
                 JOptionPane.showMessageDialog(this, "Error al intentar guardar este regsitro", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
@@ -635,7 +635,7 @@ public class DgClasArticulo extends javax.swing.JDialog {
     }
 
     private void keyEvents() {
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(DAOFactory.getInstance().getKeyEventDespachador());
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDespachador());
         KeyStroke[] keyStrokes = new KeyStroke[]{
             KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK),
             KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK),
@@ -653,7 +653,7 @@ public class DgClasArticulo extends javax.swing.JDialog {
 
         int ks = 0;
         for (final JButton bt : buttons) {
-            DAOFactory.getInstance().getKeyEventDespachador().addactionMap(
+            FactoryObject.getInstance().getKeyEventDespachador().addactionMap(
                     keyStrokes[ks++], new AbstractAction() {
                         @Override
                         public void actionPerformed(ActionEvent e) {

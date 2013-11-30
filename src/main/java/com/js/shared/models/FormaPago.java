@@ -33,6 +33,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "FormaPago.findAll", query = "SELECT f FROM FormaPago f")})
 public class FormaPago implements Serializable {
+    @Size(max = 11)
+    @Column(name = "identificador")
+    private String identificador;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -98,6 +101,14 @@ public class FormaPago implements Serializable {
     @Override
     public String toString() {
         return "com.js.shared.models.FormaPago[ codigo=" + codigo + " ]";
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
 }

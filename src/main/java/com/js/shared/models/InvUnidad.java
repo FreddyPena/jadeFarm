@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,11 +28,14 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author JADESOFT
  */
 @Entity
-@Table(name = "unidad")
+@Table(name = "inv_unidad")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Unidad.findAll", query = "SELECT u FROM Unidad u")})
-public class Unidad implements Serializable {
+    @NamedQuery(name = "InvUnidad.findAll", query = "SELECT i FROM InvUnidad i"),
+    @NamedQuery(name = "InvUnidad.findByCodigo", query = "SELECT i FROM InvUnidad i WHERE i.codigo = :codigo"),
+    @NamedQuery(name = "InvUnidad.findByDescripcion", query = "SELECT i FROM InvUnidad i WHERE i.descripcion = :descripcion"),
+    @NamedQuery(name = "InvUnidad.findByIdentificador", query = "SELECT i FROM InvUnidad i WHERE i.identificador = :identificador")})
+public class InvUnidad implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -41,13 +45,16 @@ public class Unidad implements Serializable {
     @Size(max = 45)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(mappedBy = "unidad")
+    @Size(max = 11)
+    @Column(name = "identificador")
+    private String identificador;
+    @OneToMany(mappedBy = "unidad", fetch = FetchType.LAZY)
     private List<InvPresentacion> invPresentacionList;
 
-    public Unidad() {
+    public InvUnidad() {
     }
 
-    public Unidad(Integer codigo) {
+    public InvUnidad(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -65,6 +72,14 @@ public class Unidad implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
     @XmlTransient
@@ -87,10 +102,10 @@ public class Unidad implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Unidad)) {
+        if (!(object instanceof InvUnidad)) {
             return false;
         }
-        Unidad other = (Unidad) object;
+        InvUnidad other = (InvUnidad) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -99,7 +114,7 @@ public class Unidad implements Serializable {
 
     @Override
     public String toString() {
-        return "com.js.shared.models.Unidad[ codigo=" + codigo + " ]";
+        return "com.js.shared.models.InvUnidad[ codigo=" + codigo + " ]";
     }
 
 }

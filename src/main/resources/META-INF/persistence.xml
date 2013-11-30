@@ -34,6 +34,7 @@
     <class>com.js.shared.models.PersonaTipoPersona</class>
     <class>com.js.shared.models.ReciboIngresoDetalle</class>
     <class>com.js.shared.models.InvFamilia</class>
+    <class>com.js.shared.models.InvUnidad</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jadefarm?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value="higher"/>

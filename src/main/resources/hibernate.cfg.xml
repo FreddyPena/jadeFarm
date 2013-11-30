@@ -26,7 +26,7 @@
         <mapping class="com.js.shared.models.InvArticuloPresentacion"/>
         <mapping class="com.js.shared.models.InvInventarioFisico"/>
         <mapping class="com.js.shared.models.ReciboIngresoDetalle"/>
-        <mapping class="com.js.shared.models.Unidad"/>
+        <mapping class="com.js.shared.models.InvUnidad"/>
         <mapping class="com.js.shared.models.TipoPersona"/>
         <mapping class="com.js.shared.models.InvIngredienteActivo"/>
         <mapping class="com.js.shared.models.InvFamilia"/>

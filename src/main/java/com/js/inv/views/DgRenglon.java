@@ -9,11 +9,10 @@ import com.jadesoft.jadelib.displacement.Displacement;
 import com.jadesoft.jadelib.estandar.panel.jGlassPane;
 import com.jadesoft.jadelib.generales.Filtro;
 import com.jadesoft.jadelib.generales.FiltroController;
-import com.js.inv.tablemodel.ModeloFamilia;
+import com.js.inv.tablemodel.ModeloRenglon;
 import com.js.shared.factory.FactoryObject;
 import com.js.shared.factory.FactoryObjectImpl;
-import com.js.shared.models.InvFamilia;
-import com.js.shared.utils.UniqueKeyHibernate;
+import com.js.shared.models.InvRenglon;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -30,16 +29,16 @@ import javax.swing.KeyStroke;
  *
  * @author JADESOFT
  */
-public class DgFamilia extends javax.swing.JDialog {
+public class DgRenglon extends javax.swing.JDialog {
 
-    public DgFamilia(javax.swing.JDialog parent, boolean modal) {
+    public DgRenglon(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
         initComp();
     }
 
-    public DgFamilia(java.awt.Frame parent, boolean modal) {
+    public DgRenglon(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
@@ -71,7 +70,7 @@ public class DgFamilia extends javax.swing.JDialog {
         jtDescripcion = new com.jadesoft.jadelib.estandar.textField.TextFieldStandar();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbFamilia = new com.jadesoft.jadelib.estandar.tablas.TableStandar<InvFamilia>();
+        tbFamilia = new com.jadesoft.jadelib.estandar.tablas.TableStandar<InvRenglon>();
         jXLabel5 = new org.jdesktop.swingx.JXLabel();
         cbFiltro = new com.jadesoft.jadelib.estandar.combobox.ComboBoxStandar<Filtro>();
         jtFiltro = new com.jadesoft.jadelib.estandar.textField.JSearchTextField();
@@ -204,10 +203,10 @@ public class DgFamilia extends javax.swing.JDialog {
         });
         jToolBar1.add(btLast);
 
-        jXHeader1.setDescription("Registro y consulta de Familia");
+        jXHeader1.setDescription("Registro y consulta de Renglon");
         jXHeader1.setDescriptionFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jXHeader1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/messenger_72.png"))); // NOI18N
-        jXHeader1.setTitle("Registro Familia");
+        jXHeader1.setTitle("Registro Renglon");
         jXHeader1.setTitleFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
 
         jtpStandard.setFont(new java.awt.Font("SansSerif", 3, 12)); // NOI18N
@@ -400,7 +399,7 @@ public class DgFamilia extends javax.swing.JDialog {
             if (!consultation) {
                 edit();
             } else {
-                this.familia = tbFamilia.getSelectedElement();
+                this.renglon = tbFamilia.getSelectedElement();
                 dispose();
             }
         }
@@ -422,7 +421,7 @@ public class DgFamilia extends javax.swing.JDialog {
 
     public static void main(String[] args) {
 
-        new DgFamilia((JDialog) null, true).setVisible(true);
+        new DgRenglon((JDialog) null, true).setVisible(true);
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -450,10 +449,10 @@ public class DgFamilia extends javax.swing.JDialog {
     private com.jadesoft.jadelib.estandar.textField.JSearchTextField jtFiltro;
     private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtIdentificador;
     private javax.swing.JTabbedPane jtpStandard;
-    private com.jadesoft.jadelib.estandar.tablas.TableStandar<InvFamilia> tbFamilia;
+    private com.jadesoft.jadelib.estandar.tablas.TableStandar<InvRenglon> tbFamilia;
     // End of variables declaration//GEN-END:variables
-    private InvFamilia familia;
-    private Displacement<InvFamilia> displacement;
+    private InvRenglon renglon;
+    private Displacement<InvRenglon> displacement;
     private boolean consultation;
 
     private void initComp() {
@@ -463,7 +462,7 @@ public class DgFamilia extends javax.swing.JDialog {
         setGlassPane(new jGlassPane());
         tbFamilia.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbFamilia.doLayout();
-        tbFamilia.setModelStandar(new ModeloFamilia());
+        tbFamilia.setModelStandar(new ModeloRenglon());
         tbFamilia.columnWidth(new Integer[]{150, 325});
 
         setElements();
@@ -482,7 +481,7 @@ public class DgFamilia extends javax.swing.JDialog {
     }
 
     private void clean() {
-        this.familia = null;
+        this.renglon = null;
         jtIdentificador.setText("");
         jtDescripcion.setText("");
         jtIdentificador.requestFocus();
@@ -497,7 +496,7 @@ public class DgFamilia extends javax.swing.JDialog {
         btSave.setEnabled(!b);
         btNew.setEnabled(b);
         btEdit.setEnabled(b);
-        b = jtpStandard.getSelectedIndex() == 0 && this.familia != null;
+        b = jtpStandard.getSelectedIndex() == 0 && this.renglon != null;
         btDelete.setEnabled(b);
     }
 
@@ -530,7 +529,7 @@ public class DgFamilia extends javax.swing.JDialog {
     }
 
     private void delete() {
-        if (this.familia != null) {
+        if (this.renglon != null) {
             int men = JOptionPane.showConfirmDialog(this,
                     "Desea eliminar el registro?", null,
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -540,14 +539,14 @@ public class DgFamilia extends javax.swing.JDialog {
             }
 
             try {
-                FactoryObject.getInstance().getFamiliaController().delete(this.familia.getCodigo());
+                FactoryObject.getInstance().getRenglonController().delete(this.renglon.getCodigo());
             } catch (BussinessException ex) {
                 JOptionPane.showMessageDialog(this, "Error al intentar borrar este regsitro", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DgRenglon.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
-            tbFamilia.removeElement(this.familia);
+            tbFamilia.removeElement(this.renglon);
             clean();
             setToolBarAndPanel(1, true);
             fireTableDataChanged();
@@ -555,7 +554,7 @@ public class DgFamilia extends javax.swing.JDialog {
     }
 
     private void print() {
-        if (this.familia != null) {
+        if (this.renglon != null) {
             //codigo de imprimir
         }
     }
@@ -566,11 +565,11 @@ public class DgFamilia extends javax.swing.JDialog {
             public void run() {
                 getGlassPane().setVisible(true);
                 try {
-                    tbFamilia.setElements(FactoryObject.getInstance().getFamiliaController().findAll());
+                    tbFamilia.setElements(FactoryObject.getInstance().getRenglonController().findAll());
                 } catch (BussinessException ex) {
                     JOptionPane.showMessageDialog(null, "Error al intentar recorrer los regsitros", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
-                    Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DgRenglon.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 getGlassPane().setVisible(false);
             }
@@ -583,31 +582,31 @@ public class DgFamilia extends javax.swing.JDialog {
             return;
         }
 
-        int men = JOptionPane.showConfirmDialog(this, this.familia == null ? "Desea guardar el nuevo registro?"
+        int men = JOptionPane.showConfirmDialog(this, this.renglon == null ? "Desea guardar el nuevo registro?"
                 : "Desea guardar los cambios?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (men == JOptionPane.NO_OPTION) {
             return;
         }
 
-        InvFamilia copyFamilia = this.familia;
-        if (this.familia == null) {
-            this.familia = new InvFamilia();
+        InvRenglon copyRenglon = this.renglon;
+        if (this.renglon == null) {
+            this.renglon = new InvRenglon();
         }
 
-        this.familia.setDescripcion(jtDescripcion.getText());
-        this.familia.setIdentificador(jtIdentificador.getText());
+        this.renglon.setDescripcion(jtDescripcion.getText());
+        this.renglon.setIdentificador(jtIdentificador.getText());
 
-        if (copyFamilia == null || !this.familia.equals(copyFamilia)) {
+        if (copyRenglon == null || !this.renglon.equals(copyRenglon)) {
             try {
-                FactoryObject.getInstance().getFamiliaController().saveOrUpdate(this.familia);
+                FactoryObject.getInstance().getRenglonController().saveOrUpdate(this.renglon);
             } catch (BussinessException ex) {
                 JOptionPane.showMessageDialog(this, "Error al intentar guardar este regsitro", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(DgFamilia.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DgRenglon.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
-            tbFamilia.addElement(this.familia);
+            tbFamilia.addElement(this.renglon);
         }
 
         clean();
@@ -624,8 +623,8 @@ public class DgFamilia extends javax.swing.JDialog {
         consultation = enable;
     }
 
-    public InvFamilia getSelected() {
-        return this.familia;
+    public InvRenglon getSelected() {
+        return this.renglon;
     }
 
     private void exit() {
@@ -681,12 +680,12 @@ public class DgFamilia extends javax.swing.JDialog {
         return true;
     }
 
-    private void setElement(InvFamilia familia) {
-        if (familia != null) {
-            this.familia = familia;
-            jtIdentificador.setText(familia.getIdentificador());
-            jtDescripcion.setText(familia.getDescripcion());
-            displacement.setCurrent(familia);
+    private void setElement(InvRenglon renglon) {
+        if (renglon != null) {
+            this.renglon = renglon;
+            jtIdentificador.setText(renglon.getIdentificador());
+            jtDescripcion.setText(renglon.getDescripcion());
+            displacement.setCurrent(renglon);
         }
     }
 

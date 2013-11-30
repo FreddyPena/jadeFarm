@@ -13,12 +13,13 @@
     <context:component-scan base-package="com.jadesoft"/>
     <context:component-scan base-package="com.js"/>
     
-
-
+    <!--Controllers -->
     <bean class="com.js.shared.utils.HibernateUtil" factory-method="getSessionFactory"  />
     <bean class="com.js.inv.persistences.controller.FamiliaDAOHibernate" />      
     <bean class="com.js.inv.persistences.controller.MarcaDAOHibernate" />      
-    <bean class="com.js.inv.persistences.controller.ClasArticuloDAOHibernate" />      
+    <bean class="com.js.inv.persistences.controller.ClasArticuloDAOHibernate" />    
+    <bean class="com.js.inv.persistences.controller.RenglonDAOHibernate" />      
+    <bean class="com.js.inv.persistences.controller.AlmacenDAOHibernate" />           
     
     <!---Singleton -->
     <bean class="com.jadesoft.jadelib.generales.KeyEventDespachador" />  

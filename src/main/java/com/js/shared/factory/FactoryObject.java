@@ -7,28 +7,30 @@ package com.js.shared.factory;
 
 import com.jadesoft.jadelib.displacement.DisplacementObject;
 import com.jadesoft.jadelib.generales.KeyEventDespachador;
+import com.js.inv.controllers.AlmacenController;
 import com.js.inv.controllers.ClasArticuloController;
 import com.js.inv.controllers.FamiliaController;
 import com.js.inv.controllers.MarcaController;
+import com.js.inv.controllers.RenglonController;
 
 /**
  *
  * @author JADESOFT
  */
-public abstract class DAOFactory {
+public abstract class FactoryObject {
 
-    private static DAOFactory instance;
+    private static FactoryObject instance;
 
-    protected DAOFactory() {
+    protected FactoryObject() {
     }
 
-    public static DAOFactory getInstance() {
-        return DAOFactory.instance;
+    public static FactoryObject getInstance() {
+        return FactoryObject.instance;
     }
 
-    public static void setInstance(DAOFactory factory) {
-        if (DAOFactory.instance == null) {
-            DAOFactory.instance = factory;
+    public static void setInstance(FactoryObject factory) {
+        if (FactoryObject.instance == null) {
+            FactoryObject.instance = factory;
         }
     }
 
@@ -38,6 +40,11 @@ public abstract class DAOFactory {
     public abstract MarcaController getMarcaController();
 
     public abstract ClasArticuloController getClasArticuloController();
+
+    public abstract RenglonController getRenglonController();
+
+    public abstract AlmacenController getAlmacenController();
+
 
     //Clase JADESOFT
     public abstract KeyEventDespachador getKeyEventDespachador();

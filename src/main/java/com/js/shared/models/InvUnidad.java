@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.js.shared.models;
 
 import java.io.Serializable;
@@ -12,12 +11,13 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -31,15 +31,13 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "inv_unidad")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InvUnidad.findAll", query = "SELECT i FROM InvUnidad i"),
-    @NamedQuery(name = "InvUnidad.findByCodigo", query = "SELECT i FROM InvUnidad i WHERE i.codigo = :codigo"),
-    @NamedQuery(name = "InvUnidad.findByDescripcion", query = "SELECT i FROM InvUnidad i WHERE i.descripcion = :descripcion"),
-    @NamedQuery(name = "InvUnidad.findByIdentificador", query = "SELECT i FROM InvUnidad i WHERE i.identificador = :identificador")})
+    @NamedQuery(name = "InvUnidad.findAll", query = "SELECT i FROM InvUnidad i")})
 public class InvUnidad implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "codigo")
     private Integer codigo;
     @Size(max = 45)
@@ -48,7 +46,9 @@ public class InvUnidad implements Serializable {
     @Size(max = 11)
     @Column(name = "identificador")
     private String identificador;
-    @OneToMany(mappedBy = "unidad", fetch = FetchType.LAZY)
+    
+    @OneToMany(mappedBy = "unidad",fetch = FetchType.EAGER)
+   // @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     private List<InvPresentacion> invPresentacionList;
 
     public InvUnidad() {

@@ -71,9 +71,6 @@ public class InvArticulo implements Serializable {
     private boolean exentoItbis;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "articulo")
     private List<InvArticuloAlmacen> invArticuloAlmacenList;
-    @JoinColumn(name = "clasificacion", referencedColumnName = "codigo")
-    @ManyToOne(optional = false)
-    private InvClasificacion clasificacion;
     @JoinColumn(name = "renglon", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvRenglon renglon;
@@ -83,6 +80,9 @@ public class InvArticulo implements Serializable {
     @JoinColumn(name = "familia", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvFamilia familia;
+    @JoinColumn(name = "clasificacion", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private InvClasificacion clasificacion;
     @JoinColumn(name = "ingrediente_activo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvIngredienteActivo ingredienteActivo;
@@ -179,14 +179,6 @@ public class InvArticulo implements Serializable {
         this.invArticuloAlmacenList = invArticuloAlmacenList;
     }
 
-    public InvClasificacion getClasificacion() {
-        return clasificacion;
-    }
-
-    public void setClasificacion(InvClasificacion clasificacion) {
-        this.clasificacion = clasificacion;
-    }
-
     public InvRenglon getRenglon() {
         return renglon;
     }
@@ -209,6 +201,14 @@ public class InvArticulo implements Serializable {
 
     public void setFamilia(InvFamilia familia) {
         this.familia = familia;
+    }
+
+    public InvClasificacion getClasificacion() {
+        return clasificacion;
+    }
+
+    public void setClasificacion(InvClasificacion clasificacion) {
+        this.clasificacion = clasificacion;
     }
 
     public InvIngredienteActivo getIngredienteActivo() {

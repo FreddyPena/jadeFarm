@@ -10,7 +10,6 @@
     <class>com.js.shared.models.InvArticuloAlmacen</class>
     <class>com.js.shared.models.InvInventarioFisico</class>
     <class>com.js.shared.models.InvArticulo</class>
-    <class>com.js.shared.models.InvIngredienteActivo</class>
     <class>com.js.shared.models.Persona</class>
     <class>com.js.shared.models.InvPedido</class>
     <class>com.js.shared.models.ReciboIngreso</class>
@@ -18,7 +17,6 @@
     <class>com.js.shared.models.Unidad</class>
     <class>com.js.shared.models.FormaPago</class>
     <class>com.js.shared.models.InvClasificacion</class>
-    <class>com.js.shared.models.InvPresentacion</class>
     <class>com.js.shared.models.InvRenglon</class>
     <class>com.js.shared.models.InvMovimientoDetalle</class>
     <class>com.js.shared.models.TipoDocumento</class>
@@ -34,6 +32,8 @@
     <class>com.js.shared.models.PersonaTipoPersona</class>
     <class>com.js.shared.models.ReciboIngresoDetalle</class>
     <class>com.js.shared.models.InvFamilia</class>
+    <class>com.js.shared.models.InvIngredienteActivo</class>
+    <class>com.js.shared.models.InvPresentacion</class>
     <class>com.js.shared.models.InvUnidad</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jadefarm?zeroDateTimeBehavior=convertToNull"/>

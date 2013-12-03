@@ -6,7 +6,7 @@
 package com.js.inv.controllers;
 
 import com.jadesoft.jadedao.exception.BussinessException;
-import com.js.inv.persistences.interfaces.ClasArticuloDAO;
+import com.js.inv.dao.interfaces.ClasArticuloDAO;
 import com.js.shared.models.InvClasificacion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

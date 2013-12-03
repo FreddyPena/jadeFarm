@@ -10,8 +10,11 @@ import com.jadesoft.jadelib.generales.KeyEventDespachador;
 import com.js.inv.controllers.AlmacenController;
 import com.js.inv.controllers.ClasArticuloController;
 import com.js.inv.controllers.FamiliaController;
+import com.js.inv.controllers.IngrActivoController;
 import com.js.inv.controllers.MarcaController;
+import com.js.inv.controllers.PresentacionController;
 import com.js.inv.controllers.RenglonController;
+import com.js.inv.controllers.UnidadController;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -47,6 +50,21 @@ public class FactoryObjectImpl extends FactoryObject {
     @Override
     public AlmacenController getAlmacenController() {
         return this.context.getBean(AlmacenController.class);
+    }
+
+    @Override
+    public UnidadController getUnidadController() {
+        return this.context.getBean(UnidadController.class);
+    }
+
+    @Override
+    public IngrActivoController getIngrActivoController() {
+        return this.context.getBean(IngrActivoController.class);
+    }
+
+    @Override
+    public PresentacionController getPresentacionController() {
+        return this.context.getBean(PresentacionController.class);
     }
 
     //Clase JADESOFT

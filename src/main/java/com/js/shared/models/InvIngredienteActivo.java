@@ -43,6 +43,9 @@ public class InvIngredienteActivo implements Serializable {
     @Size(max = 45)
     @Column(name = "descripcion")
     private String descripcion;
+    @Size(max = 45)
+    @Column(name = "identificador")
+    private String identificador;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredienteActivo")
     private List<InvArticulo> invArticuloList;
 
@@ -67,6 +70,14 @@ public class InvIngredienteActivo implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
     @XmlTransient

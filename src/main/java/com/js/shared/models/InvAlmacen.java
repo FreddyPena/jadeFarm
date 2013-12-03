@@ -34,9 +34,6 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "InvAlmacen.findAll", query = "SELECT i FROM InvAlmacen i")})
 public class InvAlmacen implements Serializable {
-    @Size(max = 11)
-    @Column(name = "identificador")
-    private String identificador;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +43,9 @@ public class InvAlmacen implements Serializable {
     @Size(max = 45)
     @Column(name = "descripcion")
     private String descripcion;
+    @Size(max = 11)
+    @Column(name = "identificador")
+    private String identificador;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "almacen")
     private List<InvArticuloAlmacen> invArticuloAlmacenList;
 
@@ -70,6 +70,14 @@ public class InvAlmacen implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
     @XmlTransient
@@ -105,14 +113,6 @@ public class InvAlmacen implements Serializable {
     @Override
     public String toString() {
         return "com.js.shared.models.InvAlmacen[ codigo=" + codigo + " ]";
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
     }
 
 }

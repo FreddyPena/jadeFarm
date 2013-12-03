@@ -33,9 +33,6 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "FormaPago.findAll", query = "SELECT f FROM FormaPago f")})
 public class FormaPago implements Serializable {
-    @Size(max = 11)
-    @Column(name = "identificador")
-    private String identificador;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -45,6 +42,9 @@ public class FormaPago implements Serializable {
     @Size(max = 45)
     @Column(name = "descripcion")
     private String descripcion;
+    @Size(max = 11)
+    @Column(name = "identificador")
+    private String identificador;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "formaPago")
     private List<ReciboIngresoFormapago> reciboIngresoFormapagoList;
 
@@ -71,6 +71,14 @@ public class FormaPago implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
     @XmlTransient
     @JsonIgnore
     public List<ReciboIngresoFormapago> getReciboIngresoFormapagoList() {
@@ -95,20 +103,15 @@ public class FormaPago implements Serializable {
             return false;
         }
         FormaPago other = (FormaPago) object;
-        return (this.codigo != null || other.codigo == null) && (this.codigo == null || this.codigo.equals(other.codigo));
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
         return "com.js.shared.models.FormaPago[ codigo=" + codigo + " ]";
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
     }
 
 }

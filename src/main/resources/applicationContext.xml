@@ -15,11 +15,14 @@
     
     <!--Controllers -->
     <bean class="com.js.shared.utils.HibernateUtil" factory-method="getSessionFactory"  />
-    <bean class="com.js.inv.persistences.controller.FamiliaDAOHibernate" />      
-    <bean class="com.js.inv.persistences.controller.MarcaDAOHibernate" />      
-    <bean class="com.js.inv.persistences.controller.ClasArticuloDAOHibernate" />    
-    <bean class="com.js.inv.persistences.controller.RenglonDAOHibernate" />      
-    <bean class="com.js.inv.persistences.controller.AlmacenDAOHibernate" />           
+    <bean class="com.js.inv.dao.hql.FamiliaDAOHQL" />      
+    <bean class="com.js.inv.dao.hql.MarcaDAOHQL" />      
+    <bean class="com.js.inv.dao.hql.ClasArticuloDAOHQL" />    
+    <bean class="com.js.inv.dao.hql.RenglonDAOHQL" />      
+    <bean class="com.js.inv.dao.hql.AlmacenDAOHQL" />   
+    <bean class="com.js.inv.dao.hql.UnidadDAOHQL" />           
+    <bean class="com.js.inv.dao.hql.IngrActivoDAOHQL" />
+    <bean class="com.js.inv.dao.hql.PresentacionDAOHQL" />           
     
     <!---Singleton -->
     <bean class="com.jadesoft.jadelib.generales.KeyEventDespachador" />  

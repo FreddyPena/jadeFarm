@@ -43,12 +43,12 @@ public class InvPedidoDetalle implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "cantidad")
     private Double cantidad;
-    @JoinColumn(name = "presentacion_articulo", referencedColumnName = "codigo")
-    @ManyToOne(optional = false)
-    private InvArticuloPresentacion presentacionArticulo;
     @JoinColumn(name = "pedido", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvPedido pedido;
+    @JoinColumn(name = "presentacion_articulo", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private InvArticuloPresentacion presentacionArticulo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoDetalle")
     private List<InvDetalleCotizacion> invDetalleCotizacionList;
 
@@ -75,20 +75,20 @@ public class InvPedidoDetalle implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public InvArticuloPresentacion getPresentacionArticulo() {
-        return presentacionArticulo;
-    }
-
-    public void setPresentacionArticulo(InvArticuloPresentacion presentacionArticulo) {
-        this.presentacionArticulo = presentacionArticulo;
-    }
-
     public InvPedido getPedido() {
         return pedido;
     }
 
     public void setPedido(InvPedido pedido) {
         this.pedido = pedido;
+    }
+
+    public InvArticuloPresentacion getPresentacionArticulo() {
+        return presentacionArticulo;
+    }
+
+    public void setPresentacionArticulo(InvArticuloPresentacion presentacionArticulo) {
+        this.presentacionArticulo = presentacionArticulo;
     }
 
     @XmlTransient

@@ -6,7 +6,7 @@
 package com.js.inv.controllers;
 
 import com.jadesoft.jadedao.exception.BussinessException;
-import com.js.inv.persistences.interfaces.AlmacenDAO;
+import com.js.inv.dao.interfaces.AlmacenDAO;
 import com.js.shared.models.InvAlmacen;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

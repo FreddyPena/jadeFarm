@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,8 +39,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class InvPresentacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "codigo")
     private Integer codigo;
     @Basic(optional = false)
@@ -50,6 +52,9 @@ public class InvPresentacion implements Serializable {
     @NotNull
     @Column(name = "factor")
     private double factor;
+    @Size(max = 45)
+    @Column(name = "identificador")
+    private String identificador;
     @JoinColumn(name = "unidad", referencedColumnName = "codigo")
     @ManyToOne
     private InvUnidad unidad;
@@ -91,6 +96,14 @@ public class InvPresentacion implements Serializable {
 
     public void setFactor(double factor) {
         this.factor = factor;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
     public InvUnidad getUnidad() {

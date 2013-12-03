@@ -10,8 +10,11 @@ import com.jadesoft.jadelib.generales.KeyEventDespachador;
 import com.js.inv.controllers.AlmacenController;
 import com.js.inv.controllers.ClasArticuloController;
 import com.js.inv.controllers.FamiliaController;
+import com.js.inv.controllers.IngrActivoController;
 import com.js.inv.controllers.MarcaController;
+import com.js.inv.controllers.PresentacionController;
 import com.js.inv.controllers.RenglonController;
+import com.js.inv.controllers.UnidadController;
 
 /**
  *
@@ -45,6 +48,11 @@ public abstract class FactoryObject {
 
     public abstract AlmacenController getAlmacenController();
 
+    public abstract UnidadController getUnidadController();
+
+    public abstract IngrActivoController getIngrActivoController();
+
+    public abstract PresentacionController getPresentacionController();
 
     //Clase JADESOFT
     public abstract KeyEventDespachador getKeyEventDespachador();

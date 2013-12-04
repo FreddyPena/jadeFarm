@@ -6,7 +6,7 @@
 
 package com.js.inv.dao.hql;
 
-import com.jadesoft.jadedao.GenericDAOHQL;
+import com.js.GenericDAOHQL;
 import com.js.inv.dao.interfaces.IngrActivoDAO;
 import com.js.shared.models.InvIngredienteActivo;
 

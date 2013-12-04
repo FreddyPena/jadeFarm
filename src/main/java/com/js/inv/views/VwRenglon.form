@@ -279,12 +279,12 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.jadesoft.jadelib.estandar.textField.TextFieldStandar" name="jtIdentificador">
+            <Component class="com.js.swing.textfield.JTextFieldJS" name="jtIdentificador">
               <Properties>
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="45" noResource="true"/>
+                <Property name="jsLength" type="int" value="6"/>
               </Properties>
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtIdentificadorFocusLost"/>
@@ -298,12 +298,11 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.jadesoft.jadelib.estandar.textField.TextFieldStandar" name="jtDescripcion">
+            <Component class="com.js.swing.textfield.JTextFieldJS" name="jtDescripcion">
               <Properties>
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="45" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -360,7 +359,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="com.jadesoft.jadelib.estandar.tablas.TableStandar" name="tbFamilia">
+                <Component class="com.js.swing.table.JTableJS" name="tbFamilia">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
@@ -388,12 +387,12 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.jadesoft.jadelib.estandar.combobox.ComboBoxStandar" name="cbFiltro">
+            <Component class="com.js.swing.combobox.JComboBoxJS" name="cbFiltro">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Filtro&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;FilterTable&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="com.jadesoft.jadelib.estandar.textField.JSearchTextField" name="jtFiltro">
+            <Component class="com.js.swing.textfield.JTextFieldSearchJS" name="jtFiltro">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/jadesoft/jadeOther/icons/zoom_20.png"/>

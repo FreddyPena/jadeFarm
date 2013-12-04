@@ -6,7 +6,7 @@
 
 package com.js.inv.dao.interfaces;
 
-import com.jadesoft.jadedao.GenericDAO;
+import com.js.GenericDAO;
 import com.js.shared.models.InvAlmacen;
 
 /**

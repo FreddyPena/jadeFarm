@@ -5,8 +5,8 @@
  */
 package com.js.inv.dao.interfaces;
 
-import com.jadesoft.jadedao.GenericDAO;
-import com.jadesoft.jadedao.exception.BussinessException;
+import com.js.GenericDAO;
+import com.js.exception.BussinessException;
 import com.js.shared.models.InvUnidad;
 
 /**

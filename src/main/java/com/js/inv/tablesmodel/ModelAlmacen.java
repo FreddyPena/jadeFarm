@@ -5,8 +5,8 @@
  */
 package com.js.inv.tablesmodel;
 
-import com.jadesoft.jadelib.estandar.tablas.TableModelStandar;
 import com.js.shared.models.InvAlmacen;
+import com.js.swing.table.JTableModelJS;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,7 +14,7 @@ import java.util.Arrays;
  *
  * @author JADESOFT
  */
-public final class ModelAlmacen extends TableModelStandar<InvAlmacen> {
+public final class ModelAlmacen extends JTableModelJS<InvAlmacen> {
 
     public ModelAlmacen() {
         initComp();
@@ -23,7 +23,7 @@ public final class ModelAlmacen extends TableModelStandar<InvAlmacen> {
     private void initComp() {
         String key[] = {"Identificador", "Descripción"};
         columnIdentifiers.addAll(Arrays.asList(key));
-        Tipos = new Class[]{String.class, String.class};
+        clazz = new Class[]{String.class, String.class};
         update();
     }
 

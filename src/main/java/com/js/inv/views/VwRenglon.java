@@ -4,15 +4,15 @@
  */
 package com.js.inv.views;
 
-import com.jadesoft.jadedao.exception.BussinessException;
-import com.jadesoft.jadelib.displacement.Displacement;
-import com.jadesoft.jadelib.estandar.panel.jGlassPane;
-import com.jadesoft.jadelib.generales.Filtro;
-import com.jadesoft.jadelib.generales.FiltroController;
+import com.js.exception.BussinessException;
+import com.js.controller.displacement.Displacement;
+import com.js.controller.filtertable.FilterTable;
+import com.js.controller.filtertable.FilterTableController;
 import com.js.inv.tablesmodel.ModelRenglon;
 import com.js.shared.factory.FactoryObject;
 import com.js.shared.factory.FactoryObjectImpl;
 import com.js.shared.models.InvRenglon;
+import com.js.swing.panel.JGlassPaneJS;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -65,15 +65,15 @@ public class VwRenglon extends javax.swing.JDialog {
         jtpStandard = new javax.swing.JTabbedPane();
         jXPanel1 = new org.jdesktop.swingx.JXPanel();
         jXLabel2 = new org.jdesktop.swingx.JXLabel();
-        jtIdentificador = new com.jadesoft.jadelib.estandar.textField.TextFieldStandar();
+        jtIdentificador = new com.js.swing.textfield.JTextFieldJS();
         jXLabel3 = new org.jdesktop.swingx.JXLabel();
-        jtDescripcion = new com.jadesoft.jadelib.estandar.textField.TextFieldStandar();
+        jtDescripcion = new com.js.swing.textfield.JTextFieldJS();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbFamilia = new com.jadesoft.jadelib.estandar.tablas.TableStandar<InvRenglon>();
+        tbFamilia = new com.js.swing.table.JTableJS<InvRenglon>();
         jXLabel5 = new org.jdesktop.swingx.JXLabel();
-        cbFiltro = new com.jadesoft.jadelib.estandar.combobox.ComboBoxStandar<Filtro>();
-        jtFiltro = new com.jadesoft.jadelib.estandar.textField.JSearchTextField();
+        cbFiltro = new com.js.swing.combobox.JComboBoxJS<FilterTable>();
+        jtFiltro = new com.js.swing.textfield.JTextFieldSearchJS();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -215,7 +215,7 @@ public class VwRenglon extends javax.swing.JDialog {
         jXLabel2.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         jtIdentificador.setDisabledTextColor(java.awt.Color.black);
-        jtIdentificador.setName("45"); // NOI18N
+        jtIdentificador.setJsLength(6);
         jtIdentificador.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jtIdentificadorFocusLost(evt);
@@ -226,7 +226,6 @@ public class VwRenglon extends javax.swing.JDialog {
         jXLabel3.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         jtDescripcion.setDisabledTextColor(java.awt.Color.black);
-        jtDescripcion.setName("45"); // NOI18N
 
         javax.swing.GroupLayout jXPanel1Layout = new javax.swing.GroupLayout(jXPanel1);
         jXPanel1.setLayout(jXPanel1Layout);
@@ -367,7 +366,7 @@ public class VwRenglon extends javax.swing.JDialog {
     }//GEN-LAST:event_btLastActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDespachador());
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDispatcherJS());
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -399,7 +398,7 @@ public class VwRenglon extends javax.swing.JDialog {
             if (!consultation) {
                 edit();
             } else {
-                this.renglon = tbFamilia.getSelectedElement();
+                this.element = tbFamilia.getSelectedElement();
                 dispose();
             }
         }
@@ -435,7 +434,7 @@ public class VwRenglon extends javax.swing.JDialog {
     private javax.swing.JButton btNext;
     private javax.swing.JButton btPrint;
     private javax.swing.JButton btSave;
-    private com.jadesoft.jadelib.estandar.combobox.ComboBoxStandar<Filtro> cbFiltro;
+    private com.js.swing.combobox.JComboBoxJS<FilterTable> cbFiltro;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator3;
@@ -445,13 +444,13 @@ public class VwRenglon extends javax.swing.JDialog {
     private org.jdesktop.swingx.JXLabel jXLabel3;
     private org.jdesktop.swingx.JXLabel jXLabel5;
     private org.jdesktop.swingx.JXPanel jXPanel1;
-    private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtDescripcion;
-    private com.jadesoft.jadelib.estandar.textField.JSearchTextField jtFiltro;
-    private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtIdentificador;
+    private com.js.swing.textfield.JTextFieldJS jtDescripcion;
+    private com.js.swing.textfield.JTextFieldSearchJS jtFiltro;
+    private com.js.swing.textfield.JTextFieldJS jtIdentificador;
     private javax.swing.JTabbedPane jtpStandard;
-    private com.jadesoft.jadelib.estandar.tablas.TableStandar<InvRenglon> tbFamilia;
+    private com.js.swing.table.JTableJS<InvRenglon> tbFamilia;
     // End of variables declaration//GEN-END:variables
-    private InvRenglon renglon;
+    private InvRenglon element;
     private Displacement<InvRenglon> displacement;
     private boolean consultation;
 
@@ -459,18 +458,18 @@ public class VwRenglon extends javax.swing.JDialog {
         FactoryObject factory = new FactoryObjectImpl();
         FactoryObject.setInstance(factory);
 
-        setGlassPane(new jGlassPane());
+        setGlassPane(new JGlassPaneJS());
         tbFamilia.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbFamilia.doLayout();
-        tbFamilia.setModelStandar(new ModelRenglon());
+        tbFamilia.setModelJS(new ModelRenglon());
         tbFamilia.columnWidth(new Integer[]{150, 325});
 
         setElements();
         keyEvents();
 
-        FiltroController filtro = new FiltroController();
-        filtro.setFiltros(new String[]{"Identificador", "Descripción"});
-        cbFiltro.setElements(filtro.getFiltros());
+        FilterTableController filtro = new FilterTableController();
+        filtro.setlFilterTable(new String[]{"Identificador", "Descripción"});
+        cbFiltro.setElements(filtro.getlFilterTable());
         cbFiltro.setSelectedIndex(0);
 
         displacement = FactoryObject.getInstance().getDisplacement();
@@ -481,7 +480,7 @@ public class VwRenglon extends javax.swing.JDialog {
     }
 
     private void clean() {
-        this.renglon = null;
+        this.element = null;
         jtIdentificador.setText("");
         jtDescripcion.setText("");
         jtIdentificador.requestFocus();
@@ -496,7 +495,7 @@ public class VwRenglon extends javax.swing.JDialog {
         btSave.setEnabled(!b);
         btNew.setEnabled(b);
         btEdit.setEnabled(b);
-        b = jtpStandard.getSelectedIndex() == 0 && this.renglon != null;
+        b = jtpStandard.getSelectedIndex() == 0 && this.element != null;
         btDelete.setEnabled(b);
     }
 
@@ -529,7 +528,7 @@ public class VwRenglon extends javax.swing.JDialog {
     }
 
     private void delete() {
-        if (this.renglon != null) {
+        if (this.element != null) {
             int men = JOptionPane.showConfirmDialog(this,
                     "Desea eliminar el registro?", null,
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -539,14 +538,14 @@ public class VwRenglon extends javax.swing.JDialog {
             }
 
             try {
-                FactoryObject.getInstance().getRenglonController().delete(this.renglon.getCodigo());
+                FactoryObject.getInstance().getRenglonController().delete(this.element.getCodigo());
             } catch (BussinessException ex) {
                 JOptionPane.showMessageDialog(this, "Error al intentar borrar este regsitro", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(VwRenglon.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
-            tbFamilia.removeElement(this.renglon);
+            tbFamilia.removeElement(this.element);
             clean();
             setToolBarAndPanel(1, true);
             fireTableDataChanged();
@@ -554,7 +553,7 @@ public class VwRenglon extends javax.swing.JDialog {
     }
 
     private void print() {
-        if (this.renglon != null) {
+        if (this.element != null) {
             //codigo de imprimir
         }
     }
@@ -582,31 +581,31 @@ public class VwRenglon extends javax.swing.JDialog {
             return;
         }
 
-        int men = JOptionPane.showConfirmDialog(this, this.renglon == null ? "Desea guardar el nuevo registro?"
+        int men = JOptionPane.showConfirmDialog(this, this.element == null ? "Desea guardar el nuevo registro?"
                 : "Desea guardar los cambios?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (men == JOptionPane.NO_OPTION) {
             return;
         }
 
-        InvRenglon copyElement = this.renglon;
-        if (this.renglon == null) {
-            this.renglon = new InvRenglon();
+        InvRenglon copyElement = this.element;
+        if (this.element == null) {
+            this.element = new InvRenglon();
         }
 
-        this.renglon.setDescripcion(jtDescripcion.getText());
-        this.renglon.setIdentificador(jtIdentificador.getText());
+        this.element.setDescripcion(jtDescripcion.getText());
+        this.element.setIdentificador(jtIdentificador.getText());
 
-        if (copyElement == null || !this.renglon.equals(copyElement)) {
+        if (copyElement == null || !this.element.equals(copyElement)) {
             try {
-                FactoryObject.getInstance().getRenglonController().saveOrUpdate(this.renglon);
+                FactoryObject.getInstance().getRenglonController().saveOrUpdate(this.element);
             } catch (BussinessException ex) {
                 JOptionPane.showMessageDialog(this, "Error al intentar guardar este regsitro", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(VwRenglon.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
-            tbFamilia.addElement(this.renglon);
+            tbFamilia.addElement(this.element);
         }
 
         clean();
@@ -624,7 +623,7 @@ public class VwRenglon extends javax.swing.JDialog {
     }
 
     public InvRenglon getSelected() {
-        return this.renglon;
+        return this.element;
     }
 
     private void exit() {
@@ -635,7 +634,7 @@ public class VwRenglon extends javax.swing.JDialog {
     }
 
     private void keyEvents() {
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDespachador());
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDispatcherJS());
         KeyStroke[] keyStrokes = new KeyStroke[]{
             KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK),
             KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK),
@@ -653,7 +652,7 @@ public class VwRenglon extends javax.swing.JDialog {
 
         int ks = 0;
         for (final JButton bt : buttons) {
-            FactoryObject.getInstance().getKeyEventDespachador().addactionMap(
+            FactoryObject.getInstance().getKeyEventDispatcherJS().addactionMap(
                     keyStrokes[ks++], new AbstractAction() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -680,12 +679,12 @@ public class VwRenglon extends javax.swing.JDialog {
         return true;
     }
 
-    private void setElement(InvRenglon renglon) {
-        if (renglon != null) {
-            this.renglon = renglon;
-            jtIdentificador.setText(renglon.getIdentificador());
-            jtDescripcion.setText(renglon.getDescripcion());
-            displacement.setCurrent(renglon);
+    private void setElement(InvRenglon element) {
+        if (element != null) {
+            this.element = element;
+            jtIdentificador.setText(element.getIdentificador());
+            jtDescripcion.setText(element.getDescripcion());
+            displacement.setCurrent(element);
         }
     }
 

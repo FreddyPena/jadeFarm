@@ -4,19 +4,16 @@
  */
 package com.js.inv.views;
 
-import com.jadesoft.jadedao.exception.BussinessException;
-import com.jadesoft.jadelib.displacement.Displacement;
-import com.jadesoft.jadelib.estandar.panel.jGlassPane;
-import com.jadesoft.jadelib.generales.Filtro;
-import com.jadesoft.jadelib.generales.FiltroController;
-import com.js.inv.tablesmodel.ModelAlmacen;
+import com.js.controller.displacement.Displacement;
+import com.js.controller.filtertable.FilterTable;
+import com.js.controller.filtertable.FilterTableController;
+import com.js.exception.BussinessException;
 import com.js.inv.tablesmodel.ModelPresentacion;
 import com.js.shared.factory.FactoryObject;
 import com.js.shared.factory.FactoryObjectImpl;
-import com.js.shared.models.InvAlmacen;
 import com.js.shared.models.InvPresentacion;
 import com.js.shared.models.InvUnidad;
-import java.awt.Event;
+import com.js.swing.panel.JGlassPaneJS;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -69,21 +66,21 @@ public class VwPresentacion extends javax.swing.JDialog {
         jtpStandard = new javax.swing.JTabbedPane();
         jXPanel1 = new org.jdesktop.swingx.JXPanel();
         jXLabel2 = new org.jdesktop.swingx.JXLabel();
-        jtIdentificador = new com.jadesoft.jadelib.estandar.textField.TextFieldStandar();
+        jtIdentificador = new com.js.swing.textfield.JTextFieldJS();
         jXLabel3 = new org.jdesktop.swingx.JXLabel();
-        jtDescripcion = new com.jadesoft.jadelib.estandar.textField.TextFieldStandar();
+        jtDescripcion = new com.js.swing.textfield.JTextFieldJS();
         jXLabel4 = new org.jdesktop.swingx.JXLabel();
-        jtFactor = new com.jadesoft.jadelib.estandar.textField.TextFieldStandar();
+        jtFactor = new com.js.swing.textfield.JTextFieldJS();
         jXLabel6 = new org.jdesktop.swingx.JXLabel();
-        jtUnidadIdent = new com.jadesoft.jadelib.estandar.textField.TextFieldStandar();
-        jtUnidadDesc = new com.jadesoft.jadelib.estandar.textField.TextFieldStandar();
+        jtUnidadIdent = new com.js.swing.textfield.JTextFieldJS();
+        jtUnidadDesc = new com.js.swing.textfield.JTextFieldJS();
         btUnidadBuscar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbFamilia = new com.jadesoft.jadelib.estandar.tablas.TableStandar<InvPresentacion>();
+        tbFamilia = new com.js.swing.table.JTableJS<InvPresentacion>();
         jXLabel5 = new org.jdesktop.swingx.JXLabel();
-        cbFiltro = new com.jadesoft.jadelib.estandar.combobox.ComboBoxStandar<Filtro>();
-        jtFiltro = new com.jadesoft.jadelib.estandar.textField.JSearchTextField();
+        cbFiltro = new com.js.swing.combobox.JComboBoxJS<FilterTable>();
+        jtFiltro = new com.js.swing.textfield.JTextFieldSearchJS();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -225,7 +222,7 @@ public class VwPresentacion extends javax.swing.JDialog {
         jXLabel2.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         jtIdentificador.setDisabledTextColor(java.awt.Color.black);
-        jtIdentificador.setName("45"); // NOI18N
+        jtIdentificador.setJsLength(6);
         jtIdentificador.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jtIdentificadorFocusLost(evt);
@@ -236,19 +233,20 @@ public class VwPresentacion extends javax.swing.JDialog {
         jXLabel3.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         jtDescripcion.setDisabledTextColor(java.awt.Color.black);
-        jtDescripcion.setName("45"); // NOI18N
 
         jXLabel4.setText("Factor:");
         jXLabel4.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         jtFactor.setDisabledTextColor(java.awt.Color.black);
-        jtFactor.setName("SoloNumero"); // NOI18N
+        jtFactor.setJsLength(10);
+        jtFactor.setJsType(com.js.swing.textfield.TypeJTextFieldJS.FORMAT_NUMBER);
 
         jXLabel6.setText("Unidad:");
         jXLabel6.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         jtUnidadIdent.setDisabledTextColor(java.awt.Color.black);
-        jtUnidadIdent.setName("10"); // NOI18N
+        jtUnidadIdent.setJsLength(11);
+        jtUnidadIdent.setJsType(com.js.swing.textfield.TypeJTextFieldJS.ONLY_NUMBER);
         jtUnidadIdent.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtUnidadIdentKeyReleased(evt);
@@ -257,7 +255,6 @@ public class VwPresentacion extends javax.swing.JDialog {
 
         jtUnidadDesc.setEditable(false);
         jtUnidadDesc.setDisabledTextColor(java.awt.Color.black);
-        jtUnidadDesc.setName("45"); // NOI18N
 
         btUnidadBuscar.setText("...");
         btUnidadBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -422,7 +419,7 @@ public class VwPresentacion extends javax.swing.JDialog {
     }//GEN-LAST:event_btLastActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDespachador());
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDispatcherJS());
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -454,7 +451,7 @@ public class VwPresentacion extends javax.swing.JDialog {
             if (!consultation) {
                 edit();
             } else {
-                this.presentacion = tbFamilia.getSelectedElement();
+                this.element = tbFamilia.getSelectedElement();
                 dispose();
             }
         }
@@ -517,7 +514,7 @@ public class VwPresentacion extends javax.swing.JDialog {
     private javax.swing.JButton btPrint;
     private javax.swing.JButton btSave;
     private javax.swing.JButton btUnidadBuscar;
-    private com.jadesoft.jadelib.estandar.combobox.ComboBoxStandar<Filtro> cbFiltro;
+    private com.js.swing.combobox.JComboBoxJS<FilterTable> cbFiltro;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator3;
@@ -529,16 +526,16 @@ public class VwPresentacion extends javax.swing.JDialog {
     private org.jdesktop.swingx.JXLabel jXLabel5;
     private org.jdesktop.swingx.JXLabel jXLabel6;
     private org.jdesktop.swingx.JXPanel jXPanel1;
-    private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtDescripcion;
-    private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtFactor;
-    private com.jadesoft.jadelib.estandar.textField.JSearchTextField jtFiltro;
-    private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtIdentificador;
-    private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtUnidadDesc;
-    private com.jadesoft.jadelib.estandar.textField.TextFieldStandar jtUnidadIdent;
+    private com.js.swing.textfield.JTextFieldJS jtDescripcion;
+    private com.js.swing.textfield.JTextFieldJS jtFactor;
+    private com.js.swing.textfield.JTextFieldSearchJS jtFiltro;
+    private com.js.swing.textfield.JTextFieldJS jtIdentificador;
+    private com.js.swing.textfield.JTextFieldJS jtUnidadDesc;
+    private com.js.swing.textfield.JTextFieldJS jtUnidadIdent;
     private javax.swing.JTabbedPane jtpStandard;
-    private com.jadesoft.jadelib.estandar.tablas.TableStandar<InvPresentacion> tbFamilia;
+    private com.js.swing.table.JTableJS<InvPresentacion> tbFamilia;
     // End of variables declaration//GEN-END:variables
-    private InvPresentacion presentacion;
+    private InvPresentacion element;
     private Displacement<InvPresentacion> displacement;
     private boolean consultation;
     private InvUnidad unidad;
@@ -547,18 +544,18 @@ public class VwPresentacion extends javax.swing.JDialog {
         FactoryObject factory = new FactoryObjectImpl();
         FactoryObject.setInstance(factory);
 
-        setGlassPane(new jGlassPane());
+        setGlassPane(new JGlassPaneJS());
         tbFamilia.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbFamilia.doLayout();
-        tbFamilia.setModelStandar(new ModelPresentacion());
+        tbFamilia.setModelJS(new ModelPresentacion());
         tbFamilia.columnWidth(new Integer[]{100, 200, 80, 200});
 
         setElements();
         keyEvents();
 
-        FiltroController filtro = new FiltroController();
-        filtro.setFiltros(new String[]{"Identificador", "Descripción", "Factor", "Unidad"});
-        cbFiltro.setElements(filtro.getFiltros());
+        FilterTableController filtro = new FilterTableController();
+        filtro.setlFilterTable(new String[]{"Identificador", "Descripción", "Factor", "Unidad"});
+        cbFiltro.setElements(filtro.getlFilterTable());
         cbFiltro.setSelectedIndex(0);
 
         displacement = FactoryObject.getInstance().getDisplacement();
@@ -569,7 +566,7 @@ public class VwPresentacion extends javax.swing.JDialog {
     }
 
     private void clean() {
-        this.presentacion = null;
+        this.element = null;
         this.unidad = null;
         jtIdentificador.setText("");
         jtDescripcion.setText("");
@@ -588,7 +585,7 @@ public class VwPresentacion extends javax.swing.JDialog {
         btSave.setEnabled(!b);
         btNew.setEnabled(b);
         btEdit.setEnabled(b);
-        b = jtpStandard.getSelectedIndex() == 0 && this.presentacion != null;
+        b = jtpStandard.getSelectedIndex() == 0 && this.element != null;
         btDelete.setEnabled(b);
     }
 
@@ -621,7 +618,7 @@ public class VwPresentacion extends javax.swing.JDialog {
     }
 
     private void delete() {
-        if (this.presentacion != null) {
+        if (this.element != null) {
             int men = JOptionPane.showConfirmDialog(this,
                     "Desea eliminar el registro?", null,
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -631,14 +628,14 @@ public class VwPresentacion extends javax.swing.JDialog {
             }
 
             try {
-                FactoryObject.getInstance().getPresentacionController().delete(this.presentacion.getCodigo());
+                FactoryObject.getInstance().getPresentacionController().delete(this.element.getCodigo());
             } catch (BussinessException ex) {
                 JOptionPane.showMessageDialog(this, "Error al intentar borrar este regsitro", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(VwPresentacion.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
-            tbFamilia.removeElement(this.presentacion);
+            tbFamilia.removeElement(this.element);
             clean();
             setToolBarAndPanel(1, true);
             fireTableDataChanged();
@@ -646,7 +643,7 @@ public class VwPresentacion extends javax.swing.JDialog {
     }
 
     private void print() {
-        if (this.presentacion != null) {
+        if (this.element != null) {
             //codigo de imprimir
         }
     }
@@ -674,33 +671,33 @@ public class VwPresentacion extends javax.swing.JDialog {
             return;
         }
 
-        int men = JOptionPane.showConfirmDialog(this, this.presentacion == null ? "Desea guardar el nuevo registro?"
+        int men = JOptionPane.showConfirmDialog(this, this.element == null ? "Desea guardar el nuevo registro?"
                 : "Desea guardar los cambios?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (men == JOptionPane.NO_OPTION) {
             return;
         }
 
-        InvPresentacion copyElement = this.presentacion;
-        if (this.presentacion == null) {
-            this.presentacion = new InvPresentacion();
+        InvPresentacion copyElement = this.element;
+        if (this.element == null) {
+            this.element = new InvPresentacion();
         }
 
-        this.presentacion.setDescripcion(jtDescripcion.getText());
-        this.presentacion.setIdentificador(jtIdentificador.getText());
-        this.presentacion.setFactor(Double.parseDouble(jtFactor.getText()));
-        this.presentacion.setUnidad(this.unidad);
+        this.element.setDescripcion(jtDescripcion.getText());
+        this.element.setIdentificador(jtIdentificador.getText());
+        this.element.setFactor(Double.parseDouble(jtFactor.getText()));
+        this.element.setUnidad(this.unidad);
 
-        if (copyElement == null || !this.presentacion.equals(copyElement)) {
+        if (copyElement == null || !this.element.equals(copyElement)) {
             try {
-                FactoryObject.getInstance().getPresentacionController().saveOrUpdate(this.presentacion);
+                FactoryObject.getInstance().getPresentacionController().saveOrUpdate(this.element);
             } catch (BussinessException ex) {
                 JOptionPane.showMessageDialog(this, "Error al intentar guardar este regsitro", "ERROR",
                         JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(VwPresentacion.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
-            tbFamilia.addElement(this.presentacion);
+            tbFamilia.addElement(this.element);
         }
 
         clean();
@@ -718,7 +715,7 @@ public class VwPresentacion extends javax.swing.JDialog {
     }
 
     public InvPresentacion getSelected() {
-        return this.presentacion;
+        return this.element;
     }
 
     private void exit() {
@@ -729,7 +726,7 @@ public class VwPresentacion extends javax.swing.JDialog {
     }
 
     private void keyEvents() {
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDespachador());
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDispatcherJS());
         KeyStroke[] keyStrokes = new KeyStroke[]{
             KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK),
             KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK),
@@ -747,7 +744,7 @@ public class VwPresentacion extends javax.swing.JDialog {
 
         int ks = 0;
         for (final JButton bt : buttons) {
-            FactoryObject.getInstance().getKeyEventDespachador().addactionMap(
+            FactoryObject.getInstance().getKeyEventDispatcherJS().addactionMap(
                     keyStrokes[ks++], new AbstractAction() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -784,14 +781,14 @@ public class VwPresentacion extends javax.swing.JDialog {
         return true;
     }
 
-    private void setElement(InvPresentacion presentacion) {
-        if (presentacion != null) {
-            this.presentacion = presentacion;
-            jtIdentificador.setText(presentacion.getIdentificador());
-            jtDescripcion.setText(presentacion.getDescripcion());
-            jtFactor.setText(presentacion.getFactor() + "");
-            setUnidad(presentacion.getUnidad());
-            displacement.setCurrent(presentacion);
+    private void setElement(InvPresentacion element) {
+        if (element != null) {
+            this.element = element;
+            jtIdentificador.setText(element.getIdentificador());
+            jtDescripcion.setText(element.getDescripcion());
+            jtFactor.setText(element.getFactor() + "");
+            setUnidad(element.getUnidad());
+            displacement.setCurrent(element);
         }
     }
 

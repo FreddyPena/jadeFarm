@@ -5,7 +5,7 @@
  */
 package com.js.inv.controllers;
 
-import com.jadesoft.jadedao.exception.BussinessException;
+import com.js.exception.BussinessException;
 import com.js.inv.dao.interfaces.IngrActivoDAO;
 import com.js.shared.models.InvIngredienteActivo;
 import java.util.List;

@@ -5,8 +5,8 @@
  */
 package com.js.inv.dao.hql;
 
-import com.jadesoft.jadedao.GenericDAOHQL;
-import com.jadesoft.jadedao.exception.BussinessException;
+import com.js.GenericDAOHQL;
+import com.js.exception.BussinessException;
 import com.js.inv.dao.interfaces.UnidadDAO;
 import com.js.shared.models.InvUnidad;
 import java.util.logging.Level;

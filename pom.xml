@@ -108,26 +108,6 @@
             <version>1.6.1</version>
         </dependency>    
         <dependency>
-            <groupId>com.jadesoft</groupId>
-            <artifactId>jadelib</artifactId>
-            <version>1.0.1</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>gson</artifactId>
-                    <groupId>com.google.code.gson</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>bsh</artifactId>
-                    <groupId>org.beanshell</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>velocity</artifactId>
-                    <groupId>org.apache.velocity</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
             <groupId>com.jadesoft.jadedao</groupId>
             <artifactId>jadeDAO</artifactId>
             <version>1.0.1</version>
@@ -156,6 +136,30 @@
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jadesoft.jadeswing</groupId>
+            <artifactId>jadeSwing</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jadesoft.controller</groupId>
+            <artifactId>jadeController</artifactId>
+            <version>1.0.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>gson</artifactId>
+                    <groupId>com.google.code.gson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>bsh</artifactId>
+                    <groupId>org.beanshell</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>velocity</artifactId>
+                    <groupId>org.apache.velocity</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>

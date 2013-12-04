@@ -10,7 +10,6 @@
     <!--Permite usar entre otras la anotación @Autowired -->
     <context:annotation-config/>
     <!--Permite usar entre otras las anotaciones @Component y @Controller -->
-    <context:component-scan base-package="com.jadesoft"/>
     <context:component-scan base-package="com.js"/>
     
     <!--Controllers -->
@@ -25,8 +24,8 @@
     <bean class="com.js.inv.dao.hql.PresentacionDAOHQL" />           
     
     <!---Singleton -->
-    <bean class="com.jadesoft.jadelib.generales.KeyEventDespachador" />  
-    <bean class="com.jadesoft.jadelib.displacement.DisplacementObject" />  
+    <bean class="com.js.controller.others.KeyEventDispatcherJS" />  
+    <bean class="com.js.controller.displacement.DisplacementObject" />  
   
 
 </beans>

@@ -5,7 +5,7 @@
  */
 package com.js.shared.utils;
 
-import com.jadesoft.jadedao.exception.BussinessException;
+import com.js.exception.BussinessException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.HibernateException;

@@ -5,8 +5,8 @@
  */
 package com.js.shared.factory;
 
-import com.jadesoft.jadelib.displacement.DisplacementObject;
-import com.jadesoft.jadelib.generales.KeyEventDespachador;
+import com.js.controller.displacement.DisplacementObject;
+import com.js.controller.others.KeyEventDispatcherJS;
 import com.js.inv.controllers.AlmacenController;
 import com.js.inv.controllers.ClasArticuloController;
 import com.js.inv.controllers.FamiliaController;
@@ -69,8 +69,8 @@ public class FactoryObjectImpl extends FactoryObject {
 
     //Clase JADESOFT
     @Override
-    public KeyEventDespachador getKeyEventDespachador() {
-        return this.context.getBean(KeyEventDespachador.class);
+    public KeyEventDispatcherJS getKeyEventDispatcherJS() {
+        return this.context.getBean(KeyEventDispatcherJS.class);
     }
 
     @Override

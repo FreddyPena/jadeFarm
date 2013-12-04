@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,14 +37,18 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class InvClasificacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "codigo")
     private Integer codigo;
-    @Size(max = 11)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
     @Column(name = "identificador")
     private String identificador;
-    @Size(max = 100)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "descripcion")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "clasificacion")
@@ -53,6 +59,12 @@ public class InvClasificacion implements Serializable {
 
     public InvClasificacion(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvClasificacion(Integer codigo, String identificador, String descripcion) {
+        this.codigo = codigo;
+        this.identificador = identificador;
+        this.descripcion = descripcion;
     }
 
     public Integer getCodigo() {

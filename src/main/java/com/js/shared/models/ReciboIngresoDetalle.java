@@ -10,6 +10,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,17 +33,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ReciboIngresoDetalle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "codigo")
     private Integer codigo;
     @Basic(optional = false)
     @NotNull
     @Column(name = "valor")
     private double valor;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "pendiente")
-    private Double pendiente;
+    private double pendiente;
     @JoinColumn(name = "recibo_ingreso", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private ReciboIngreso reciboIngreso;
@@ -53,9 +56,10 @@ public class ReciboIngresoDetalle implements Serializable {
         this.codigo = codigo;
     }
 
-    public ReciboIngresoDetalle(Integer codigo, double valor) {
+    public ReciboIngresoDetalle(Integer codigo, double valor, double pendiente) {
         this.codigo = codigo;
         this.valor = valor;
+        this.pendiente = pendiente;
     }
 
     public Integer getCodigo() {
@@ -74,11 +78,11 @@ public class ReciboIngresoDetalle implements Serializable {
         this.valor = valor;
     }
 
-    public Double getPendiente() {
+    public double getPendiente() {
         return pendiente;
     }
 
-    public void setPendiente(Double pendiente) {
+    public void setPendiente(double pendiente) {
         this.pendiente = pendiente;
     }
 

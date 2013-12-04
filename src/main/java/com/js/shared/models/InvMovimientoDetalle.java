@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,23 +37,38 @@ public class InvMovimientoDetalle implements Serializable {
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "cantidad")
-    private Double cantidad;
+    private double cantidad;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "precio")
-    private Double precio;
+    private double precio;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "descuento")
-    private Double descuento;
+    private double descuento;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "itbis1")
-    private Double itbis1;
+    private double itbis1;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "itbis2")
-    private Double itbis2;
+    private double itbis2;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "costo")
-    private Double costo;
+    private double costo;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "tipo_movimiento")
-    private Character tipoMovimiento;
+    private char tipoMovimiento;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "existencia")
-    private Double existencia;
+    private double existencia;
     @JoinColumn(name = "moviento_articulo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvMovimiento movientoArticulo;
@@ -67,6 +83,18 @@ public class InvMovimientoDetalle implements Serializable {
         this.codigo = codigo;
     }
 
+    public InvMovimientoDetalle(Integer codigo, double cantidad, double precio, double descuento, double itbis1, double itbis2, double costo, char tipoMovimiento, double existencia) {
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.descuento = descuento;
+        this.itbis1 = itbis1;
+        this.itbis2 = itbis2;
+        this.costo = costo;
+        this.tipoMovimiento = tipoMovimiento;
+        this.existencia = existencia;
+    }
+
     public Integer getCodigo() {
         return codigo;
     }
@@ -75,67 +103,67 @@ public class InvMovimientoDetalle implements Serializable {
         this.codigo = codigo;
     }
 
-    public Double getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Double cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 
-    public Double getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public Double getDescuento() {
+    public double getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Double descuento) {
+    public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
 
-    public Double getItbis1() {
+    public double getItbis1() {
         return itbis1;
     }
 
-    public void setItbis1(Double itbis1) {
+    public void setItbis1(double itbis1) {
         this.itbis1 = itbis1;
     }
 
-    public Double getItbis2() {
+    public double getItbis2() {
         return itbis2;
     }
 
-    public void setItbis2(Double itbis2) {
+    public void setItbis2(double itbis2) {
         this.itbis2 = itbis2;
     }
 
-    public Double getCosto() {
+    public double getCosto() {
         return costo;
     }
 
-    public void setCosto(Double costo) {
+    public void setCosto(double costo) {
         this.costo = costo;
     }
 
-    public Character getTipoMovimiento() {
+    public char getTipoMovimiento() {
         return tipoMovimiento;
     }
 
-    public void setTipoMovimiento(Character tipoMovimiento) {
+    public void setTipoMovimiento(char tipoMovimiento) {
         this.tipoMovimiento = tipoMovimiento;
     }
 
-    public Double getExistencia() {
+    public double getExistencia() {
         return existencia;
     }
 
-    public void setExistencia(Double existencia) {
+    public void setExistencia(double existencia) {
         this.existencia = existencia;
     }
 

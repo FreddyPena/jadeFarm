@@ -13,6 +13,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -40,14 +42,18 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class InvCotizacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "codigo")
     private Integer codigo;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "num_cotizacion")
     private String numCotizacion;
     @JoinColumn(name = "persona", referencedColumnName = "codigo")
@@ -57,13 +63,21 @@ public class InvCotizacion implements Serializable {
     @ManyToOne(optional = false)
     private InvPedido pedido;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
-    private List<InvDetalleCotizacion> invDetalleCotizacionList;
+    private List<InvCotizacionDetalle> invCotizacionDetalleList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cotizacion")
+    private List<InvOrdenCompra> invOrdenCompraList;
 
     public InvCotizacion() {
     }
 
     public InvCotizacion(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvCotizacion(Integer codigo, Date fecha, String numCotizacion) {
+        this.codigo = codigo;
+        this.fecha = fecha;
+        this.numCotizacion = numCotizacion;
     }
 
     public Integer getCodigo() {
@@ -108,12 +122,22 @@ public class InvCotizacion implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public List<InvDetalleCotizacion> getInvDetalleCotizacionList() {
-        return invDetalleCotizacionList;
+    public List<InvCotizacionDetalle> getInvCotizacionDetalleList() {
+        return invCotizacionDetalleList;
     }
 
-    public void setInvDetalleCotizacionList(List<InvDetalleCotizacion> invDetalleCotizacionList) {
-        this.invDetalleCotizacionList = invDetalleCotizacionList;
+    public void setInvCotizacionDetalleList(List<InvCotizacionDetalle> invCotizacionDetalleList) {
+        this.invCotizacionDetalleList = invCotizacionDetalleList;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public List<InvOrdenCompra> getInvOrdenCompraList() {
+        return invOrdenCompraList;
+    }
+
+    public void setInvOrdenCompraList(List<InvOrdenCompra> invOrdenCompraList) {
+        this.invOrdenCompraList = invOrdenCompraList;
     }
 
     @Override

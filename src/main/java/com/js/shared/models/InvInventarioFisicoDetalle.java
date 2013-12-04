@@ -39,16 +39,15 @@ public class InvInventarioFisicoDetalle implements Serializable {
     private Integer codigo;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "articulo")
-    private int articulo;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "cantidad")
     private double cantidad;
     @Basic(optional = false)
     @NotNull
     @Column(name = "almacen")
     private int almacen;
+    @JoinColumn(name = "articulo_almacen", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private InvArticuloAlmacen articuloAlmacen;
     @JoinColumn(name = "inventario_fisico", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvInventarioFisico inventarioFisico;
@@ -60,9 +59,8 @@ public class InvInventarioFisicoDetalle implements Serializable {
         this.codigo = codigo;
     }
 
-    public InvInventarioFisicoDetalle(Integer codigo, int articulo, double cantidad, int almacen) {
+    public InvInventarioFisicoDetalle(Integer codigo, double cantidad, int almacen) {
         this.codigo = codigo;
-        this.articulo = articulo;
         this.cantidad = cantidad;
         this.almacen = almacen;
     }
@@ -73,14 +71,6 @@ public class InvInventarioFisicoDetalle implements Serializable {
 
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
-    }
-
-    public int getArticulo() {
-        return articulo;
-    }
-
-    public void setArticulo(int articulo) {
-        this.articulo = articulo;
     }
 
     public double getCantidad() {
@@ -97,6 +87,14 @@ public class InvInventarioFisicoDetalle implements Serializable {
 
     public void setAlmacen(int almacen) {
         this.almacen = almacen;
+    }
+
+    public InvArticuloAlmacen getArticuloAlmacen() {
+        return articuloAlmacen;
+    }
+
+    public void setArticuloAlmacen(InvArticuloAlmacen articuloAlmacen) {
+        this.articuloAlmacen = articuloAlmacen;
     }
 
     public InvInventarioFisico getInventarioFisico() {

@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.js.shared.models;
 
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -33,22 +35,23 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "InvUnidad.findAll", query = "SELECT i FROM InvUnidad i")})
 public class InvUnidad implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
-    @Size(max = 45)
-    @Column(name = "descripcion")
-    private String descripcion;
-    @Size(max = 11)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
     @Column(name = "identificador")
     private String identificador;
-    
-    @OneToMany(mappedBy = "unidad",fetch = FetchType.EAGER)
-   // @Fetch(org.hibernate.annotations.FetchMode.JOIN)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "descripcion")
+    private String descripcion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidad")
     private List<InvPresentacion> invPresentacionList;
 
     public InvUnidad() {
@@ -56,6 +59,12 @@ public class InvUnidad implements Serializable {
 
     public InvUnidad(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvUnidad(Integer codigo, String identificador, String descripcion) {
+        this.codigo = codigo;
+        this.identificador = identificador;
+        this.descripcion = descripcion;
     }
 
     public Integer getCodigo() {
@@ -66,20 +75,20 @@ public class InvUnidad implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getIdentificador() {
         return identificador;
     }
 
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient

@@ -50,10 +50,6 @@ public class InvLotes implements Serializable {
     private Date vencimiento;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "articulo")
-    private int articulo;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "cantidad")
     private double cantidad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lote")
@@ -66,10 +62,9 @@ public class InvLotes implements Serializable {
         this.codigo = codigo;
     }
 
-    public InvLotes(Integer codigo, Date vencimiento, int articulo, double cantidad) {
+    public InvLotes(Integer codigo, Date vencimiento, double cantidad) {
         this.codigo = codigo;
         this.vencimiento = vencimiento;
-        this.articulo = articulo;
         this.cantidad = cantidad;
     }
 
@@ -87,14 +82,6 @@ public class InvLotes implements Serializable {
 
     public void setVencimiento(Date vencimiento) {
         this.vencimiento = vencimiento;
-    }
-
-    public int getArticulo() {
-        return articulo;
-    }
-
-    public void setArticulo(int articulo) {
-        this.articulo = articulo;
     }
 
     public double getCantidad() {

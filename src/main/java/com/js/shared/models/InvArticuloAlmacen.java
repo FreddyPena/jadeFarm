@@ -49,12 +49,14 @@ public class InvArticuloAlmacen implements Serializable {
     @JoinColumn(name = "ubicacion", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvUbicacion ubicacion;
-    @JoinColumn(name = "articulo", referencedColumnName = "codigo")
-    @ManyToOne(optional = false)
-    private InvArticulo articulo;
     @JoinColumn(name = "almacen", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvAlmacen almacen;
+    @JoinColumn(name = "articulo", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private InvArticulo articulo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "articuloAlmacen")
+    private List<InvInventarioFisicoDetalle> invInventarioFisicoDetalleList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "articuloAlmacen")
     private List<InvLoteArticuloAlmacen> invLoteArticuloAlmacenList;
 
@@ -94,6 +96,14 @@ public class InvArticuloAlmacen implements Serializable {
         this.ubicacion = ubicacion;
     }
 
+    public InvAlmacen getAlmacen() {
+        return almacen;
+    }
+
+    public void setAlmacen(InvAlmacen almacen) {
+        this.almacen = almacen;
+    }
+
     public InvArticulo getArticulo() {
         return articulo;
     }
@@ -102,12 +112,14 @@ public class InvArticuloAlmacen implements Serializable {
         this.articulo = articulo;
     }
 
-    public InvAlmacen getAlmacen() {
-        return almacen;
+    @XmlTransient
+    @JsonIgnore
+    public List<InvInventarioFisicoDetalle> getInvInventarioFisicoDetalleList() {
+        return invInventarioFisicoDetalleList;
     }
 
-    public void setAlmacen(InvAlmacen almacen) {
-        this.almacen = almacen;
+    public void setInvInventarioFisicoDetalleList(List<InvInventarioFisicoDetalle> invInventarioFisicoDetalleList) {
+        this.invInventarioFisicoDetalleList = invInventarioFisicoDetalleList;
     }
 
     @XmlTransient

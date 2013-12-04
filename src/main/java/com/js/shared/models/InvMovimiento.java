@@ -47,11 +47,15 @@ public class InvMovimiento implements Serializable {
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "num_documento")
-    private Integer numDocumento;
+    private int numDocumento;
     @Size(max = 45)
     @Column(name = "documento_fiscal")
     private String documentoFiscal;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
@@ -92,9 +96,6 @@ public class InvMovimiento implements Serializable {
     @JoinColumn(name = "tipo_documento", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private TipoDocumento tipoDocumento;
-    @JoinColumn(name = "ars", referencedColumnName = "codigo")
-    @ManyToOne
-    private Persona ars;
     @JoinColumn(name = "persona", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private Persona persona;
@@ -106,8 +107,10 @@ public class InvMovimiento implements Serializable {
         this.codigo = codigo;
     }
 
-    public InvMovimiento(Integer codigo, double total, double totalPresona, double totalArs) {
+    public InvMovimiento(Integer codigo, int numDocumento, Date fecha, double total, double totalPresona, double totalArs) {
         this.codigo = codigo;
+        this.numDocumento = numDocumento;
+        this.fecha = fecha;
         this.total = total;
         this.totalPresona = totalPresona;
         this.totalArs = totalArs;
@@ -121,11 +124,11 @@ public class InvMovimiento implements Serializable {
         this.codigo = codigo;
     }
 
-    public Integer getNumDocumento() {
+    public int getNumDocumento() {
         return numDocumento;
     }
 
-    public void setNumDocumento(Integer numDocumento) {
+    public void setNumDocumento(int numDocumento) {
         this.numDocumento = numDocumento;
     }
 
@@ -241,14 +244,6 @@ public class InvMovimiento implements Serializable {
 
     public void setTipoDocumento(TipoDocumento tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
-    }
-
-    public Persona getArs() {
-        return ars;
-    }
-
-    public void setArs(Persona ars) {
-        this.ars = ars;
     }
 
     public Persona getPersona() {

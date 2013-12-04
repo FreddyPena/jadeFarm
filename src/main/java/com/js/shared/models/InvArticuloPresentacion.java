@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,8 +39,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class InvArticuloPresentacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "codigo")
     private Integer codigo;
     @Basic(optional = false)
@@ -65,12 +67,15 @@ public class InvArticuloPresentacion implements Serializable {
     @NotNull
     @Column(name = "porcentaje3")
     private double porcentaje3;
-    @Size(max = 25)
-    @Column(name = "barra")
-    private String barra;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "codigo_barra")
+    private String codigoBarra;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "costo")
-    private Double costo;
+    private double costo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "articuloPresentacion")
     private List<InvMovimientoDetalle> invMovimientoDetalleList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "presentacionArticulo")
@@ -81,6 +86,8 @@ public class InvArticuloPresentacion implements Serializable {
     @JoinColumn(name = "articulo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvArticulo articulo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "articuloPresentacion")
+    private List<InvOrdenCompraDetalle> invOrdenCompraDetalleList;
 
     public InvArticuloPresentacion() {
     }
@@ -89,7 +96,7 @@ public class InvArticuloPresentacion implements Serializable {
         this.codigo = codigo;
     }
 
-    public InvArticuloPresentacion(Integer codigo, double precio1, double precio2, double precio3, double pocentaje1, double porcentaje2, double porcentaje3) {
+    public InvArticuloPresentacion(Integer codigo, double precio1, double precio2, double precio3, double pocentaje1, double porcentaje2, double porcentaje3, String codigoBarra, double costo) {
         this.codigo = codigo;
         this.precio1 = precio1;
         this.precio2 = precio2;
@@ -97,6 +104,8 @@ public class InvArticuloPresentacion implements Serializable {
         this.pocentaje1 = pocentaje1;
         this.porcentaje2 = porcentaje2;
         this.porcentaje3 = porcentaje3;
+        this.codigoBarra = codigoBarra;
+        this.costo = costo;
     }
 
     public Integer getCodigo() {
@@ -155,19 +164,19 @@ public class InvArticuloPresentacion implements Serializable {
         this.porcentaje3 = porcentaje3;
     }
 
-    public String getBarra() {
-        return barra;
+    public String getCodigoBarra() {
+        return codigoBarra;
     }
 
-    public void setBarra(String barra) {
-        this.barra = barra;
+    public void setCodigoBarra(String codigoBarra) {
+        this.codigoBarra = codigoBarra;
     }
 
-    public Double getCosto() {
+    public double getCosto() {
         return costo;
     }
 
-    public void setCosto(Double costo) {
+    public void setCosto(double costo) {
         this.costo = costo;
     }
 
@@ -205,6 +214,16 @@ public class InvArticuloPresentacion implements Serializable {
 
     public void setArticulo(InvArticulo articulo) {
         this.articulo = articulo;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public List<InvOrdenCompraDetalle> getInvOrdenCompraDetalleList() {
+        return invOrdenCompraDetalleList;
+    }
+
+    public void setInvOrdenCompraDetalleList(List<InvOrdenCompraDetalle> invOrdenCompraDetalleList) {
+        this.invOrdenCompraDetalleList = invOrdenCompraDetalleList;
     }
 
     @Override

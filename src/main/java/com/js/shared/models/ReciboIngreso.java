@@ -16,13 +16,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -44,22 +47,30 @@ public class ReciboIngreso implements Serializable {
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @Column(name = "proveedor")
-    private Integer proveedor;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "monto")
-    private Double monto;
+    private double monto;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "estado")
-    private Boolean estado;
+    private boolean estado;
+    @Basic(optional = false)
+    @NotNull
     @Lob
-    @Size(max = 65535)
+    @Size(min = 1, max = 65535)
     @Column(name = "observacion")
     private String observacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reciboIngreso")
     private List<ReciboIngresoFormapago> reciboIngresoFormapagoList;
+    @JoinColumn(name = "persona", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private Persona persona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reciboIngreso")
     private List<ReciboIngresoDetalle> reciboIngresoDetalleList;
 
@@ -68,6 +79,14 @@ public class ReciboIngreso implements Serializable {
 
     public ReciboIngreso(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public ReciboIngreso(Integer codigo, Date fecha, double monto, boolean estado, String observacion) {
+        this.codigo = codigo;
+        this.fecha = fecha;
+        this.monto = monto;
+        this.estado = estado;
+        this.observacion = observacion;
     }
 
     public Integer getCodigo() {
@@ -86,27 +105,19 @@ public class ReciboIngreso implements Serializable {
         this.fecha = fecha;
     }
 
-    public Integer getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Integer proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    public Double getMonto() {
+    public double getMonto() {
         return monto;
     }
 
-    public void setMonto(Double monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 
-    public Boolean getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(Boolean estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
@@ -126,6 +137,14 @@ public class ReciboIngreso implements Serializable {
 
     public void setReciboIngresoFormapagoList(List<ReciboIngresoFormapago> reciboIngresoFormapagoList) {
         this.reciboIngresoFormapagoList = reciboIngresoFormapagoList;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     @XmlTransient

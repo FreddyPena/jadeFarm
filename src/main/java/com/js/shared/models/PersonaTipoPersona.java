@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -43,20 +44,27 @@ public class PersonaTipoPersona implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "limite")
     private Double limite;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "habilitado")
-    private Boolean habilitado;
+    private boolean habilitado;
     @JoinColumn(name = "persona", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private Persona persona;
     @JoinColumn(name = "tipo_persona", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
-    private TipoPersona tipoPersona;
+    private PersonaTipo tipoPersona;
 
     public PersonaTipoPersona() {
     }
 
     public PersonaTipoPersona(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public PersonaTipoPersona(Integer codigo, boolean habilitado) {
+        this.codigo = codigo;
+        this.habilitado = habilitado;
     }
 
     public Integer getCodigo() {
@@ -83,11 +91,11 @@ public class PersonaTipoPersona implements Serializable {
         this.limite = limite;
     }
 
-    public Boolean getHabilitado() {
+    public boolean getHabilitado() {
         return habilitado;
     }
 
-    public void setHabilitado(Boolean habilitado) {
+    public void setHabilitado(boolean habilitado) {
         this.habilitado = habilitado;
     }
 
@@ -99,11 +107,11 @@ public class PersonaTipoPersona implements Serializable {
         this.persona = persona;
     }
 
-    public TipoPersona getTipoPersona() {
+    public PersonaTipo getTipoPersona() {
         return tipoPersona;
     }
 
-    public void setTipoPersona(TipoPersona tipoPersona) {
+    public void setTipoPersona(PersonaTipo tipoPersona) {
         this.tipoPersona = tipoPersona;
     }
 

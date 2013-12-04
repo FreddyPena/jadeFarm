@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -29,31 +30,41 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author JADESOFT
  */
 @Entity
-@Table(name = "tipo_persona")
+@Table(name = "persona_tipo")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoPersona.findAll", query = "SELECT t FROM TipoPersona t")})
-public class TipoPersona implements Serializable {
+    @NamedQuery(name = "PersonaTipo.findAll", query = "SELECT p FROM PersonaTipo p")})
+public class PersonaTipo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
-    @Size(max = 45)
-    @Column(name = "descripcion")
-    private String descripcion;
-    @Size(max = 11)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
     @Column(name = "identificador")
     private String identificador;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "descripcion")
+    private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPersona")
     private List<PersonaTipoPersona> personaTipoPersonaList;
 
-    public TipoPersona() {
+    public PersonaTipo() {
     }
 
-    public TipoPersona(Integer codigo) {
+    public PersonaTipo(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public PersonaTipo(Integer codigo, String identificador, String descripcion) {
+        this.codigo = codigo;
+        this.identificador = identificador;
+        this.descripcion = descripcion;
     }
 
     public Integer getCodigo() {
@@ -64,20 +75,20 @@ public class TipoPersona implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getIdentificador() {
         return identificador;
     }
 
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient
@@ -100,10 +111,10 @@ public class TipoPersona implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoPersona)) {
+        if (!(object instanceof PersonaTipo)) {
             return false;
         }
-        TipoPersona other = (TipoPersona) object;
+        PersonaTipo other = (PersonaTipo) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -112,7 +123,7 @@ public class TipoPersona implements Serializable {
 
     @Override
     public String toString() {
-        return "com.js.shared.models.TipoPersona[ codigo=" + codigo + " ]";
+        return "com.js.shared.models.PersonaTipo[ codigo=" + codigo + " ]";
     }
 
 }

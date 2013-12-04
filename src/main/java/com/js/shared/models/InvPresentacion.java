@@ -52,11 +52,13 @@ public class InvPresentacion implements Serializable {
     @NotNull
     @Column(name = "factor")
     private double factor;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
     @Column(name = "identificador")
     private String identificador;
     @JoinColumn(name = "unidad", referencedColumnName = "codigo")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private InvUnidad unidad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "presentacion")
     private List<InvArticuloPresentacion> invArticuloPresentacionList;
@@ -68,10 +70,11 @@ public class InvPresentacion implements Serializable {
         this.codigo = codigo;
     }
 
-    public InvPresentacion(Integer codigo, String descripcion, double factor) {
+    public InvPresentacion(Integer codigo, String descripcion, double factor, String identificador) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.factor = factor;
+        this.identificador = identificador;
     }
 
     public Integer getCodigo() {

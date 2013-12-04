@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,16 +37,20 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class FormaPago implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "codigo")
     private Integer codigo;
-    @Size(max = 45)
-    @Column(name = "descripcion")
-    private String descripcion;
-    @Size(max = 11)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
     @Column(name = "identificador")
     private String identificador;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "descripcion")
+    private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "formaPago")
     private List<ReciboIngresoFormapago> reciboIngresoFormapagoList;
 
@@ -55,6 +61,12 @@ public class FormaPago implements Serializable {
         this.codigo = codigo;
     }
 
+    public FormaPago(Integer codigo, String identificador, String descripcion) {
+        this.codigo = codigo;
+        this.identificador = identificador;
+        this.descripcion = descripcion;
+    }
+
     public Integer getCodigo() {
         return codigo;
     }
@@ -63,20 +75,20 @@ public class FormaPago implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getIdentificador() {
         return identificador;
     }
 
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient

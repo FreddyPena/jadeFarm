@@ -45,40 +45,53 @@ public class Persona implements Serializable {
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
-    @Size(max = 100)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 60)
     @Column(name = "nombre")
     private String nombre;
-    @Size(max = 100)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 60)
     @Column(name = "apellido")
     private String apellido;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "tipo_identificacion")
-    private Short tipoIdentificacion;
-    @Size(max = 45)
+    private short tipoIdentificacion;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "identificacion")
     private String identificacion;
-    @Size(max = 45)
-    @Column(name = "identificacion1")
-    private String identificacion1;
+    @Size(max = 15)
+    @Column(name = "num_afiliado")
+    private String numAfiliado;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_registro")
     @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
-    @Size(max = 255)
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "direccion")
     private String direccion;
-    @Size(max = 45)
+    @Size(max = 13)
     @Column(name = "telefono")
     private String telefono;
-    @Size(max = 45)
+    @Size(max = 13)
     @Column(name = "telefono2")
     private String telefono2;
-    @Size(max = 55)
+    @Size(max = 50)
     @Column(name = "correo")
     private String correo;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
-    @Size(max = 45)
+    @Size(max = 13)
     @Column(name = "fax")
     private String fax;
-    @Size(max = 55)
+    @Size(max = 50)
     @Column(name = "direccion_web")
     private String direccionWeb;
     @Basic(optional = false)
@@ -93,9 +106,8 @@ public class Persona implements Serializable {
     @NotNull
     @Column(name = "tipo_entidad")
     private short tipoEntidad;
-    @Size(max = 15)
     @Column(name = "estado_civil")
-    private String estadoCivil;
+    private Character estadoCivil;
     @Size(max = 25)
     @Column(name = "poliza")
     private String poliza;
@@ -108,18 +120,17 @@ public class Persona implements Serializable {
     private Boolean excentoItbis;
     @Column(name = "regimen_perteneciente")
     private Short regimenPerteneciente;
-    @Size(max = 15)
     @Column(name = "sexo")
-    private String sexo;
+    private Character sexo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<InvCotizacion> invCotizacionList;
-    @OneToMany(mappedBy = "ars")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
+    private List<ReciboIngreso> reciboIngresoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<InvMovimiento> invMovimientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-    private List<InvMovimiento> invMovimientoList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<PersonaTipoPersona> personaTipoPersonaList;
-    @OneToMany(mappedBy = "persona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<InvOrdenCompra> invOrdenCompraList;
 
     public Persona() {
@@ -129,8 +140,14 @@ public class Persona implements Serializable {
         this.codigo = codigo;
     }
 
-    public Persona(Integer codigo, boolean habilitado, short tipoEntidad) {
+    public Persona(Integer codigo, String nombre, String apellido, short tipoIdentificacion, String identificacion, Date fechaRegistro, String direccion, boolean habilitado, short tipoEntidad) {
         this.codigo = codigo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.tipoIdentificacion = tipoIdentificacion;
+        this.identificacion = identificacion;
+        this.fechaRegistro = fechaRegistro;
+        this.direccion = direccion;
         this.habilitado = habilitado;
         this.tipoEntidad = tipoEntidad;
     }
@@ -159,11 +176,11 @@ public class Persona implements Serializable {
         this.apellido = apellido;
     }
 
-    public Short getTipoIdentificacion() {
+    public short getTipoIdentificacion() {
         return tipoIdentificacion;
     }
 
-    public void setTipoIdentificacion(Short tipoIdentificacion) {
+    public void setTipoIdentificacion(short tipoIdentificacion) {
         this.tipoIdentificacion = tipoIdentificacion;
     }
 
@@ -175,12 +192,12 @@ public class Persona implements Serializable {
         this.identificacion = identificacion;
     }
 
-    public String getIdentificacion1() {
-        return identificacion1;
+    public String getNumAfiliado() {
+        return numAfiliado;
     }
 
-    public void setIdentificacion1(String identificacion1) {
-        this.identificacion1 = identificacion1;
+    public void setNumAfiliado(String numAfiliado) {
+        this.numAfiliado = numAfiliado;
     }
 
     public Date getFechaRegistro() {
@@ -263,11 +280,11 @@ public class Persona implements Serializable {
         this.tipoEntidad = tipoEntidad;
     }
 
-    public String getEstadoCivil() {
+    public Character getEstadoCivil() {
         return estadoCivil;
     }
 
-    public void setEstadoCivil(String estadoCivil) {
+    public void setEstadoCivil(Character estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
 
@@ -311,11 +328,11 @@ public class Persona implements Serializable {
         this.regimenPerteneciente = regimenPerteneciente;
     }
 
-    public String getSexo() {
+    public Character getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Character sexo) {
         this.sexo = sexo;
     }
 
@@ -331,22 +348,22 @@ public class Persona implements Serializable {
 
     @XmlTransient
     @JsonIgnore
+    public List<ReciboIngreso> getReciboIngresoList() {
+        return reciboIngresoList;
+    }
+
+    public void setReciboIngresoList(List<ReciboIngreso> reciboIngresoList) {
+        this.reciboIngresoList = reciboIngresoList;
+    }
+
+    @XmlTransient
+    @JsonIgnore
     public List<InvMovimiento> getInvMovimientoList() {
         return invMovimientoList;
     }
 
     public void setInvMovimientoList(List<InvMovimiento> invMovimientoList) {
         this.invMovimientoList = invMovimientoList;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public List<InvMovimiento> getInvMovimientoList1() {
-        return invMovimientoList1;
-    }
-
-    public void setInvMovimientoList1(List<InvMovimiento> invMovimientoList1) {
-        this.invMovimientoList1 = invMovimientoList1;
     }
 
     @XmlTransient

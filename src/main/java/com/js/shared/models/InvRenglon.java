@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -40,10 +41,14 @@ public class InvRenglon implements Serializable {
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
-    @Size(max = 11)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
     @Column(name = "identificador")
     private String identificador;
-    @Size(max = 100)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "descripcion")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "renglon")
@@ -54,6 +59,12 @@ public class InvRenglon implements Serializable {
 
     public InvRenglon(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvRenglon(Integer codigo, String identificador, String descripcion) {
+        this.codigo = codigo;
+        this.identificador = identificador;
+        this.descripcion = descripcion;
     }
 
     public Integer getCodigo() {

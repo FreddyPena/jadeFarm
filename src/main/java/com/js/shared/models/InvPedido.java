@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -43,15 +44,21 @@ public class InvPedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Column(name = "solicitante")
     private Integer solicitante;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "observacion")
     private String observacion;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "estado")
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
@@ -64,6 +71,13 @@ public class InvPedido implements Serializable {
 
     public InvPedido(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvPedido(Integer codigo, Date fecha, String observacion, String estado) {
+        this.codigo = codigo;
+        this.fecha = fecha;
+        this.observacion = observacion;
+        this.estado = estado;
     }
 
     public Integer getCodigo() {

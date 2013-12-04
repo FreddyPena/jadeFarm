@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -25,32 +26,45 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author JADESOFT
  */
 @Entity
-@Table(name = "inv_detalle_cotizacion")
+@Table(name = "inv_cotizacion_detalle")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InvDetalleCotizacion.findAll", query = "SELECT i FROM InvDetalleCotizacion i")})
-public class InvDetalleCotizacion implements Serializable {
+    @NamedQuery(name = "InvCotizacionDetalle.findAll", query = "SELECT i FROM InvCotizacionDetalle i")})
+public class InvCotizacionDetalle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "precio")
-    private Double precio;
+    private double precio;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "descuento")
-    private Double descuento;
+    private double descuento;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "oferta")
-    private Integer oferta;
+    private int oferta;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "itbis")
-    private Double itbis;
+    private double itbis;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "total")
-    private Double total;
+    private double total;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "seleccion")
-    private Boolean seleccion;
+    private boolean seleccion;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "cantidad")
-    private Integer cantidad;
+    private int cantidad;
     @JoinColumn(name = "pedido_detalle", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvPedidoDetalle pedidoDetalle;
@@ -58,11 +72,22 @@ public class InvDetalleCotizacion implements Serializable {
     @ManyToOne(optional = false)
     private InvCotizacion cotizacion;
 
-    public InvDetalleCotizacion() {
+    public InvCotizacionDetalle() {
     }
 
-    public InvDetalleCotizacion(Integer codigo) {
+    public InvCotizacionDetalle(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvCotizacionDetalle(Integer codigo, double precio, double descuento, int oferta, double itbis, double total, boolean seleccion, int cantidad) {
+        this.codigo = codigo;
+        this.precio = precio;
+        this.descuento = descuento;
+        this.oferta = oferta;
+        this.itbis = itbis;
+        this.total = total;
+        this.seleccion = seleccion;
+        this.cantidad = cantidad;
     }
 
     public Integer getCodigo() {
@@ -73,59 +98,59 @@ public class InvDetalleCotizacion implements Serializable {
         this.codigo = codigo;
     }
 
-    public Double getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public Double getDescuento() {
+    public double getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Double descuento) {
+    public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
 
-    public Integer getOferta() {
+    public int getOferta() {
         return oferta;
     }
 
-    public void setOferta(Integer oferta) {
+    public void setOferta(int oferta) {
         this.oferta = oferta;
     }
 
-    public Double getItbis() {
+    public double getItbis() {
         return itbis;
     }
 
-    public void setItbis(Double itbis) {
+    public void setItbis(double itbis) {
         this.itbis = itbis;
     }
 
-    public Double getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
-    public Boolean getSeleccion() {
+    public boolean getSeleccion() {
         return seleccion;
     }
 
-    public void setSeleccion(Boolean seleccion) {
+    public void setSeleccion(boolean seleccion) {
         this.seleccion = seleccion;
     }
 
-    public Integer getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -155,10 +180,10 @@ public class InvDetalleCotizacion implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof InvDetalleCotizacion)) {
+        if (!(object instanceof InvCotizacionDetalle)) {
             return false;
         }
-        InvDetalleCotizacion other = (InvDetalleCotizacion) object;
+        InvCotizacionDetalle other = (InvCotizacionDetalle) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -167,7 +192,7 @@ public class InvDetalleCotizacion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.js.shared.models.InvDetalleCotizacion[ codigo=" + codigo + " ]";
+        return "com.js.shared.models.InvCotizacionDetalle[ codigo=" + codigo + " ]";
     }
 
 }

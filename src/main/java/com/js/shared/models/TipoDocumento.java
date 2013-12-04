@@ -43,6 +43,11 @@ public class TipoDocumento implements Serializable {
     private Integer codigo;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 6)
+    @Column(name = "identificacion")
+    private String identificacion;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "descripcion")
     private String descripcion;
@@ -65,8 +70,9 @@ public class TipoDocumento implements Serializable {
         this.codigo = codigo;
     }
 
-    public TipoDocumento(Integer codigo, String descripcion, int secuencia, String abreviatura) {
+    public TipoDocumento(Integer codigo, String identificacion, String descripcion, int secuencia, String abreviatura) {
         this.codigo = codigo;
+        this.identificacion = identificacion;
         this.descripcion = descripcion;
         this.secuencia = secuencia;
         this.abreviatura = abreviatura;
@@ -78,6 +84,14 @@ public class TipoDocumento implements Serializable {
 
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
     public String getDescripcion() {

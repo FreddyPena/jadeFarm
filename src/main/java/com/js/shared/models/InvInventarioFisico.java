@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -43,10 +44,14 @@ public class InvInventarioFisico implements Serializable {
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "descripcion")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "inventarioFisico")
@@ -57,6 +62,12 @@ public class InvInventarioFisico implements Serializable {
 
     public InvInventarioFisico(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvInventarioFisico(Integer codigo, Date fecha, String descripcion) {
+        this.codigo = codigo;
+        this.fecha = fecha;
+        this.descripcion = descripcion;
     }
 
     public Integer getCodigo() {

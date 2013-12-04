@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,27 +38,33 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class InvPedidoDetalle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "codigo")
     private Integer codigo;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "cantidad")
-    private Double cantidad;
-    @JoinColumn(name = "pedido", referencedColumnName = "codigo")
-    @ManyToOne(optional = false)
-    private InvPedido pedido;
+    private double cantidad;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoDetalle")
+    private List<InvCotizacionDetalle> invCotizacionDetalleList;
     @JoinColumn(name = "presentacion_articulo", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
     private InvArticuloPresentacion presentacionArticulo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoDetalle")
-    private List<InvDetalleCotizacion> invDetalleCotizacionList;
+    @JoinColumn(name = "pedido", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private InvPedido pedido;
 
     public InvPedidoDetalle() {
     }
 
     public InvPedidoDetalle(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvPedidoDetalle(Integer codigo, double cantidad) {
+        this.codigo = codigo;
+        this.cantidad = cantidad;
     }
 
     public Integer getCodigo() {
@@ -67,20 +75,22 @@ public class InvPedidoDetalle implements Serializable {
         this.codigo = codigo;
     }
 
-    public Double getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Double cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 
-    public InvPedido getPedido() {
-        return pedido;
+    @XmlTransient
+    @JsonIgnore
+    public List<InvCotizacionDetalle> getInvCotizacionDetalleList() {
+        return invCotizacionDetalleList;
     }
 
-    public void setPedido(InvPedido pedido) {
-        this.pedido = pedido;
+    public void setInvCotizacionDetalleList(List<InvCotizacionDetalle> invCotizacionDetalleList) {
+        this.invCotizacionDetalleList = invCotizacionDetalleList;
     }
 
     public InvArticuloPresentacion getPresentacionArticulo() {
@@ -91,14 +101,12 @@ public class InvPedidoDetalle implements Serializable {
         this.presentacionArticulo = presentacionArticulo;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<InvDetalleCotizacion> getInvDetalleCotizacionList() {
-        return invDetalleCotizacionList;
+    public InvPedido getPedido() {
+        return pedido;
     }
 
-    public void setInvDetalleCotizacionList(List<InvDetalleCotizacion> invDetalleCotizacionList) {
-        this.invDetalleCotizacionList = invDetalleCotizacionList;
+    public void setPedido(InvPedido pedido) {
+        this.pedido = pedido;
     }
 
     @Override

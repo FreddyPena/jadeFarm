@@ -9,6 +9,7 @@ package com.js.shared.models;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -42,10 +44,10 @@ public class InvOrdenCompra implements Serializable {
     @Basic(optional = false)
     @Column(name = "codigo")
     private Integer codigo;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
-    private Integer fecha;
-    @Column(name = "cotizacion")
-    private Integer cotizacion;
+    private int fecha;
     @Column(name = "estado")
     private Boolean estado;
     @Column(name = "condicion")
@@ -57,10 +59,13 @@ public class InvOrdenCompra implements Serializable {
     @Size(max = 65535)
     @Column(name = "observacion")
     private String observacion;
+    @JoinColumn(name = "cotizacion", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private InvCotizacion cotizacion;
     @JoinColumn(name = "persona", referencedColumnName = "codigo")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Persona persona;
-    @OneToMany(mappedBy = "ordenCompra")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ordenCompra")
     private List<InvOrdenCompraDetalle> invOrdenCompraDetalleList;
 
     public InvOrdenCompra() {
@@ -68,6 +73,11 @@ public class InvOrdenCompra implements Serializable {
 
     public InvOrdenCompra(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvOrdenCompra(Integer codigo, int fecha) {
+        this.codigo = codigo;
+        this.fecha = fecha;
     }
 
     public Integer getCodigo() {
@@ -78,20 +88,12 @@ public class InvOrdenCompra implements Serializable {
         this.codigo = codigo;
     }
 
-    public Integer getFecha() {
+    public int getFecha() {
         return fecha;
     }
 
-    public void setFecha(Integer fecha) {
+    public void setFecha(int fecha) {
         this.fecha = fecha;
-    }
-
-    public Integer getCotizacion() {
-        return cotizacion;
-    }
-
-    public void setCotizacion(Integer cotizacion) {
-        this.cotizacion = cotizacion;
     }
 
     public Boolean getEstado() {
@@ -124,6 +126,14 @@ public class InvOrdenCompra implements Serializable {
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
+    }
+
+    public InvCotizacion getCotizacion() {
+        return cotizacion;
+    }
+
+    public void setCotizacion(InvCotizacion cotizacion) {
+        this.cotizacion = cotizacion;
     }
 
     public Persona getPersona() {

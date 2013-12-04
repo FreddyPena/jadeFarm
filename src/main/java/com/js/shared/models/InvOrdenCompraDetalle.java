@@ -10,6 +10,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,27 +33,39 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class InvOrdenCompraDetalle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "codigo")
     private Integer codigo;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "cantidad")
-    private Integer cantidad;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private int cantidad;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "precio")
-    private Double precio;
+    private double precio;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "descuento")
-    private Double descuento;
+    private double descuento;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "itbis")
-    private Double itbis;
+    private double itbis;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "oferta")
-    private Integer oferta;
+    private int oferta;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "total")
-    private Double total;
-    @Column(name = "presentacion_articulo")
-    private Integer presentacionArticulo;
+    private double total;
+    @JoinColumn(name = "articulo_presentacion", referencedColumnName = "codigo")
+    @ManyToOne(optional = false)
+    private InvArticuloPresentacion articuloPresentacion;
     @JoinColumn(name = "orden_compra", referencedColumnName = "codigo")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private InvOrdenCompra ordenCompra;
 
     public InvOrdenCompraDetalle() {
@@ -59,6 +73,16 @@ public class InvOrdenCompraDetalle implements Serializable {
 
     public InvOrdenCompraDetalle(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public InvOrdenCompraDetalle(Integer codigo, int cantidad, double precio, double descuento, double itbis, int oferta, double total) {
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.descuento = descuento;
+        this.itbis = itbis;
+        this.oferta = oferta;
+        this.total = total;
     }
 
     public Integer getCodigo() {
@@ -69,60 +93,60 @@ public class InvOrdenCompraDetalle implements Serializable {
         this.codigo = codigo;
     }
 
-    public Integer getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
-    public Double getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public Double getDescuento() {
+    public double getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Double descuento) {
+    public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
 
-    public Double getItbis() {
+    public double getItbis() {
         return itbis;
     }
 
-    public void setItbis(Double itbis) {
+    public void setItbis(double itbis) {
         this.itbis = itbis;
     }
 
-    public Integer getOferta() {
+    public int getOferta() {
         return oferta;
     }
 
-    public void setOferta(Integer oferta) {
+    public void setOferta(int oferta) {
         this.oferta = oferta;
     }
 
-    public Double getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
-    public Integer getPresentacionArticulo() {
-        return presentacionArticulo;
+    public InvArticuloPresentacion getArticuloPresentacion() {
+        return articuloPresentacion;
     }
 
-    public void setPresentacionArticulo(Integer presentacionArticulo) {
-        this.presentacionArticulo = presentacionArticulo;
+    public void setArticuloPresentacion(InvArticuloPresentacion articuloPresentacion) {
+        this.articuloPresentacion = articuloPresentacion;
     }
 
     public InvOrdenCompra getOrdenCompra() {

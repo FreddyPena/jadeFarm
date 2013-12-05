@@ -284,6 +284,7 @@
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
                 </Property>
+                <Property name="jsEnterTab" type="int" value="1"/>
                 <Property name="jsLength" type="int" value="6"/>
               </Properties>
               <Events>
@@ -303,6 +304,7 @@
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
                 </Property>
+                <Property name="jsEnterTab" type="int" value="2"/>
               </Properties>
             </Component>
           </SubComponents>

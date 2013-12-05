@@ -5,7 +5,7 @@
  */
 package com.js.shared.factory;
 
-import com.js.controller.displacement.DisplacementObject;
+import com.js.controller.displacement.Displacement;
 import com.js.controller.others.KeyEventDispatcherJS;
 import com.js.inv.controllers.AlmacenController;
 import com.js.inv.controllers.ClasArticuloController;
@@ -57,6 +57,6 @@ public abstract class FactoryObject {
     //Clase JADESOFT
     public abstract KeyEventDispatcherJS getKeyEventDispatcherJS();
 
-    public abstract DisplacementObject getDisplacement();
+    public abstract Displacement getDisplacement();
 
 }

@@ -25,7 +25,7 @@
     
     <!---Singleton -->
     <bean class="com.js.controller.others.KeyEventDispatcherJS" />  
-    <bean class="com.js.controller.displacement.DisplacementObject" />  
+    <bean class="com.js.controller.displacement.DisplacementObject" /> 
   
 
 </beans>

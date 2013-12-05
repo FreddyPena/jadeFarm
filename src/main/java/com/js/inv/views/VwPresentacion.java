@@ -239,14 +239,14 @@ public class VwPresentacion extends javax.swing.JDialog {
 
         jtFactor.setDisabledTextColor(java.awt.Color.black);
         jtFactor.setJsLength(10);
-        jtFactor.setJsType(com.js.swing.textfield.TypeJTextFieldJS.FORMAT_NUMBER);
+        jtFactor.setJsType(com.js.swing.others.TypeJTextFieldJS.FORMAT_NUMBER);
 
         jXLabel6.setText("Unidad:");
         jXLabel6.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         jtUnidadIdent.setDisabledTextColor(java.awt.Color.black);
         jtUnidadIdent.setJsLength(11);
-        jtUnidadIdent.setJsType(com.js.swing.textfield.TypeJTextFieldJS.ONLY_NUMBER);
+        jtUnidadIdent.setJsType(com.js.swing.others.TypeJTextFieldJS.ONLY_NUMBER);
         jtUnidadIdent.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtUnidadIdentKeyReleased(evt);

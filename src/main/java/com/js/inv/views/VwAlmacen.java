@@ -12,7 +12,9 @@ import com.js.inv.tablesmodel.ModelAlmacen;
 import com.js.shared.factory.FactoryObject;
 import com.js.shared.factory.FactoryObjectImpl;
 import com.js.shared.models.InvAlmacen;
+import com.js.swing.others.EnterIndex;
 import com.js.swing.panel.JGlassPaneJS;
+import java.awt.Container;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -215,6 +217,7 @@ public class VwAlmacen extends javax.swing.JDialog {
         jXLabel2.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         jtIdentificador.setDisabledTextColor(java.awt.Color.black);
+        jtIdentificador.setJsEnterTab(1);
         jtIdentificador.setJsLength(6);
         jtIdentificador.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -226,6 +229,7 @@ public class VwAlmacen extends javax.swing.JDialog {
         jXLabel3.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
         jtDescripcion.setDisabledTextColor(java.awt.Color.black);
+        jtDescripcion.setJsEnterTab(2);
 
         javax.swing.GroupLayout jXPanel1Layout = new javax.swing.GroupLayout(jXPanel1);
         jXPanel1.setLayout(jXPanel1Layout);
@@ -457,6 +461,7 @@ public class VwAlmacen extends javax.swing.JDialog {
     private void initComp() {
         FactoryObject factory = new FactoryObjectImpl();
         FactoryObject.setInstance(factory);
+        EnterIndex enterIndex = new EnterIndex();
 
         setGlassPane(new JGlassPaneJS());
         tbFamilia.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

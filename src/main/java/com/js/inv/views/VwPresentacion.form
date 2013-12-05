@@ -338,7 +338,7 @@
                   <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
                 </Property>
                 <Property name="jsLength" type="int" value="10"/>
-                <Property name="jsType" type="com.js.swing.textfield.TypeJTextFieldJS" editor="org.netbeans.modules.form.editors.EnumEditor">
+                <Property name="jsType" type="com.js.swing.others.TypeJTextFieldJS" editor="org.netbeans.modules.form.editors.EnumEditor">
                   <Value id="FORMAT_NUMBER"/>
                 </Property>
               </Properties>
@@ -357,7 +357,7 @@
                   <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
                 </Property>
                 <Property name="jsLength" type="int" value="11"/>
-                <Property name="jsType" type="com.js.swing.textfield.TypeJTextFieldJS" editor="org.netbeans.modules.form.editors.EnumEditor">
+                <Property name="jsType" type="com.js.swing.others.TypeJTextFieldJS" editor="org.netbeans.modules.form.editors.EnumEditor">
                   <Value id="ONLY_NUMBER"/>
                 </Property>
               </Properties>

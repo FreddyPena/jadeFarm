@@ -5,6 +5,7 @@
  */
 package com.js.shared.factory;
 
+import com.js.controller.displacement.Displacement;
 import com.js.controller.displacement.DisplacementObject;
 import com.js.controller.others.KeyEventDispatcherJS;
 import com.js.inv.controllers.AlmacenController;
@@ -74,7 +75,7 @@ public class FactoryObjectImpl extends FactoryObject {
     }
 
     @Override
-    public DisplacementObject getDisplacement() {
+    public Displacement getDisplacement() {
         return this.context.getBean(DisplacementObject.class);
     }
 

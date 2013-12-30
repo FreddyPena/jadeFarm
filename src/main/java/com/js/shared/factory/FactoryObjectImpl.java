@@ -9,6 +9,7 @@ import com.js.controller.displacement.Displacement;
 import com.js.controller.displacement.DisplacementObject;
 import com.js.controller.others.KeyEventDispatcherJS;
 import com.js.inv.controllers.AlmacenController;
+import com.js.inv.controllers.ArticuloController;
 import com.js.inv.controllers.ClasArticuloController;
 import com.js.inv.controllers.FamiliaController;
 import com.js.inv.controllers.IngrActivoController;
@@ -66,6 +67,11 @@ public class FactoryObjectImpl extends FactoryObject {
     @Override
     public PresentacionController getPresentacionController() {
         return this.context.getBean(PresentacionController.class);
+    }
+
+    @Override
+    public ArticuloController getArticuloController() {
+        return this.context.getBean(ArticuloController.class);
     }
 
     //Clase JADESOFT

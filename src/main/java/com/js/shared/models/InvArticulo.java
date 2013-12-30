@@ -37,6 +37,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "InvArticulo.findAll", query = "SELECT i FROM InvArticulo i")})
 public class InvArticulo implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "referencia")
+    private String referencia;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -252,6 +257,14 @@ public class InvArticulo implements Serializable {
     @Override
     public String toString() {
         return "com.js.shared.models.InvArticulo[ codigo=" + codigo + " ]";
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
 
 }

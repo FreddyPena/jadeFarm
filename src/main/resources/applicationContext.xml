@@ -21,7 +21,8 @@
     <bean class="com.js.inv.dao.hql.AlmacenDAOHQL" />   
     <bean class="com.js.inv.dao.hql.UnidadDAOHQL" />           
     <bean class="com.js.inv.dao.hql.IngrActivoDAOHQL" />
-    <bean class="com.js.inv.dao.hql.PresentacionDAOHQL" />           
+    <bean class="com.js.inv.dao.hql.PresentacionDAOHQL" />   
+    <bean class="com.js.inv.dao.hql.ArticuloDAOHQL" />           
     
     <!---Singleton -->
     <bean class="com.js.controller.others.KeyEventDispatcherJS" />  

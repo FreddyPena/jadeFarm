@@ -14,14 +14,13 @@ import com.js.shared.factory.FactoryObjectImpl;
 import com.js.shared.models.InvAlmacen;
 import com.js.swing.others.EnterIndex;
 import com.js.swing.panel.JGlassPaneJS;
-import java.awt.Container;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
-import javax.swing.JButton;
+import com.js.swing.button.JButtonJS;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -52,17 +51,17 @@ public class VwAlmacen extends javax.swing.JDialog {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        btNew = new javax.swing.JButton();
-        btEdit = new javax.swing.JButton();
-        btSave = new javax.swing.JButton();
-        btConsultation = new javax.swing.JButton();
-        btPrint = new javax.swing.JButton();
-        btDelete = new javax.swing.JButton();
+        btNew = new com.js.swing.button.JButtonJS();
+        btEdit = new com.js.swing.button.JButtonJS();
+        btSave = new com.js.swing.button.JButtonJS();
+        btConsultation = new com.js.swing.button.JButtonJS();
+        btPrint = new com.js.swing.button.JButtonJS();
+        btDelete = new com.js.swing.button.JButtonJS();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        btFirts = new javax.swing.JButton();
-        btBack = new javax.swing.JButton();
-        btNext = new javax.swing.JButton();
-        btLast = new javax.swing.JButton();
+        btFirts = new com.js.swing.button.JButtonJS();
+        btBack = new com.js.swing.button.JButtonJS();
+        btNext = new com.js.swing.button.JButtonJS();
+        btLast = new com.js.swing.button.JButtonJS();
         jXHeader1 = new org.jdesktop.swingx.JXHeader();
         jtpStandard = new javax.swing.JTabbedPane();
         jXPanel1 = new org.jdesktop.swingx.JXPanel();
@@ -94,8 +93,8 @@ public class VwAlmacen extends javax.swing.JDialog {
         btNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/document_40.png"))); // NOI18N
         btNew.setToolTipText("Nuevo [Ctrl + I]");
         btNew.setFocusable(false);
-        btNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btNew.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btNew.setJsPermission(com.js.swing.others.Permission.NEW);
         btNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNewActionPerformed(evt);
@@ -106,8 +105,8 @@ public class VwAlmacen extends javax.swing.JDialog {
         btEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/edit_40.png"))); // NOI18N
         btEdit.setToolTipText("Editar [Ctrl + M]");
         btEdit.setFocusable(false);
-        btEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btEdit.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btEdit.setJsPermission(com.js.swing.others.Permission.EDIT);
         btEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditActionPerformed(evt);
@@ -117,7 +116,8 @@ public class VwAlmacen extends javax.swing.JDialog {
 
         btSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/diskette_40.png"))); // NOI18N
         btSave.setToolTipText("Guardar [Ctrl + S]");
-        btSave.setEnabled(false);
+        btSave.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btSave.setJsPermission(com.js.swing.others.Permission.SAVE);
         btSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSaveActionPerformed(evt);
@@ -127,10 +127,9 @@ public class VwAlmacen extends javax.swing.JDialog {
 
         btConsultation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/zoom_40.png"))); // NOI18N
         btConsultation.setToolTipText("Buscar [Ctrl + Q]");
-        btConsultation.setEnabled(false);
         btConsultation.setFocusable(false);
-        btConsultation.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btConsultation.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btConsultation.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btConsultation.setJsPermission(com.js.swing.others.Permission.CONSULTATION);
         btConsultation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btConsultationActionPerformed(evt);
@@ -141,8 +140,8 @@ public class VwAlmacen extends javax.swing.JDialog {
         btPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/print_40.png"))); // NOI18N
         btPrint.setToolTipText("Imprimir [Ctrl + P]");
         btPrint.setFocusable(false);
-        btPrint.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btPrint.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btPrint.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btPrint.setJsPermission(com.js.swing.others.Permission.PRINT);
         btPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPrintActionPerformed(evt);
@@ -152,10 +151,9 @@ public class VwAlmacen extends javax.swing.JDialog {
 
         btDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/trash_can_40.png"))); // NOI18N
         btDelete.setToolTipText("Borrar [Ctrl + D]");
-        btDelete.setEnabled(false);
         btDelete.setFocusable(false);
-        btDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btDelete.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btDelete.setJsPermission(com.js.swing.others.Permission.DELETE);
         btDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btDeleteActionPerformed(evt);
@@ -166,7 +164,8 @@ public class VwAlmacen extends javax.swing.JDialog {
 
         btFirts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/first_40.png"))); // NOI18N
         btFirts.setToolTipText("Primer Registro [Ctrl + F]");
-        btFirts.setEnabled(false);
+        btFirts.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btFirts.setJsPermission(com.js.swing.others.Permission.DISPLACEMENT);
         btFirts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btFirtsActionPerformed(evt);
@@ -176,7 +175,8 @@ public class VwAlmacen extends javax.swing.JDialog {
 
         btBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/previous_40.png"))); // NOI18N
         btBack.setToolTipText("Registro Anterior [Ctrl + B]");
-        btBack.setEnabled(false);
+        btBack.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btBack.setJsPermission(com.js.swing.others.Permission.DISPLACEMENT);
         btBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBackActionPerformed(evt);
@@ -186,7 +186,8 @@ public class VwAlmacen extends javax.swing.JDialog {
 
         btNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/next_40.png"))); // NOI18N
         btNext.setToolTipText("Registro Siguiente [Ctrl + N]");
-        btNext.setEnabled(false);
+        btNext.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btNext.setJsPermission(com.js.swing.others.Permission.DISPLACEMENT);
         btNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNextActionPerformed(evt);
@@ -196,8 +197,8 @@ public class VwAlmacen extends javax.swing.JDialog {
 
         btLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/last_40.png"))); // NOI18N
         btLast.setToolTipText("Último Registro [Ctrl + L]");
-        btLast.setEnabled(false);
-        btLast.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btLast.setJsDirectory(com.js.swing.others.Directory.INVENTARIO);
+        btLast.setJsPermission(com.js.swing.others.Permission.DISPLACEMENT);
         btLast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLastActionPerformed(evt);
@@ -244,7 +245,7 @@ public class VwAlmacen extends javax.swing.JDialog {
                 .addGroup(jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jXPanel1Layout.setVerticalGroup(
             jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +258,7 @@ public class VwAlmacen extends javax.swing.JDialog {
                 .addGroup(jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jXLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jtpStandard.addTab("Registro", jXPanel1);
@@ -303,7 +304,7 @@ public class VwAlmacen extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -428,16 +429,16 @@ public class VwAlmacen extends javax.swing.JDialog {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btBack;
-    private javax.swing.JButton btConsultation;
-    private javax.swing.JButton btDelete;
-    private javax.swing.JButton btEdit;
-    private javax.swing.JButton btFirts;
-    private javax.swing.JButton btLast;
-    private javax.swing.JButton btNew;
-    private javax.swing.JButton btNext;
-    private javax.swing.JButton btPrint;
-    private javax.swing.JButton btSave;
+    private com.js.swing.button.JButtonJS btBack;
+    private com.js.swing.button.JButtonJS btConsultation;
+    private com.js.swing.button.JButtonJS btDelete;
+    private com.js.swing.button.JButtonJS btEdit;
+    private com.js.swing.button.JButtonJS btFirts;
+    private com.js.swing.button.JButtonJS btLast;
+    private com.js.swing.button.JButtonJS btNew;
+    private com.js.swing.button.JButtonJS btNext;
+    private com.js.swing.button.JButtonJS btPrint;
+    private com.js.swing.button.JButtonJS btSave;
     private com.js.swing.combobox.JComboBoxJS<FilterTable> cbFiltro;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
@@ -482,6 +483,17 @@ public class VwAlmacen extends javax.swing.JDialog {
         jtpStandard.setSelectedIndex(1);
         jtpStandard.setEnabledAt(0, false);
         jtpStandard.setEnabledAt(1, true);
+        setEnabled();
+    }
+
+    private void setEnabled() {
+        btSave.setEnabled(false);
+        btConsultation.setEnabled(false);
+        btDelete.setEnabled(false);
+        btFirts.setEnabled(false);
+        btLast.setEnabled(false);
+        btBack.setEnabled(false);
+        btNext.setEnabled(false);
     }
 
     private void clean() {
@@ -624,7 +636,7 @@ public class VwAlmacen extends javax.swing.JDialog {
     }
 
     public void setSelectEnable(boolean enable) {
-        consultation = enable;
+        this.consultation = enable;
     }
 
     public InvAlmacen getSelected() {
@@ -652,11 +664,11 @@ public class VwAlmacen extends javax.swing.JDialog {
             KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK),
             KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_DOWN_MASK)
         };
-        JButton[] buttons = new JButton[]{btSave, btDelete, btNew, btPrint,
+        JButtonJS[] buttons = new JButtonJS[]{btSave, btDelete, btNew, btPrint,
             btConsultation, btEdit, btFirts, btBack, btNext, btLast};
 
         int ks = 0;
-        for (final JButton bt : buttons) {
+        for (final JButtonJS bt : buttons) {
             FactoryObject.getInstance().getKeyEventDispatcherJS().addactionMap(
                     keyStrokes[ks++], new AbstractAction() {
                         @Override

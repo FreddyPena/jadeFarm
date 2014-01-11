@@ -46,19 +46,19 @@ import javax.swing.KeyStroke;
  * @author JADESOFT
  */
 public class VwArticulo extends javax.swing.JDialog {
-
+    
     public VwArticulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initComp();
     }
-
+    
     public VwArticulo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initComp();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -361,7 +361,7 @@ public class VwArticulo extends javax.swing.JDialog {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("%");
 
-        jtCosto.setForeground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
+        jtCosto.setForeground(new java.awt.Color(49, 94, 150));
         jtCosto.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jtCosto.setJsLength(12);
         jtCosto.setJsType(com.js.swing.others.TypeJTextFieldJS.FORMAT_NUMBER);
@@ -371,27 +371,24 @@ public class VwArticulo extends javax.swing.JDialog {
             }
         });
 
-        jtMargenP1.setForeground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
+        jtMargenP1.setForeground(new java.awt.Color(49, 94, 150));
         jtMargenP1.setToolTipText("Procentaje 1");
         jtMargenP1.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jtMargenP1.setJsLength(12);
         jtMargenP1.setJsType(com.js.swing.others.TypeJTextFieldJS.FORMAT_NUMBER);
         jtMargenP1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtMargenP1KeyTyped(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtMargenP1KeyReleased(evt);
             }
         });
 
-        jtPrecio1.setForeground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
+        jtPrecio1.setForeground(new java.awt.Color(49, 94, 150));
         jtPrecio1.setToolTipText("Precio 1");
         jtPrecio1.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jtPrecio1.setJsLength(12);
         jtPrecio1.setJsType(com.js.swing.others.TypeJTextFieldJS.FORMAT_NUMBER);
 
-        jtMargenP2.setForeground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
+        jtMargenP2.setForeground(new java.awt.Color(49, 94, 150));
         jtMargenP2.setToolTipText("Procentaje 2");
         jtMargenP2.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jtMargenP2.setJsLength(12);
@@ -402,13 +399,13 @@ public class VwArticulo extends javax.swing.JDialog {
             }
         });
 
-        jtPrecio2.setForeground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
+        jtPrecio2.setForeground(new java.awt.Color(49, 94, 150));
         jtPrecio2.setToolTipText("Precio 3");
         jtPrecio2.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jtPrecio2.setJsLength(12);
         jtPrecio2.setJsType(com.js.swing.others.TypeJTextFieldJS.FORMAT_NUMBER);
 
-        jtMargenP3.setForeground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
+        jtMargenP3.setForeground(new java.awt.Color(49, 94, 150));
         jtMargenP3.setToolTipText("Procentaje 3");
         jtMargenP3.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jtMargenP3.setJsLength(12);
@@ -419,7 +416,7 @@ public class VwArticulo extends javax.swing.JDialog {
             }
         });
 
-        jtPrecio3.setForeground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
+        jtPrecio3.setForeground(new java.awt.Color(49, 94, 150));
         jtPrecio3.setToolTipText("Precio 3");
         jtPrecio3.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jtPrecio3.setJsLength(12);
@@ -658,18 +655,8 @@ public class VwArticulo extends javax.swing.JDialog {
         ckPermiteVenc.setRequestFocusEnabled(false);
 
         ckPermiteDesc.setText("Este artículo permite descuento.");
-        ckPermiteDesc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckPermiteDescActionPerformed(evt);
-            }
-        });
 
         ckVentaDetalle.setText("Usar venta al detalle.");
-        ckVentaDetalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckVentaDetalleActionPerformed(evt);
-            }
-        });
 
         ckExentoItbis.setText("Exento de ITBIS");
 
@@ -783,11 +770,6 @@ public class VwArticulo extends javax.swing.JDialog {
         jXLabel22.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
 
         jtReferencia.setRequestFocusEnabled(false);
-        jtReferencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtReferenciaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -984,59 +966,42 @@ public class VwArticulo extends javax.swing.JDialog {
         setElement(displacement.getLast());
     }//GEN-LAST:event_btLastActionPerformed
 
-    private void ckPermiteDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckPermiteDescActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckPermiteDescActionPerformed
-
-    private void ckVentaDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckVentaDetalleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckVentaDetalleActionPerformed
-
-    private void jtReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtReferenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtReferenciaActionPerformed
-
     private void btPresentationAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPresentationAddActionPerformed
         addPresentation();
     }//GEN-LAST:event_btPresentationAddActionPerformed
 
-    private void jtMargenP1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMargenP1KeyTyped
-    }//GEN-LAST:event_jtMargenP1KeyTyped
-
     private void jtMargenP1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMargenP1KeyReleased
         if (jtMargenP1.getText().trim().isEmpty()) {
-            jtPrecio1.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim()), 18.00));
+            jtPrecio1.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim())));
         } else if (!jtMargenP1.getText().isEmpty() && !jtCosto.getText().isEmpty()) {
-            jtPrecio1.setText(calculatePriceByMargin(Double.valueOf(jtMargenP1.getText().trim()), Double.valueOf(jtCosto.getText().trim()), 18.00));
+            jtPrecio1.setText(calculatePriceByMargin(Double.valueOf(jtMargenP1.getText().trim()), Double.valueOf(jtCosto.getText().trim())));
         }
     }//GEN-LAST:event_jtMargenP1KeyReleased
 
     private void jtCostoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCostoKeyReleased
         if (jtCosto.getText().trim().isEmpty()) {
-            jtPrecio1.setText("0.00");
-            jtPrecio2.setText("0.00");
-            jtPrecio3.setText("0.00");
+            ComponentObject.clean(jtPrecio1, jtPrecio2, jtPrecio3);
         } else {
-            jtPrecio1.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim()), 18.00));
-            jtPrecio2.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim()), 18.00));
-            jtPrecio3.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim()), 18.00));
+            jtPrecio1.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim())));
+            jtPrecio2.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim())));
+            jtPrecio3.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim())));
         }
 
     }//GEN-LAST:event_jtCostoKeyReleased
 
     private void jtMargenP2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMargenP2KeyReleased
         if (jtMargenP2.getText().trim().isEmpty()) {
-            jtPrecio2.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim()), 18.00));
+            jtPrecio2.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim())));
         } else if (!jtMargenP2.getText().isEmpty() && !jtCosto.getText().isEmpty()) {
-            jtPrecio2.setText(calculatePriceByMargin(Double.valueOf(jtMargenP2.getText().trim()), Double.valueOf(jtCosto.getText().trim()), 18.00));
+            jtPrecio2.setText(calculatePriceByMargin(Double.valueOf(jtMargenP2.getText().trim()), Double.valueOf(jtCosto.getText().trim())));
         }
     }//GEN-LAST:event_jtMargenP2KeyReleased
 
     private void jtMargenP3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMargenP3KeyReleased
         if (jtMargenP3.getText().trim().isEmpty()) {
-            jtPrecio3.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim()), 18.00));
+            jtPrecio3.setText(calculatePrice(Double.valueOf(jtCosto.getText().trim())));
         } else if (!jtMargenP3.getText().isEmpty() && !jtCosto.getText().isEmpty()) {
-            jtPrecio3.setText(calculatePriceByMargin(Double.valueOf(jtMargenP3.getText().trim()), Double.valueOf(jtCosto.getText().trim()), 18.00));
+            jtPrecio3.setText(calculatePriceByMargin(Double.valueOf(jtMargenP3.getText().trim()), Double.valueOf(jtCosto.getText().trim())));
         }
     }//GEN-LAST:event_jtMargenP3KeyReleased
 
@@ -1046,6 +1011,7 @@ public class VwArticulo extends javax.swing.JDialog {
 
     private void rbPDirectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPDirectoActionPerformed
         setEditablePrice(true);
+        ComponentObject.clean(jtMargenP1, jtMargenP2, jtMargenP3);
     }//GEN-LAST:event_rbPDirectoActionPerformed
 
     private void btMakeMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMakeMoreActionPerformed
@@ -1144,7 +1110,7 @@ public class VwArticulo extends javax.swing.JDialog {
             } catch (BussinessException ex) {
                 Logger.getLogger(VwArticulo.class.getName()).log(Level.SEVERE, null, ex);
             }
-          //  element.setPresentaciones(ManejoArticuloPresentacion.getInstance().listItemPresentation(element));
+            //  element.setPresentaciones(ManejoArticuloPresentacion.getInstance().listItemPresentation(element));
             setElement(element);
             if (!consultation) {
                 setToolBarAndPanel(0, false);
@@ -1178,13 +1144,13 @@ public class VwArticulo extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         exit();
     }//GEN-LAST:event_formWindowClosing
-
+    
     public static void main(String args[]) {
 
         /* Create and display the dialog */
         VwArticulo articulo = new VwArticulo(new Frame(), true);
         articulo.setVisible(true);
-
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PManejoPrecios;
@@ -1278,41 +1244,42 @@ public class VwArticulo extends javax.swing.JDialog {
     private List<InvArticuloPresentacion> lArticuloPresentacion = new ArrayList<>();
     private List<InvArticulo> lArticulo = new ArrayList<>();
     private int index;
-
+    private static final double ITBIS = 18.00;
+    
     private void initComp() {
         FactoryObject factory = new FactoryObjectImpl();
         FactoryObject.setInstance(factory);
-
+        
         setGlassPane(new JGlassPaneJS());
         tbArticulos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbArticulos.doLayout();
         tbArticulos.setModelJS(new ModelArticulo());
-        tbArticulos.columnWidth(new Integer[]{150, 300, 140, 190});
+        tbArticulos.columnWidth(new Integer[]{200, 300, 150, 200});
         try {
             tbArticulos.setElements(FactoryObject.getInstance().getArticuloController().findAll());
         } catch (BussinessException ex) {
             Logger.getLogger(VwArticulo.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         tbPresentacion.setModelJS(new ModelArticuloPresentacion());
-
+        
         setElements();
         keyEvents();
-
+        
         FilterTableController filtro = new FilterTableController();
         filtro.setlFilterTable(new String[]{"Referencia", "Descripción", "Código Barra", "Ing. Activo"});
         cbFilter.setElements(filtro.getlFilterTable());
         cbFilter.setSelectedIndex(0);
-
+        
         displacement = FactoryObject.getInstance().getDisplacement();
-
+        
         jtpStandard.setSelectedIndex(1);
         jtpStandard.setEnabledAt(0, false);
         jtpStandard.setEnabledAt(1, true);
         ComponentObject.disabled(btSave, btConsultation, btDelete, btFirts, btLast, btBack, btNext);
         fillComponent();
     }
-
+    
     private void clean() {
         this.element = null;
         ComponentObject.clean(jtReferencia, jtCBarra, jtDescripcion, cbIngActivo,
@@ -1322,18 +1289,18 @@ public class VwArticulo extends javax.swing.JDialog {
         loadConfig();
         jtReferencia.requestFocus();
     }
-
+    
     private void loadConfig() {
         ComponentObject.selected(ckActivo, rbMBeneficio);
         ComponentObject.notSelected(ckExentoItbis, ckPermiteDesc, ckPermiteVenc, ckVentaDetalle);
         setEditablePrice(false);
     }
-
+    
     private void cleanPresentation() {
         ComponentObject.clean(jtCBarraPresen, jtCosto, jtMargenP1, jtMargenP2, jtMargenP3,
                 jtPrecio1, jtPrecio2, jtPrecio3);
     }
-
+    
     private void setToolBarAndPanel(int panel, boolean b) {
         jtpStandard.setSelectedIndex(panel);
         jtpStandard.setEnabledAt(0, !b);
@@ -1346,14 +1313,14 @@ public class VwArticulo extends javax.swing.JDialog {
         b = jtpStandard.getSelectedIndex() == 0 && this.element != null;
         btDelete.setEnabled(b);
     }
-
+    
     private void consultation() {
         setToolBarAndPanel(1, true);
         setDisplacement(false);
         clean();
         fireTableDataChanged();
     }
-
+    
     private void edit() {
         if (tbArticulos.getSelectedElement() != null) {
             setDisplacement(true);
@@ -1362,12 +1329,12 @@ public class VwArticulo extends javax.swing.JDialog {
             setToolBarAndPanel(0, false);
         }
     }
-
+    
     private void newElement() {
         setToolBarAndPanel(0, false);
         clean();
     }
-
+    
     public void setDisplacement(boolean b) {
         if (b) {
             ComponentObject.enabled(btFirts, btLast, btBack, btNext);
@@ -1375,17 +1342,17 @@ public class VwArticulo extends javax.swing.JDialog {
             ComponentObject.disabled(btFirts, btLast, btBack, btNext);
         }
     }
-
+    
     private void delete() {
         if (this.element != null) {
             int men = JOptionPane.showConfirmDialog(this,
                     "Desea eliminar el registro?", null,
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
+            
             if (men == JOptionPane.NO_OPTION) {
                 return;
             }
-
+            
             try {
                 FactoryObject.getInstance().getArticuloController().delete(this.element.getCodigo());
             } catch (BussinessException ex) {
@@ -1399,16 +1366,16 @@ public class VwArticulo extends javax.swing.JDialog {
             setToolBarAndPanel(1, true);
             fireTableDataChanged();
             setDisplacement(false);
-
+            
         }
     }
-
+    
     private void print() {
         if (element != null) {
             //codigo de imprimir
         }
     }
-
+    
     protected void setElements() {
         Runnable run = new Runnable() {
             @Override
@@ -1426,25 +1393,25 @@ public class VwArticulo extends javax.swing.JDialog {
         };
         new Thread(run).start();
     }
-
+    
     private void save() {
         if (!ComponentObject.validate(jtReferencia, jtDescripcion, cbIngActivo,
                 cbFamilia, cbRenglon, cbMarca, cbClasificacion)) {
             return;
         }
-
+        
         int men = JOptionPane.showConfirmDialog(this, this.element == null ? "Desea guardar el nuevo registro?"
                 : "Desea guardar los cambios?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
+        
         if (men == JOptionPane.NO_OPTION) {
             return;
         }
-
+        
         InvArticulo copyElement = this.element;
         if (this.element == null) {
             this.element = new InvArticulo();
         }
-
+        
         this.element.setDescripcion(jtDescripcion.getText().trim());
         this.element.setReferencia(jtReferencia.getText().trim());
         this.element.setCodigoBarra(jtCBarra.getText().trim());
@@ -1460,7 +1427,7 @@ public class VwArticulo extends javax.swing.JDialog {
         this.element.setExentoItbis(ckExentoItbis.isSelected());
         this.element.setVentaDetallado(ckVentaDetalle.isSelected());
         this.element.setInvArticuloPresentacionList(tbPresentacion.getElements());
-
+        
         if (copyElement == null || !this.element.equals(copyElement)) {
             try {
                 FactoryObject.getInstance().getArticuloController().saveOrUpdate(this.element);
@@ -1479,20 +1446,20 @@ public class VwArticulo extends javax.swing.JDialog {
             setDisplacement(false);
         }
     }
-
+    
     private void fireTableDataChanged() {
         jtFilter.setText("");
         tbArticulos.filterJTable(cbFilter.getSelectedItem(), jtFilter);
     }
-
+    
     public void setSelectEnable(boolean enable) {
         consultation = enable;
     }
-
+    
     public InvArticulo getSelected() {
         return this.element;
     }
-
+    
     private void exit() {
         int men = JOptionPane.showConfirmDialog(this, "Desea salir?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (men == JOptionPane.YES_OPTION) {
@@ -1500,7 +1467,7 @@ public class VwArticulo extends javax.swing.JDialog {
             dispose();
         }
     }
-
+    
     private void setElement(InvArticulo element) {
         if (element != null) {
             this.element = element;
@@ -1521,7 +1488,7 @@ public class VwArticulo extends javax.swing.JDialog {
             displacement.setCurrent(element);
         }
     }
-
+    
     private void fillComponent() {
         try {
             cbIngActivo.setElements(FactoryObject.getInstance().getIngrActivoController().findAll());
@@ -1536,7 +1503,7 @@ public class VwArticulo extends javax.swing.JDialog {
         cbModelo.setElements(new ArrayList());
         cbFabricante.setElements(new ArrayList());
     }
-
+    
     private void addPresentation() {
         if (this.articuloPresentacion == null) {
             this.articuloPresentacion = new InvArticuloPresentacion();
@@ -1550,11 +1517,11 @@ public class VwArticulo extends javax.swing.JDialog {
         this.articuloPresentacion.setPrecio1(Double.parseDouble(jtPrecio1.getText().trim()));
         this.articuloPresentacion.setPrecio2(Double.parseDouble(jtPrecio2.getText().trim()));
         this.articuloPresentacion.setPrecio3(Double.parseDouble(jtPrecio3.getText().trim()));
-
+        
         tbPresentacion.addElement(this.articuloPresentacion);
         cleanPresentation();
     }
-
+    
     private void setEditablePrice(boolean option) {
         jtPrecio1.setEditable(option);
         jtPrecio2.setEditable(option);
@@ -1563,34 +1530,33 @@ public class VwArticulo extends javax.swing.JDialog {
         jtMargenP2.setEditable(!option);
         jtMargenP3.setEditable(!option);
     }
-
-    private String calculatePriceByMargin(Double margin, Double cost, Double itbis) {
+    
+    private String calculatePriceByMargin(Double margin, Double cost) {
         Double price = null;
         Double costItbis;
-        itbis = 18.0;
         if (cost == null || cost == 0 || margin == 0) {
             price = cost;
         } else if (ckExentoItbis.isSelected()) {
             price = cost * (1 + (margin / 100));
         } else if (!ckExentoItbis.isSelected()) {
-            costItbis = cost * (1 + (itbis / 100));
+            costItbis = cost * (1 + (ITBIS / 100));
             price = costItbis * (1 + (margin / 100));
         }
         return String.valueOf(price);
     }
-
-    private String calculatePrice(Double cost, Double itbis) {
+    
+    private String calculatePrice(Double cost) {
         Double price = 0.00;
         if (ckExentoItbis.isSelected()) {
             price = cost;
         } else if (!ckExentoItbis.isSelected()) {
-            price = cost * (1 + (itbis / 100));
+            price = cost * (1 + (ITBIS / 100));
         }
         return String.valueOf(price);
     }
-
+    
     private void setPrice(InvArticuloPresentacion present) {
-
+        
         if (present != null) {
             cbPresentacion.setSelectedItem(present.getPresentacion());
             jtCBarraPresen.setText(present.getCodigoBarra().trim());
@@ -1603,7 +1569,7 @@ public class VwArticulo extends javax.swing.JDialog {
             jtPrecio3.setText(present.getPrecio3() + "");
         }
     }
-
+    
     private void keyEvents() {
         KeyEventDispatcherJS.set(new KeyEventDispatcherJS());
         KeyEventDispatcherJS.add();
@@ -1621,7 +1587,7 @@ public class VwArticulo extends javax.swing.JDialog {
         };
         JButtonJS[] buttons = new JButtonJS[]{btSave, btDelete, btNew, btPrint,
             btConsultation, btEdit, btFirts, btBack, btNext, btLast};
-
+        
         int ks = 0;
         for (final JButtonJS bt : buttons) {
             KeyEventDispatcherJS.get().addActionMap(

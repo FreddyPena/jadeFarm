@@ -630,7 +630,7 @@
                     <Component class="com.js.swing.textfield.JTextFieldJS" name="jtCosto">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="d9" green="ab" id="Tree.selectionBackground" palette="3" red="86" type="palette"/>
+                          <Color blue="96" green="5e" red="31" type="rgb"/>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Cantarell" size="15" style="1"/>
@@ -647,7 +647,7 @@
                     <Component class="com.js.swing.textfield.JTextFieldJS" name="jtMargenP1">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="d9" green="ab" id="Tree.selectionBackground" palette="3" red="86" type="palette"/>
+                          <Color blue="96" green="5e" red="31" type="rgb"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Procentaje 1"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -659,14 +659,13 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtMargenP1KeyTyped"/>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtMargenP1KeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="com.js.swing.textfield.JTextFieldJS" name="jtPrecio1">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="d9" green="ab" id="Tree.selectionBackground" palette="3" red="86" type="palette"/>
+                          <Color blue="96" green="5e" red="31" type="rgb"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Precio 1"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -681,7 +680,7 @@
                     <Component class="com.js.swing.textfield.JTextFieldJS" name="jtMargenP2">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="d9" green="ab" id="Tree.selectionBackground" palette="3" red="86" type="palette"/>
+                          <Color blue="96" green="5e" red="31" type="rgb"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Procentaje 2"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -699,7 +698,7 @@
                     <Component class="com.js.swing.textfield.JTextFieldJS" name="jtPrecio2">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="d9" green="ab" id="Tree.selectionBackground" palette="3" red="86" type="palette"/>
+                          <Color blue="96" green="5e" red="31" type="rgb"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Precio 3"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -714,7 +713,7 @@
                     <Component class="com.js.swing.textfield.JTextFieldJS" name="jtMargenP3">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="d9" green="ab" id="Tree.selectionBackground" palette="3" red="86" type="palette"/>
+                          <Color blue="96" green="5e" red="31" type="rgb"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Procentaje 3"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -732,7 +731,7 @@
                     <Component class="com.js.swing.textfield.JTextFieldJS" name="jtPrecio3">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="d9" green="ab" id="Tree.selectionBackground" palette="3" red="86" type="palette"/>
+                          <Color blue="96" green="5e" red="31" type="rgb"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Precio 3"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1057,17 +1056,11 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Este art&#xed;culo permite descuento."/>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckPermiteDescActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="ckVentaDetalle">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Usar venta al detalle."/>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ckVentaDetalleActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="ckExentoItbis">
                       <Properties>
@@ -1211,9 +1204,6 @@
               <Properties>
                 <Property name="requestFocusEnabled" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtReferenciaActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -5,9 +5,11 @@
  */
 package com.js.inv.views;
 
+import com.js.controller.component.ComponentObject;
 import com.js.controller.displacement.Displacement;
-import com.js.controller.filtertable.FilterTable;
-import com.js.controller.filtertable.FilterTableController;
+import com.js.controller.keyevent.KeyEventDispatcherJS;
+import com.js.swing.table.filter.FilterTable;
+import com.js.swing.table.filter.FilterTableController;
 import com.js.exception.BussinessException;
 import com.js.inv.tablesmodel.ModelAlmacen;
 import com.js.inv.tablesmodel.ModelArticulo;
@@ -142,14 +144,14 @@ public class VwArticulo extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbArticulos = new com.js.swing.table.JTableJS<InvArticulo>();
         jXLabel21 = new org.jdesktop.swingx.JXLabel();
-        cbFiltro = new com.js.swing.combobox.JComboBoxJS<FilterTable>();
-        jtFiltro = new com.js.swing.textfield.JTextFieldSearchJS();
+        cbFilter = new com.js.swing.combobox.JComboBoxJS<FilterTable>();
+        jtFilter = new com.js.swing.textfield.JTextFieldSearchJS();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Artículos");
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -878,10 +880,10 @@ public class VwArticulo extends javax.swing.JDialog {
         jXLabel21.setText("Criterio");
         jXLabel21.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
 
-        jtFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/zoom_20.png"))); // NOI18N
-        jtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtFilter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/zoom_20.png"))); // NOI18N
+        jtFilter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtFiltroKeyReleased(evt);
+                jtFilterKeyReleased(evt);
             }
         });
 
@@ -892,22 +894,22 @@ public class VwArticulo extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 844, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jXLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jXLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1047,17 +1049,35 @@ public class VwArticulo extends javax.swing.JDialog {
     }//GEN-LAST:event_rbPDirectoActionPerformed
 
     private void btMakeMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMakeMoreActionPerformed
-        VwMarca marca = new VwMarca(this, true);
-        marca.setSelectEnable(true);
-        marca.setVisible(true);
-        setMarca(marca.getSelected());
+        KeyEventDispatcherJS.remove();
+        VwMarca vwMarca = new VwMarca(this, true);
+        vwMarca.setSelectEnable(true);
+        vwMarca.setVisible(true);
+        if (vwMarca.getChange()) {
+            try {
+                cbMarca.setElements(FactoryObject.getInstance().getMarcaController().findAll());
+            } catch (BussinessException ex) {
+                Logger.getLogger(VwPresentacion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        cbMarca.setSelectedItem(vwMarca.getSelected());
+        keyEvents();
     }//GEN-LAST:event_btMakeMoreActionPerformed
 
     private void btFamilyMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFamilyMoreActionPerformed
-        VwFamilia familia = new VwFamilia(this, true);
-        familia.setSelectEnable(true);
-        familia.setVisible(true);
-        setFamilia(familia.getSelected());
+        KeyEventDispatcherJS.remove();
+        VwFamilia vwFamilia = new VwFamilia(this, true);
+        vwFamilia.setSelectEnable(true);
+        vwFamilia.setVisible(true);
+        if (vwFamilia.getChange()) {
+            try {
+                cbFamilia.setElements(FactoryObject.getInstance().getFamiliaController().findAll());
+            } catch (BussinessException ex) {
+                Logger.getLogger(VwPresentacion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        cbFamilia.setSelectedItem(vwFamilia.getSelected());
+        keyEvents();
     }//GEN-LAST:event_btFamilyMoreActionPerformed
 
     private void btModelMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModelMoreActionPerformed
@@ -1065,24 +1085,51 @@ public class VwArticulo extends javax.swing.JDialog {
     }//GEN-LAST:event_btModelMoreActionPerformed
 
     private void btLineMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLineMoreActionPerformed
-        VwRenglon renglon = new VwRenglon(this, true);
-        renglon.setSelectEnable(true);
-        renglon.setVisible(true);
-        setRenglon(renglon.getSelected());
+        KeyEventDispatcherJS.remove();
+        VwRenglon vwRenglon = new VwRenglon(this, true);
+        vwRenglon.setSelectEnable(true);
+        vwRenglon.setVisible(true);
+        if (vwRenglon.getChange()) {
+            try {
+                cbRenglon.setElements(FactoryObject.getInstance().getRenglonController().findAll());
+            } catch (BussinessException ex) {
+                Logger.getLogger(VwPresentacion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        cbRenglon.setSelectedItem(vwRenglon.getSelected());
+        keyEvents();
     }//GEN-LAST:event_btLineMoreActionPerformed
 
     private void btclassificationMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btclassificationMoreActionPerformed
-        VwClasArticulo clas = new VwClasArticulo(this, true);
-        clas.setSelectEnable(true);
-        clas.setVisible(true);
-        setClasificacion(clas.getSelected());
+        KeyEventDispatcherJS.remove();
+        VwClasArticulo vwClasArticulo = new VwClasArticulo(this, true);
+        vwClasArticulo.setSelectEnable(true);
+        vwClasArticulo.setVisible(true);
+        if (vwClasArticulo.getChange()) {
+            try {
+                cbClasificacion.setElements(FactoryObject.getInstance().getClasArticuloController().findAll());
+            } catch (BussinessException ex) {
+                Logger.getLogger(VwPresentacion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        cbClasificacion.setSelectedItem(vwClasArticulo.getSelected());
+        keyEvents();
     }//GEN-LAST:event_btclassificationMoreActionPerformed
 
     private void btIngActiveMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngActiveMoreActionPerformed
-        VwIngrActivo ing = new VwIngrActivo(this, true);
-        ing.setSelectEnable(true);
-        ing.setVisible(true);
-        setIngActivo(ing.getSelected());
+        KeyEventDispatcherJS.remove();
+        VwIngrActivo vwIngrActivo = new VwIngrActivo(this, true);
+        vwIngrActivo.setSelectEnable(true);
+        vwIngrActivo.setVisible(true);
+        if (vwIngrActivo.getChange()) {
+            try {
+                cbIngActivo.setElements(FactoryObject.getInstance().getIngrActivoController().findAll());
+            } catch (BussinessException ex) {
+                Logger.getLogger(VwPresentacion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        cbIngActivo.setSelectedItem(vwIngrActivo.getSelected());
+        keyEvents();
     }//GEN-LAST:event_btIngActiveMoreActionPerformed
 
     private void btManufacturerMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btManufacturerMoreActionPerformed
@@ -1097,11 +1144,10 @@ public class VwArticulo extends javax.swing.JDialog {
             } catch (BussinessException ex) {
                 Logger.getLogger(VwArticulo.class.getName()).log(Level.SEVERE, null, ex);
             }
-            element.setPresentaciones(ManejoArticuloPresentacion.getInstance().listItemPresentation(element));
+          //  element.setPresentaciones(ManejoArticuloPresentacion.getInstance().listItemPresentation(element));
             setElement(element);
             if (!consultation) {
                 setToolBarAndPanel(0, false);
-                setToolBar(false);
             } else {
                 dispose();
             }
@@ -1109,29 +1155,29 @@ public class VwArticulo extends javax.swing.JDialog {
     }//GEN-LAST:event_tbArticulosMouseClicked
 
     private void tbPresentacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPresentacionMouseClicked
-        artPres = tbPresentacion.getSelectedElement();
-        indice = tbPresentacion.getSelectedRow();
+        articuloPresentacion = tbPresentacion.getSelectedElement();
+        index = tbPresentacion.getSelectedRow();
         if (evt.getClickCount() == 2) {
-            setPrice(artPres);
-            changePresentation = true;
+            setPrice(articuloPresentacion);
+            //changePresentation = true;
         }
     }//GEN-LAST:event_tbPresentacionMouseClicked
 
     private void btPresentationDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPresentationDeleteActionPerformed
-        tbPresentacion.removeElement(artPres);
+        tbPresentacion.removeElement(articuloPresentacion);
     }//GEN-LAST:event_btPresentationDeleteActionPerformed
 
     private void tbPresentacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPresentacionMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_tbPresentacionMouseEntered
 
-    private void jtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFiltroKeyReleased
-        tbArticulos.filterJTable(cbFiltro.getSelectedItem(), jtFiltro);
-    }//GEN-LAST:event_jtFiltroKeyReleased
+    private void jtFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFilterKeyReleased
+        tbArticulos.filterJTable(cbFilter.getSelectedItem(), jtFilter);
+    }//GEN-LAST:event_jtFilterKeyReleased
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDispatcherJS());
-    }//GEN-LAST:event_formWindowClosed
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        exit();
+    }//GEN-LAST:event_formWindowClosing
 
     public static void main(String args[]) {
 
@@ -1165,7 +1211,7 @@ public class VwArticulo extends javax.swing.JDialog {
     private com.js.swing.combobox.JComboBoxJS<InvClasificacion> cbClasificacion;
     private com.js.swing.combobox.JComboBoxJS cbFabricante;
     private com.js.swing.combobox.JComboBoxJS<InvFamilia> cbFamilia;
-    private com.js.swing.combobox.JComboBoxJS<FilterTable> cbFiltro;
+    private com.js.swing.combobox.JComboBoxJS<FilterTable> cbFilter;
     private com.js.swing.combobox.JComboBoxJS<InvIngredienteActivo> cbIngActivo;
     private com.js.swing.combobox.JComboBoxJS<InvMarca> cbMarca;
     private com.js.swing.combobox.JComboBoxJS cbModelo;
@@ -1211,7 +1257,7 @@ public class VwArticulo extends javax.swing.JDialog {
     private com.js.swing.textfield.JTextFieldJS jtCampoClave;
     private com.js.swing.textfield.JTextFieldJS jtCosto;
     private com.js.swing.textfield.JTextFieldJS jtDescripcion;
-    private com.js.swing.textfield.JTextFieldSearchJS jtFiltro;
+    private com.js.swing.textfield.JTextFieldSearchJS jtFilter;
     private com.js.swing.textfield.JTextFieldJS jtMargenP1;
     private com.js.swing.textfield.JTextFieldJS jtMargenP2;
     private com.js.swing.textfield.JTextFieldJS jtMargenP3;
@@ -1228,11 +1274,10 @@ public class VwArticulo extends javax.swing.JDialog {
     private InvArticulo element;
     private Displacement<InvArticulo> displacement;
     private boolean consultation;
-    private InvArticuloPresentacion artPres = null;
-    List<InvArticuloPresentacion> listArtPres = new ArrayList<>();
-    List<InvArticulo> listArt = new ArrayList<>();
-    private boolean changePresentation = false;
-    private int indice;
+    private InvArticuloPresentacion articuloPresentacion;
+    private List<InvArticuloPresentacion> lArticuloPresentacion = new ArrayList<>();
+    private List<InvArticulo> lArticulo = new ArrayList<>();
+    private int index;
 
     private void initComp() {
         FactoryObject factory = new FactoryObjectImpl();
@@ -1256,81 +1301,37 @@ public class VwArticulo extends javax.swing.JDialog {
 
         FilterTableController filtro = new FilterTableController();
         filtro.setlFilterTable(new String[]{"Referencia", "Descripción", "Código Barra", "Ing. Activo"});
-        cbFiltro.setElements(filtro.getlFilterTable());
-        cbFiltro.setSelectedIndex(0);
+        cbFilter.setElements(filtro.getlFilterTable());
+        cbFilter.setSelectedIndex(0);
 
         displacement = FactoryObject.getInstance().getDisplacement();
 
         jtpStandard.setSelectedIndex(1);
         jtpStandard.setEnabledAt(0, false);
         jtpStandard.setEnabledAt(1, true);
-        setEnabled();
+        ComponentObject.disabled(btSave, btConsultation, btDelete, btFirts, btLast, btBack, btNext);
         fillComponent();
-    }
-
-    private void setEnabled() {
-        btSave.setEnabled(false);
-        btConsultation.setEnabled(false);
-        btDelete.setEnabled(false);
-        btFirts.setEnabled(false);
-        btLast.setEnabled(false);
-        btBack.setEnabled(false);
-        btNext.setEnabled(false);
     }
 
     private void clean() {
         this.element = null;
-        jtReferencia.setText("");
-        jtCBarra.setText("");
-        jtDescripcion.setText("");
-//        try {
-//            cbIngActivo.setElements(FactoryObject.getInstance().getIngrActivoController().findAll());
-//            cbRenglon.setElements(FactoryObject.getInstance().getRenglonController().findAll());
-//            cbClasificacion.setElements(FactoryObject.getInstance().getClasArticuloController().findAll());
-//            cbPresentacion.setElements(FactoryObject.getInstance().getPresentacionController().findAll());
-//            cbMarca.setElements(FactoryObject.getInstance().getMarcaController().findAll());
-//            cbFamilia.setElements(FactoryObject.getInstance().getFamiliaController().findAll());
-//        } catch (BussinessException ex) {
-//            Logger.getLogger(VwArticulo.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        cbModelo.setElements(new ArrayList());
-//        cbFabricante.setElements(new ArrayList());
-
-        cbIngActivo.setSelectedIndex(-1);
-        cbRenglon.setSelectedIndex(-1);
-        cbClasificacion.setSelectedIndex(-1);
-        //cbPresentacion.setSelectedIndex(-1);
-        cbMarca.setSelectedIndex(-1);
-        cbFamilia.setSelectedIndex(-1);
-        cbModelo.setSelectedIndex(-1);
-        cbFabricante.setSelectedIndex(-1);
-
+        ComponentObject.clean(jtReferencia, jtCBarra, jtDescripcion, cbIngActivo,
+                cbRenglon, cbClasificacion, cbMarca, cbFamilia, cbModelo, cbFabricante);
         tbPresentacion.setModelJS(new ModelArticuloPresentacion());
         cleanPresentation();
         loadConfig();
-
         jtReferencia.requestFocus();
     }
 
     private void loadConfig() {
-        ckActivo.setSelected(true);
-        rbMBeneficio.setSelected(true);
+        ComponentObject.selected(ckActivo, rbMBeneficio);
+        ComponentObject.notSelected(ckExentoItbis, ckPermiteDesc, ckPermiteVenc, ckVentaDetalle);
         setEditablePrice(false);
-        ckExentoItbis.setSelected(false);
-        ckPermiteDesc.setSelected(false);
-        ckPermiteVenc.setSelected(false);
-        ckVentaDetalle.setSelected(false);
     }
 
     private void cleanPresentation() {
-        jtCBarraPresen.setText("");
-        jtCosto.setText("0.00");
-        jtMargenP1.setText("0.00");
-        jtMargenP2.setText("0.00");
-        jtMargenP3.setText("0.00");
-        jtPrecio1.setText("0.00");
-        jtPrecio2.setText("0.00");
-        jtPrecio3.setText("0.00");
+        ComponentObject.clean(jtCBarraPresen, jtCosto, jtMargenP1, jtMargenP2, jtMargenP3,
+                jtPrecio1, jtPrecio2, jtPrecio3);
     }
 
     private void setToolBarAndPanel(int panel, boolean b) {
@@ -1368,10 +1369,11 @@ public class VwArticulo extends javax.swing.JDialog {
     }
 
     public void setDisplacement(boolean b) {
-        btBack.setEnabled(b);
-        btNext.setEnabled(b);
-        btLast.setEnabled(b);
-        btFirts.setEnabled(b);
+        if (b) {
+            ComponentObject.enabled(btFirts, btLast, btBack, btNext);
+        } else {
+            ComponentObject.disabled(btFirts, btLast, btBack, btNext);
+        }
     }
 
     private void delete() {
@@ -1396,6 +1398,7 @@ public class VwArticulo extends javax.swing.JDialog {
             clean();
             setToolBarAndPanel(1, true);
             fireTableDataChanged();
+            setDisplacement(false);
 
         }
     }
@@ -1425,7 +1428,8 @@ public class VwArticulo extends javax.swing.JDialog {
     }
 
     private void save() {
-        if (!validateField()) {
+        if (!ComponentObject.validate(jtReferencia, jtDescripcion, cbIngActivo,
+                cbFamilia, cbRenglon, cbMarca, cbClasificacion)) {
             return;
         }
 
@@ -1450,6 +1454,7 @@ public class VwArticulo extends javax.swing.JDialog {
         this.element.setRenglon(cbRenglon.getSelectedItem());
         this.element.setClasificacion(cbClasificacion.getSelectedItem());
         this.element.setActivo(ckActivo.isSelected());
+        //this.element.setFabricante(index);        
         //    element.setPermiteDescuento(ckPermiteDesc.isSelected());
         this.element.setPermiteVencimiento(ckPermiteVenc.isSelected());
         this.element.setExentoItbis(ckExentoItbis.isSelected());
@@ -1465,17 +1470,19 @@ public class VwArticulo extends javax.swing.JDialog {
                 Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
-            tbArticulos.addElement(this.element);
+            if (copyElement == null) {
+                tbArticulos.addElement(this.element);
+            }
+            clean();
+            fireTableDataChanged();
+            setToolBarAndPanel(1, true);
+            setDisplacement(false);
         }
-
-        clean();
-        fireTableDataChanged();
-        setToolBarAndPanel(1, true);
     }
 
     private void fireTableDataChanged() {
-        jtFiltro.setText("");
-        tbArticulos.filterJTable(cbFiltro.getSelectedItem(), jtFiltro);
+        jtFilter.setText("");
+        tbArticulos.filterJTable(cbFilter.getSelectedItem(), jtFilter);
     }
 
     public void setSelectEnable(boolean enable) {
@@ -1486,32 +1493,12 @@ public class VwArticulo extends javax.swing.JDialog {
         return this.element;
     }
 
-    private void disposeConsultation() {
-        if (this.consultation && this.element != null) {
-            dispose();
-        }
-    }
-
     private void exit() {
         int men = JOptionPane.showConfirmDialog(this, "Desea salir?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (men == JOptionPane.YES_OPTION) {
+            KeyEventDispatcherJS.remove();
             dispose();
         }
-    }
-
-    private boolean validateField() {
-        if (jtReferencia.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Referencia no puede estar en blanco.", "Aviso",
-                    JOptionPane.WARNING_MESSAGE);
-            jtReferencia.requestFocus();
-            return false;
-        } else if (jtDescripcion.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Descripción no puede estar en blanco.", "Aviso",
-                    JOptionPane.WARNING_MESSAGE);
-            jtDescripcion.requestFocus();
-            return false;
-        }
-        return true;
     }
 
     private void setElement(InvArticulo element) {
@@ -1521,11 +1508,11 @@ public class VwArticulo extends javax.swing.JDialog {
             jtCBarra.setText(element.getCodigoBarra());
             jtDescripcion.setText(element.getDescripcion());
             cbIngActivo.setSelectedItem(element.getIngredienteActivo());
-            cbFabricante.setSelectedItem(element.getFabricante());
+            //  cbFabricante.setSelectedItem(element.getFabricante());
             tbPresentacion.setElements(element.getInvArticuloPresentacionList());
             cbRenglon.setSelectedItem(element.getRenglon());
             cbClasificacion.setSelectedItem(element.getClasificacion());
-            cbFabricante.setSelectedItem(element.getFamilia());
+            cbFamilia.setSelectedItem(element.getFamilia());
             cbMarca.setSelectedItem(element.getMarca());
             ckActivo.setSelected(element.getActivo());
             ckPermiteVenc.setSelected(element.getPermiteVencimiento());
@@ -1551,26 +1538,21 @@ public class VwArticulo extends javax.swing.JDialog {
     }
 
     private void addPresentation() {
-        if (this.artPres == null) {
-            artPres = new InvArticuloPresentacion();
+        if (this.articuloPresentacion == null) {
+            this.articuloPresentacion = new InvArticuloPresentacion();
         }
-        this.artPres.setPresentacion(cbPresentacion.getSelectedItem());
-        this.artPres.setCodigoBarra(jtCBarraPresen.getText().trim());
-        this.artPres.setCosto(Double.parseDouble(jtCosto.getText().trim()));
-        this.artPres.setPocentaje1(Double.parseDouble(jtMargenP1.getText().trim()));
-        this.artPres.setPorcentaje2(Double.parseDouble(jtMargenP2.getText().trim()));
-        this.artPres.setPorcentaje3(Double.parseDouble(jtMargenP3.getText().trim()));
-        this.artPres.setPrecio1(Double.parseDouble(jtPrecio1.getText().trim()));
-        this.artPres.setPrecio2(Double.parseDouble(jtPrecio2.getText().trim()));
-        this.artPres.setPrecio3(Double.parseDouble(jtPrecio3.getText().trim()));
-        if (!changePresentation) {
-            tbPresentacion.addElement(artPres);
-            cleanPresentation();
-            changePresentation = false;
-        } else {
-            cleanPresentation();
-            changePresentation = false;
-        }
+        this.articuloPresentacion.setPresentacion(cbPresentacion.getSelectedItem());
+        this.articuloPresentacion.setCodigoBarra(jtCBarraPresen.getText().trim());
+        this.articuloPresentacion.setCosto(Double.parseDouble(jtCosto.getText().trim()));
+        this.articuloPresentacion.setPocentaje1(Double.parseDouble(jtMargenP1.getText().trim()));
+        this.articuloPresentacion.setPorcentaje2(Double.parseDouble(jtMargenP2.getText().trim()));
+        this.articuloPresentacion.setPorcentaje3(Double.parseDouble(jtMargenP3.getText().trim()));
+        this.articuloPresentacion.setPrecio1(Double.parseDouble(jtPrecio1.getText().trim()));
+        this.articuloPresentacion.setPrecio2(Double.parseDouble(jtPrecio2.getText().trim()));
+        this.articuloPresentacion.setPrecio3(Double.parseDouble(jtPrecio3.getText().trim()));
+
+        tbPresentacion.addElement(this.articuloPresentacion);
+        cleanPresentation();
     }
 
     private void setEditablePrice(boolean option) {
@@ -1607,47 +1589,6 @@ public class VwArticulo extends javax.swing.JDialog {
         return String.valueOf(price);
     }
 
-    private void setMarca(InvMarca marca) {
-        if (marca != null) {
-
-        }
-    }
-
-    private void setFamilia(InvFamilia familia) {
-        if (familia != null) {
-
-        }
-    }
-
-    private void setModelo() {
-
-    }
-
-    private void setRenglon(InvRenglon renglon) {
-        if (renglon != null) {
-            cbRenglon.setElements(ManejoRenglon.getInstance().findAll());
-            cbRenglon.setSelectedItem(renglon);
-        }
-    }
-
-    private void setClasificacion(InvClasificacion clas) {
-        if (clas != null) {
-            cbClasificacion.setElements(ManejoClasArticulo.getInstance().findAll());
-            cbClasificacion.setSelectedItem(clas);
-
-        }
-    }
-
-    private void setIngActivo(InvIngredienteActivo ing) {
-        if (ing != null) {
-            cbIngActivo.setElements(ManejoIngredienteActivo.getInstance().findAll());
-            cbIngActivo.setSelectedItem(ing);
-        }
-    }
-
-    private void setFabricante() {
-    }
-
     private void setPrice(InvArticuloPresentacion present) {
 
         if (present != null) {
@@ -1664,7 +1605,8 @@ public class VwArticulo extends javax.swing.JDialog {
     }
 
     private void keyEvents() {
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(FactoryObject.getInstance().getKeyEventDispatcherJS());
+        KeyEventDispatcherJS.set(new KeyEventDispatcherJS());
+        KeyEventDispatcherJS.add();
         KeyStroke[] keyStrokes = new KeyStroke[]{
             KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK),
             KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK),
@@ -1682,7 +1624,7 @@ public class VwArticulo extends javax.swing.JDialog {
 
         int ks = 0;
         for (final JButtonJS bt : buttons) {
-            FactoryObject.getInstance().getKeyEventDispatcherJS().addactionMap(
+            KeyEventDispatcherJS.get().addActionMap(
                     keyStrokes[ks++], new AbstractAction() {
                         @Override
                         public void actionPerformed(ActionEvent e) {

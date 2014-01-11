@@ -14,18 +14,17 @@
     
     <!--Controllers -->
     <bean class="com.js.shared.utils.HibernateUtil" factory-method="getSessionFactory"  />
+    <bean class="com.js.inv.dao.hql.AlmacenDAOHQL" />  
     <bean class="com.js.inv.dao.hql.FamiliaDAOHQL" />      
     <bean class="com.js.inv.dao.hql.MarcaDAOHQL" />      
     <bean class="com.js.inv.dao.hql.ClasArticuloDAOHQL" />    
-    <bean class="com.js.inv.dao.hql.RenglonDAOHQL" />      
-    <bean class="com.js.inv.dao.hql.AlmacenDAOHQL" />   
+    <bean class="com.js.inv.dao.hql.RenglonDAOHQL" />           
     <bean class="com.js.inv.dao.hql.UnidadDAOHQL" />           
     <bean class="com.js.inv.dao.hql.IngrActivoDAOHQL" />
     <bean class="com.js.inv.dao.hql.PresentacionDAOHQL" />   
     <bean class="com.js.inv.dao.hql.ArticuloDAOHQL" />           
     
-    <!---Singleton -->
-    <bean class="com.js.controller.others.KeyEventDispatcherJS" />  
+    <!---Singleton -->    
     <bean class="com.js.controller.displacement.DisplacementObject" /> 
   
 

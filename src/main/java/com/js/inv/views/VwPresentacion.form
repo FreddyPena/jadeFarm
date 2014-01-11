@@ -10,7 +10,6 @@
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <Events>
-    <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
     <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
   </Events>
   <AuxValues>
@@ -284,16 +283,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jtDescripcion" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
+                          <Component id="jtDescripcion" alignment="0" pref="297" max="32767" attributes="0"/>
                           <Component id="jtIdentificador" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jtFactor" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jtUnidadIdent" alignment="0" pref="80" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jtUnidadDesc" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jtFactor" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="cbUnidad" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btUnitMore" min="-2" pref="42" max="-2" attributes="0"/>
@@ -321,12 +314,11 @@
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="cbUnidad" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="jXLabel6" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtUnidadIdent" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtUnidadDesc" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="btUnitMore" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="77" max="32767" attributes="0"/>
+                      <EmptySpace pref="78" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -347,9 +339,6 @@
                 </Property>
                 <Property name="jsLength" type="int" value="6"/>
               </Properties>
-              <Events>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtIdentificadorFocusLost"/>
-              </Events>
             </Component>
             <Component class="org.jdesktop.swingx.JXLabel" name="jXLabel3">
               <Properties>
@@ -393,35 +382,20 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.js.swing.textfield.JTextFieldJS" name="jtUnidadIdent">
-              <Properties>
-                <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
-                </Property>
-                <Property name="jsLength" type="int" value="11"/>
-                <Property name="jsType" type="com.js.swing.others.TypeJTextFieldJS" editor="org.netbeans.modules.form.editors.EnumEditor">
-                  <Value id="ONLY_NUMBER"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtUnidadIdentKeyReleased"/>
-              </Events>
-            </Component>
-            <Component class="com.js.swing.textfield.JTextFieldJS" name="jtUnidadDesc">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="com.js.swing.button.JButtonJS" name="btUnitMore">
               <Properties>
-                <Property name="text" type="java.lang.String" value="+"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/jadesoft/jadeOther/icons/zoom_20.png"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btUnitMoreActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="com.js.swing.combobox.JComboBoxJS" name="cbUnidad">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;InvUnidad&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -444,9 +418,9 @@
                           <Group type="102" attributes="0">
                               <Component id="jXLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbFiltro" min="-2" pref="119" max="-2" attributes="0"/>
+                              <Component id="cbFilter" min="-2" pref="119" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jtFiltro" min="-2" pref="323" max="-2" attributes="0"/>
+                              <Component id="jtFilter" min="-2" pref="323" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -458,9 +432,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="jtFiltro" alignment="2" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jtFilter" alignment="2" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="jXLabel5" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbFiltro" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbFilter" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="177" max="-2" attributes="0"/>
@@ -477,7 +451,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="com.js.swing.table.JTableJS" name="tbFamilia">
+                <Component class="com.js.swing.table.JTableJS" name="tbElements">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
@@ -489,7 +463,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbFamiliaMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbElementsMouseClicked"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;InvPresentacion&gt;"/>
@@ -505,19 +479,19 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.js.swing.combobox.JComboBoxJS" name="cbFiltro">
+            <Component class="com.js.swing.combobox.JComboBoxJS" name="cbFilter">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;FilterTable&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="com.js.swing.textfield.JTextFieldSearchJS" name="jtFiltro">
+            <Component class="com.js.swing.textfield.JTextFieldSearchJS" name="jtFilter">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/jadesoft/jadeOther/icons/zoom_20.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtFiltroKeyReleased"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtFilterKeyReleased"/>
               </Events>
             </Component>
           </SubComponents>

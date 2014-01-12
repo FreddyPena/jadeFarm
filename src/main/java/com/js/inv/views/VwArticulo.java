@@ -11,12 +11,10 @@ import com.js.controller.keyevent.KeyEventDispatcherJS;
 import com.js.swing.table.filter.FilterTable;
 import com.js.swing.table.filter.FilterTableController;
 import com.js.exception.BussinessException;
-import com.js.inv.tablesmodel.ModelAlmacen;
 import com.js.inv.tablesmodel.ModelArticulo;
 import com.js.inv.tablesmodel.ModelArticuloPresentacion;
 import com.js.shared.factory.FactoryObject;
 import com.js.shared.factory.FactoryObjectImpl;
-import com.js.shared.models.InvAlmacen;
 import com.js.shared.models.InvArticulo;
 import com.js.shared.models.InvArticuloPresentacion;
 import com.js.shared.models.InvClasificacion;
@@ -26,10 +24,8 @@ import com.js.shared.models.InvMarca;
 import com.js.shared.models.InvPresentacion;
 import com.js.shared.models.InvRenglon;
 import com.js.swing.button.JButtonJS;
-import com.js.swing.others.EnterIndex;
 import com.js.swing.panel.JGlassPaneJS;
 import java.awt.Frame;
-import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -46,19 +42,19 @@ import javax.swing.KeyStroke;
  * @author JADESOFT
  */
 public class VwArticulo extends javax.swing.JDialog {
-    
+
     public VwArticulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initComp();
     }
-    
+
     public VwArticulo(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initComp();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -454,7 +450,11 @@ public class VwArticulo extends javax.swing.JDialog {
                             .addComponent(jtCBarraPresen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(btPresentationAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                                .addComponent(btPresentationDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jtCosto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jXLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
@@ -469,12 +469,8 @@ public class VwArticulo extends javax.swing.JDialog {
                                         .addComponent(jtPrecio2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jXLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jtPrecio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jtPrecio3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btPresentationAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                                .addComponent(btPresentationDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)))
+                                        .addComponent(jtPrecio3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -599,7 +595,8 @@ public class VwArticulo extends javax.swing.JDialog {
                     .addComponent(cbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbRenglon, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtCampoClave, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btFamilyMore, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -608,10 +605,6 @@ public class VwArticulo extends javax.swing.JDialog {
                     .addComponent(btLineMore, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btclassificationMore, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(264, 264, 264))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(jtCampoClave, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(310, 310, 310))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1144,13 +1137,13 @@ public class VwArticulo extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         exit();
     }//GEN-LAST:event_formWindowClosing
-    
+
     public static void main(String args[]) {
 
         /* Create and display the dialog */
         VwArticulo articulo = new VwArticulo(new Frame(), true);
         articulo.setVisible(true);
-        
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PManejoPrecios;
@@ -1245,41 +1238,36 @@ public class VwArticulo extends javax.swing.JDialog {
     private List<InvArticulo> lArticulo = new ArrayList<>();
     private int index;
     private static final double ITBIS = 18.00;
-    
+
     private void initComp() {
         FactoryObject factory = new FactoryObjectImpl();
         FactoryObject.setInstance(factory);
-        
+
         setGlassPane(new JGlassPaneJS());
         tbArticulos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbArticulos.doLayout();
         tbArticulos.setModelJS(new ModelArticulo());
         tbArticulos.columnWidth(new Integer[]{200, 300, 150, 200});
-        try {
-            tbArticulos.setElements(FactoryObject.getInstance().getArticuloController().findAll());
-        } catch (BussinessException ex) {
-            Logger.getLogger(VwArticulo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
         tbPresentacion.setModelJS(new ModelArticuloPresentacion());
-        
+
         setElements();
         keyEvents();
-        
+
         FilterTableController filtro = new FilterTableController();
         filtro.setlFilterTable(new String[]{"Referencia", "Descripción", "Código Barra", "Ing. Activo"});
         cbFilter.setElements(filtro.getlFilterTable());
         cbFilter.setSelectedIndex(0);
-        
+
         displacement = FactoryObject.getInstance().getDisplacement();
-        
+
         jtpStandard.setSelectedIndex(1);
         jtpStandard.setEnabledAt(0, false);
         jtpStandard.setEnabledAt(1, true);
         ComponentObject.disabled(btSave, btConsultation, btDelete, btFirts, btLast, btBack, btNext);
         fillComponent();
     }
-    
+
     private void clean() {
         this.element = null;
         ComponentObject.clean(jtReferencia, jtCBarra, jtDescripcion, cbIngActivo,
@@ -1289,18 +1277,18 @@ public class VwArticulo extends javax.swing.JDialog {
         loadConfig();
         jtReferencia.requestFocus();
     }
-    
+
     private void loadConfig() {
         ComponentObject.selected(ckActivo, rbMBeneficio);
         ComponentObject.notSelected(ckExentoItbis, ckPermiteDesc, ckPermiteVenc, ckVentaDetalle);
         setEditablePrice(false);
     }
-    
+
     private void cleanPresentation() {
         ComponentObject.clean(jtCBarraPresen, jtCosto, jtMargenP1, jtMargenP2, jtMargenP3,
                 jtPrecio1, jtPrecio2, jtPrecio3);
     }
-    
+
     private void setToolBarAndPanel(int panel, boolean b) {
         jtpStandard.setSelectedIndex(panel);
         jtpStandard.setEnabledAt(0, !b);
@@ -1313,14 +1301,14 @@ public class VwArticulo extends javax.swing.JDialog {
         b = jtpStandard.getSelectedIndex() == 0 && this.element != null;
         btDelete.setEnabled(b);
     }
-    
+
     private void consultation() {
         setToolBarAndPanel(1, true);
         setDisplacement(false);
         clean();
         fireTableDataChanged();
     }
-    
+
     private void edit() {
         if (tbArticulos.getSelectedElement() != null) {
             setDisplacement(true);
@@ -1329,12 +1317,12 @@ public class VwArticulo extends javax.swing.JDialog {
             setToolBarAndPanel(0, false);
         }
     }
-    
+
     private void newElement() {
         setToolBarAndPanel(0, false);
         clean();
     }
-    
+
     public void setDisplacement(boolean b) {
         if (b) {
             ComponentObject.enabled(btFirts, btLast, btBack, btNext);
@@ -1342,17 +1330,17 @@ public class VwArticulo extends javax.swing.JDialog {
             ComponentObject.disabled(btFirts, btLast, btBack, btNext);
         }
     }
-    
+
     private void delete() {
         if (this.element != null) {
             int men = JOptionPane.showConfirmDialog(this,
                     "Desea eliminar el registro?", null,
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            
+
             if (men == JOptionPane.NO_OPTION) {
                 return;
             }
-            
+
             try {
                 FactoryObject.getInstance().getArticuloController().delete(this.element.getCodigo());
             } catch (BussinessException ex) {
@@ -1366,16 +1354,16 @@ public class VwArticulo extends javax.swing.JDialog {
             setToolBarAndPanel(1, true);
             fireTableDataChanged();
             setDisplacement(false);
-            
+
         }
     }
-    
+
     private void print() {
         if (element != null) {
             //codigo de imprimir
         }
     }
-    
+
     protected void setElements() {
         Runnable run = new Runnable() {
             @Override
@@ -1393,25 +1381,25 @@ public class VwArticulo extends javax.swing.JDialog {
         };
         new Thread(run).start();
     }
-    
+
     private void save() {
         if (!ComponentObject.validate(jtReferencia, jtDescripcion, cbIngActivo,
                 cbFamilia, cbRenglon, cbMarca, cbClasificacion)) {
             return;
         }
-        
+
         int men = JOptionPane.showConfirmDialog(this, this.element == null ? "Desea guardar el nuevo registro?"
                 : "Desea guardar los cambios?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
+
         if (men == JOptionPane.NO_OPTION) {
             return;
         }
-        
+
         InvArticulo copyElement = this.element;
         if (this.element == null) {
             this.element = new InvArticulo();
         }
-        
+
         this.element.setDescripcion(jtDescripcion.getText().trim());
         this.element.setReferencia(jtReferencia.getText().trim());
         this.element.setCodigoBarra(jtCBarra.getText().trim());
@@ -1427,7 +1415,7 @@ public class VwArticulo extends javax.swing.JDialog {
         this.element.setExentoItbis(ckExentoItbis.isSelected());
         this.element.setVentaDetallado(ckVentaDetalle.isSelected());
         this.element.setInvArticuloPresentacionList(tbPresentacion.getElements());
-        
+
         if (copyElement == null || !this.element.equals(copyElement)) {
             try {
                 FactoryObject.getInstance().getArticuloController().saveOrUpdate(this.element);
@@ -1446,20 +1434,20 @@ public class VwArticulo extends javax.swing.JDialog {
             setDisplacement(false);
         }
     }
-    
+
     private void fireTableDataChanged() {
         jtFilter.setText("");
         tbArticulos.filterJTable(cbFilter.getSelectedItem(), jtFilter);
     }
-    
+
     public void setSelectEnable(boolean enable) {
         consultation = enable;
     }
-    
+
     public InvArticulo getSelected() {
         return this.element;
     }
-    
+
     private void exit() {
         int men = JOptionPane.showConfirmDialog(this, "Desea salir?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (men == JOptionPane.YES_OPTION) {
@@ -1467,7 +1455,7 @@ public class VwArticulo extends javax.swing.JDialog {
             dispose();
         }
     }
-    
+
     private void setElement(InvArticulo element) {
         if (element != null) {
             this.element = element;
@@ -1488,7 +1476,7 @@ public class VwArticulo extends javax.swing.JDialog {
             displacement.setCurrent(element);
         }
     }
-    
+
     private void fillComponent() {
         try {
             cbIngActivo.setElements(FactoryObject.getInstance().getIngrActivoController().findAll());
@@ -1503,7 +1491,7 @@ public class VwArticulo extends javax.swing.JDialog {
         cbModelo.setElements(new ArrayList());
         cbFabricante.setElements(new ArrayList());
     }
-    
+
     private void addPresentation() {
         if (this.articuloPresentacion == null) {
             this.articuloPresentacion = new InvArticuloPresentacion();
@@ -1517,11 +1505,11 @@ public class VwArticulo extends javax.swing.JDialog {
         this.articuloPresentacion.setPrecio1(Double.parseDouble(jtPrecio1.getText().trim()));
         this.articuloPresentacion.setPrecio2(Double.parseDouble(jtPrecio2.getText().trim()));
         this.articuloPresentacion.setPrecio3(Double.parseDouble(jtPrecio3.getText().trim()));
-        
+
         tbPresentacion.addElement(this.articuloPresentacion);
         cleanPresentation();
     }
-    
+
     private void setEditablePrice(boolean option) {
         jtPrecio1.setEditable(option);
         jtPrecio2.setEditable(option);
@@ -1530,7 +1518,7 @@ public class VwArticulo extends javax.swing.JDialog {
         jtMargenP2.setEditable(!option);
         jtMargenP3.setEditable(!option);
     }
-    
+
     private String calculatePriceByMargin(Double margin, Double cost) {
         Double price = null;
         Double costItbis;
@@ -1544,7 +1532,7 @@ public class VwArticulo extends javax.swing.JDialog {
         }
         return String.valueOf(price);
     }
-    
+
     private String calculatePrice(Double cost) {
         Double price = 0.00;
         if (ckExentoItbis.isSelected()) {
@@ -1554,9 +1542,9 @@ public class VwArticulo extends javax.swing.JDialog {
         }
         return String.valueOf(price);
     }
-    
+
     private void setPrice(InvArticuloPresentacion present) {
-        
+
         if (present != null) {
             cbPresentacion.setSelectedItem(present.getPresentacion());
             jtCBarraPresen.setText(present.getCodigoBarra().trim());
@@ -1569,7 +1557,7 @@ public class VwArticulo extends javax.swing.JDialog {
             jtPrecio3.setText(present.getPrecio3() + "");
         }
     }
-    
+
     private void keyEvents() {
         KeyEventDispatcherJS.set(new KeyEventDispatcherJS());
         KeyEventDispatcherJS.add();
@@ -1587,7 +1575,7 @@ public class VwArticulo extends javax.swing.JDialog {
         };
         JButtonJS[] buttons = new JButtonJS[]{btSave, btDelete, btNew, btPrint,
             btConsultation, btEdit, btFirts, btBack, btNext, btLast};
-        
+
         int ks = 0;
         for (final JButtonJS bt : buttons) {
             KeyEventDispatcherJS.get().addActionMap(

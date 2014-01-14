@@ -24,6 +24,7 @@ import com.js.shared.models.InvMarca;
 import com.js.shared.models.InvPresentacion;
 import com.js.shared.models.InvRenglon;
 import com.js.swing.button.JButtonJS;
+import com.js.swing.optionpane.JOptionPaneJS;
 import com.js.swing.panel.JGlassPaneJS;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -100,6 +101,7 @@ public class VwArticulo extends javax.swing.JDialog {
         jtPrecio3 = new com.js.swing.textfield.JTextFieldJS();
         btPresentationAdd = new com.js.swing.button.JButtonJS();
         btPresentationDelete = new com.js.swing.button.JButtonJS();
+        btPresentation = new com.js.swing.button.JButtonJS();
         jPanel6 = new javax.swing.JPanel();
         jXLabel14 = new org.jdesktop.swingx.JXLabel();
         btFamilyMore = new com.js.swing.button.JButtonJS();
@@ -347,9 +349,6 @@ public class VwArticulo extends javax.swing.JDialog {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPresentacionMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                tbPresentacionMouseEntered(evt);
-            }
         });
         jScrollPane2.setViewportView(tbPresentacion);
 
@@ -433,6 +432,14 @@ public class VwArticulo extends javax.swing.JDialog {
             }
         });
 
+        btPresentation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jadesoft/jadeOther/icons/zoom_20.png"))); // NOI18N
+        btPresentation.setToolTipText("");
+        btPresentation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPresentationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -446,41 +453,44 @@ public class VwArticulo extends javax.swing.JDialog {
                             .addComponent(jXLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                            .addComponent(jtCBarraPresen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jtCBarraPresen, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(cbPresentacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btPresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(btPresentationAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                                 .addComponent(btPresentationDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jtCosto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jXLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jtMargenP3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jtMargenP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                                        .addComponent(jtMargenP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jtPrecio2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jXLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jtPrecio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jtPrecio3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(jtCosto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jXLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jtMargenP3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtMargenP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                    .addComponent(jtMargenP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtPrecio2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jXLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtPrecio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtPrecio3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jXLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(cbPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btPresentation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jXLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jXLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1114,21 +1124,19 @@ public class VwArticulo extends javax.swing.JDialog {
     }//GEN-LAST:event_tbArticulosMouseClicked
 
     private void tbPresentacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPresentacionMouseClicked
-        articuloPresentacion = tbPresentacion.getSelectedElement();
-        index = tbPresentacion.getSelectedRow();
-        if (evt.getClickCount() == 2) {
-            setPrice(articuloPresentacion);
-            //changePresentation = true;
+        if (tbPresentacion.getSelectedElement() != null) {
+            if (evt.getClickCount() == 2) {
+                setPresentacion(tbPresentacion.getSelectedElement());
+            }
         }
     }//GEN-LAST:event_tbPresentacionMouseClicked
 
     private void btPresentationDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPresentationDeleteActionPerformed
-        tbPresentacion.removeElement(articuloPresentacion);
+        if (tbPresentacion.getSelectedElement() != null) {
+            tbPresentacion.removeElement(tbPresentacion.getSelectedElement());
+            cleanPresentation();
+        }
     }//GEN-LAST:event_btPresentationDeleteActionPerformed
-
-    private void tbPresentacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPresentacionMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbPresentacionMouseEntered
 
     private void jtFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFilterKeyReleased
         tbArticulos.filterJTable(cbFilter.getSelectedItem(), jtFilter);
@@ -1137,6 +1145,21 @@ public class VwArticulo extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         exit();
     }//GEN-LAST:event_formWindowClosing
+
+    private void btPresentationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPresentationActionPerformed
+        KeyEventDispatcherJS.remove();
+        VwPresentacion vwPresentacion = new VwPresentacion(this, true);
+        vwPresentacion.setVisible(true);
+        if (vwPresentacion.getChange()) {
+            try {
+                cbPresentacion.setElements(FactoryObject.getInstance().getPresentacionController().findAll());
+            } catch (BussinessException ex) {
+                Logger.getLogger(VwPresentacion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        cbPresentacion.setSelectedItem(vwPresentacion.getSelected());
+        keyEvents();
+    }//GEN-LAST:event_btPresentationActionPerformed
 
     public static void main(String args[]) {
 
@@ -1161,6 +1184,7 @@ public class VwArticulo extends javax.swing.JDialog {
     private com.js.swing.button.JButtonJS btModelMore;
     private com.js.swing.button.JButtonJS btNew;
     private com.js.swing.button.JButtonJS btNext;
+    private com.js.swing.button.JButtonJS btPresentation;
     private com.js.swing.button.JButtonJS btPresentationAdd;
     private com.js.swing.button.JButtonJS btPresentationDelete;
     private com.js.swing.button.JButtonJS btPrint;
@@ -1236,7 +1260,6 @@ public class VwArticulo extends javax.swing.JDialog {
     private InvArticuloPresentacion articuloPresentacion;
     private List<InvArticuloPresentacion> lArticuloPresentacion = new ArrayList<>();
     private List<InvArticulo> lArticulo = new ArrayList<>();
-    private int index;
     private static final double ITBIS = 18.00;
 
     private void initComp() {
@@ -1287,6 +1310,7 @@ public class VwArticulo extends javax.swing.JDialog {
     private void cleanPresentation() {
         ComponentObject.clean(jtCBarraPresen, jtCosto, jtMargenP1, jtMargenP2, jtMargenP3,
                 jtPrecio1, jtPrecio2, jtPrecio3);
+        this.articuloPresentacion = null;
     }
 
     private void setToolBarAndPanel(int panel, boolean b) {
@@ -1333,19 +1357,15 @@ public class VwArticulo extends javax.swing.JDialog {
 
     private void delete() {
         if (this.element != null) {
-            int men = JOptionPane.showConfirmDialog(this,
-                    "Desea eliminar el registro?", null,
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-            if (men == JOptionPane.NO_OPTION) {
+            if (JOptionPaneJS.showConfirmDelete(rootPane) == JOptionPane.NO_OPTION) {
                 return;
             }
 
             try {
                 FactoryObject.getInstance().getArticuloController().delete(this.element.getCodigo());
             } catch (BussinessException ex) {
-                JOptionPane.showMessageDialog(this, "Error al intentar borrar este regsitro", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPaneJS.showErrorDelete(rootPane);
                 Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
@@ -1372,8 +1392,7 @@ public class VwArticulo extends javax.swing.JDialog {
                 try {
                     tbArticulos.setElements(FactoryObject.getInstance().getArticuloController().findAll());
                 } catch (BussinessException ex) {
-                    JOptionPane.showMessageDialog(null, "Error al intentar recorrer los regsitros", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
+                    JOptionPaneJS.showErrorFind(rootPane);
                     Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 getGlassPane().setVisible(false);
@@ -1383,15 +1402,11 @@ public class VwArticulo extends javax.swing.JDialog {
     }
 
     private void save() {
-        if (!ComponentObject.validate(jtReferencia, jtDescripcion, cbIngActivo,
+        if (!ComponentObject.validate(jtReferencia, jtDescripcion,
                 cbFamilia, cbRenglon, cbMarca, cbClasificacion)) {
             return;
         }
-
-        int men = JOptionPane.showConfirmDialog(this, this.element == null ? "Desea guardar el nuevo registro?"
-                : "Desea guardar los cambios?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-        if (men == JOptionPane.NO_OPTION) {
+        if (JOptionPaneJS.showConfirmSave(rootPane, this) == JOptionPane.NO_OPTION) {
             return;
         }
 
@@ -1416,23 +1431,21 @@ public class VwArticulo extends javax.swing.JDialog {
         this.element.setVentaDetallado(ckVentaDetalle.isSelected());
         this.element.setInvArticuloPresentacionList(tbPresentacion.getElements());
 
-        if (copyElement == null || !this.element.equals(copyElement)) {
-            try {
-                FactoryObject.getInstance().getArticuloController().saveOrUpdate(this.element);
-            } catch (BussinessException ex) {
-                JOptionPane.showMessageDialog(this, "Error al intentar guardar este regsitro", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
-                return;
-            }
-            if (copyElement == null) {
-                tbArticulos.addElement(this.element);
-            }
-            clean();
-            fireTableDataChanged();
-            setToolBarAndPanel(1, true);
-            setDisplacement(false);
+        try {
+            FactoryObject.getInstance().getArticuloController().saveOrUpdate(this.element);
+        } catch (BussinessException ex) {
+            JOptionPaneJS.showErrorSave(rootPane);
+            Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
+            return;
         }
+        if (copyElement == null) {
+            tbArticulos.addElement(this.element);
+        }
+        clean();
+        fireTableDataChanged();
+        setToolBarAndPanel(1, true);
+        setDisplacement(false);
+
     }
 
     private void fireTableDataChanged() {
@@ -1449,8 +1462,7 @@ public class VwArticulo extends javax.swing.JDialog {
     }
 
     private void exit() {
-        int men = JOptionPane.showConfirmDialog(this, "Desea salir?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (men == JOptionPane.YES_OPTION) {
+        if (JOptionPaneJS.showConfirmExit(rootPane) == JOptionPane.YES_OPTION) {
             KeyEventDispatcherJS.remove();
             dispose();
         }
@@ -1493,8 +1505,13 @@ public class VwArticulo extends javax.swing.JDialog {
     }
 
     private void addPresentation() {
+        if (!ComponentObject.validate(cbPresentacion)) {
+            return;
+        }
+        boolean exist = false;
         if (this.articuloPresentacion == null) {
             this.articuloPresentacion = new InvArticuloPresentacion();
+            exist = true;
         }
         this.articuloPresentacion.setPresentacion(cbPresentacion.getSelectedItem());
         this.articuloPresentacion.setCodigoBarra(jtCBarraPresen.getText().trim());
@@ -1505,8 +1522,11 @@ public class VwArticulo extends javax.swing.JDialog {
         this.articuloPresentacion.setPrecio1(Double.parseDouble(jtPrecio1.getText().trim()));
         this.articuloPresentacion.setPrecio2(Double.parseDouble(jtPrecio2.getText().trim()));
         this.articuloPresentacion.setPrecio3(Double.parseDouble(jtPrecio3.getText().trim()));
-
-        tbPresentacion.addElement(this.articuloPresentacion);
+        if (exist) {
+            tbPresentacion.addElement(this.articuloPresentacion);
+        } else {
+            tbPresentacion.fireTableDataChanged();
+        }
         cleanPresentation();
     }
 
@@ -1543,18 +1563,19 @@ public class VwArticulo extends javax.swing.JDialog {
         return String.valueOf(price);
     }
 
-    private void setPrice(InvArticuloPresentacion present) {
+    private void setPresentacion(InvArticuloPresentacion artPresentacion) {
 
-        if (present != null) {
-            cbPresentacion.setSelectedItem(present.getPresentacion());
-            jtCBarraPresen.setText(present.getCodigoBarra().trim());
-            jtCosto.setText(present.getCosto() + "");
-            jtMargenP1.setText(present.getPocentaje1() + "");
-            jtMargenP2.setText(present.getPorcentaje2() + "");
-            jtMargenP3.setText(present.getPorcentaje3() + "");
-            jtPrecio1.setText(present.getPrecio1() + "");
-            jtPrecio2.setText(present.getPrecio2() + "");
-            jtPrecio3.setText(present.getPrecio3() + "");
+        if (artPresentacion != null) {
+            this.articuloPresentacion = artPresentacion;
+            cbPresentacion.setSelectedItem(artPresentacion.getPresentacion());
+            jtCBarraPresen.setText(artPresentacion.getCodigoBarra().trim());
+            jtCosto.setText(artPresentacion.getCosto() + "");
+            jtMargenP1.setText(artPresentacion.getPocentaje1() + "");
+            jtMargenP2.setText(artPresentacion.getPorcentaje2() + "");
+            jtMargenP3.setText(artPresentacion.getPorcentaje3() + "");
+            jtPrecio1.setText(artPresentacion.getPrecio1() + "");
+            jtPrecio2.setText(artPresentacion.getPrecio2() + "");
+            jtPrecio3.setText(artPresentacion.getPrecio3() + "");
         }
     }
 

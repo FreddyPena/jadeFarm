@@ -123,7 +123,7 @@ public class InvFamilia implements Serializable {
 
     @Override
     public String toString() {
-        return "com.js.shared.models.InvFamilia[ codigo=" + codigo + " ]";
+        return descripcion;
     }
 
 }

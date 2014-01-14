@@ -123,7 +123,7 @@ public class InvMarca implements Serializable {
 
     @Override
     public String toString() {
-        return "com.js.shared.models.InvMarca[ codigo=" + codigo + " ]";
+        return descripcion;
     }
 
 }

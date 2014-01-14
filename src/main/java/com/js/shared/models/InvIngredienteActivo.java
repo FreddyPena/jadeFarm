@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.js.shared.models;
 
 import java.io.Serializable;
@@ -35,6 +34,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "InvIngredienteActivo.findAll", query = "SELECT i FROM InvIngredienteActivo i")})
 public class InvIngredienteActivo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -123,7 +123,7 @@ public class InvIngredienteActivo implements Serializable {
 
     @Override
     public String toString() {
-        return "com.js.shared.models.InvIngredienteActivo[ codigo=" + codigo + " ]";
+        return descripcion;
     }
 
 }

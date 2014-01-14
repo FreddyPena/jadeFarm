@@ -123,7 +123,7 @@ public class InvClasificacion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.js.shared.models.InvClasificacion[ codigo=" + codigo + " ]";
+        return descripcion;
     }
 
 }

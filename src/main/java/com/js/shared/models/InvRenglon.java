@@ -123,7 +123,7 @@ public class InvRenglon implements Serializable {
 
     @Override
     public String toString() {
-        return "com.js.shared.models.InvRenglon[ codigo=" + codigo + " ]";
+        return descripcion;
     }
 
 }

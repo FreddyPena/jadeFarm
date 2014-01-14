@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import com.js.swing.button.JButtonJS;
+import com.js.swing.optionpane.JOptionPaneJS;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -31,21 +32,21 @@ import javax.swing.KeyStroke;
  * @author JADESOFT
  */
 public class VwAlmacen extends javax.swing.JDialog {
-
+    
     public VwAlmacen(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
         initComp();
     }
-
+    
     public VwAlmacen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
         initComp();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -400,11 +401,11 @@ public class VwAlmacen extends javax.swing.JDialog {
     private void jtFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFilterKeyReleased
         tbElements.filterJTable(cbFilter.getSelectedItem(), jtFilter);
     }//GEN-LAST:event_jtFilterKeyReleased
-
+    
     public static void main(String[] args) {
-
+        
         new VwAlmacen((JDialog) null, true).setVisible(true);
-
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.js.swing.button.JButtonJS btBack;
@@ -437,40 +438,40 @@ public class VwAlmacen extends javax.swing.JDialog {
     private Displacement<InvAlmacen> displacement;
     private boolean consultation;
     private boolean change;
-
+    
     private void initComp() {
         FactoryObject factory = new FactoryObjectImpl();
         FactoryObject.setInstance(factory);
-
+        
         keyEvents();
-
+        
         setGlassPane(new JGlassPaneJS());
         tbElements.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbElements.doLayout();
         tbElements.setModelJS(new ModelAlmacen());
         tbElements.columnWidth(new Integer[]{150, 325});
-
+        
         setElements();
-
+        
         FilterTableController filtro = new FilterTableController();
         filtro.setlFilterTable(new String[]{"Identificador", "Descripción"});
         cbFilter.setElements(filtro.getlFilterTable());
         cbFilter.setSelectedIndex(0);
-
+        
         displacement = FactoryObject.getInstance().getDisplacement();
-
+        
         jtpStandard.setSelectedIndex(1);
         jtpStandard.setEnabledAt(0, false);
         jtpStandard.setEnabledAt(1, true);
         ComponentObject.disabled(btSave, btConsultation, btDelete, btFirts, btLast, btBack, btNext);
     }
-
+    
     private void clean() {
         this.element = null;
         ComponentObject.clean(jtDescripcion, jtIdentificador);
         jtIdentificador.requestFocus();
     }
-
+    
     private void setToolBarAndPanel(int panel, boolean b) {
         jtpStandard.setSelectedIndex(panel);
         jtpStandard.setEnabledAt(0, !b);
@@ -483,14 +484,14 @@ public class VwAlmacen extends javax.swing.JDialog {
         b = jtpStandard.getSelectedIndex() == 0 && this.element != null;
         btDelete.setEnabled(b);
     }
-
+    
     private void consultation() {
         setToolBarAndPanel(1, true);
         setDisplacement(false);
         clean();
         fireTableDataChanged();
     }
-
+    
     private void edit() {
         if (tbElements.getSelectedElement() != null) {
             setDisplacement(true);
@@ -499,12 +500,12 @@ public class VwAlmacen extends javax.swing.JDialog {
             setToolBarAndPanel(0, false);
         }
     }
-
+    
     private void newElement() {
         setToolBarAndPanel(0, false);
         clean();
     }
-
+    
     private void setDisplacement(boolean b) {
         if (b) {
             ComponentObject.enabled(btFirts, btLast, btBack, btNext);
@@ -512,22 +513,18 @@ public class VwAlmacen extends javax.swing.JDialog {
             ComponentObject.disabled(btFirts, btLast, btBack, btNext);
         }
     }
-
+    
     private void delete() {
         if (this.element != null) {
-            int men = JOptionPane.showConfirmDialog(this,
-                    "Desea eliminar el registro?", null,
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-            if (men == JOptionPane.NO_OPTION) {
+            
+            if (JOptionPaneJS.showConfirmDelete(this) == JOptionPane.NO_OPTION) {
                 return;
             }
-
+            
             try {
                 FactoryObject.getInstance().getAlmacenController().delete(this.element.getCodigo());
             } catch (BussinessException ex) {
-                JOptionPane.showMessageDialog(this, "Error al intentar borrar este regsitro", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPaneJS.showErrorDelete(this);
                 Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
@@ -539,13 +536,13 @@ public class VwAlmacen extends javax.swing.JDialog {
             setDisplacement(false);
         }
     }
-
+    
     private void print() {
         if (this.element != null) {
             //codigo de imprimir
         }
     }
-
+    
     private void setElements() {
         Runnable run = new Runnable() {
             @Override
@@ -554,8 +551,7 @@ public class VwAlmacen extends javax.swing.JDialog {
                 try {
                     tbElements.setElements(FactoryObject.getInstance().getAlmacenController().findAll());
                 } catch (BussinessException ex) {
-                    JOptionPane.showMessageDialog(null, "Error al intentar recorrer los regsitros", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
+                    JOptionPaneJS.showErrorFind(rootPane);
                     Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 getGlassPane().setVisible(false);
@@ -563,32 +559,28 @@ public class VwAlmacen extends javax.swing.JDialog {
         };
         new Thread(run).start();
     }
-
+    
     private void save() {
         if (!ComponentObject.validate(jtIdentificador, jtDescripcion)) {
             return;
         }
-
-        int men = JOptionPane.showConfirmDialog(this, this.element == null ? "Desea guardar el nuevo registro?"
-                : "Desea guardar los cambios?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-        if (men == JOptionPane.NO_OPTION) {
+        
+        if (JOptionPaneJS.showConfirmSave(this, this.element) == JOptionPane.NO_OPTION) {
             return;
         }
-
+        
         InvAlmacen copyElement = this.element;
         if (this.element == null) {
             this.element = new InvAlmacen();
         }
-
+        
         this.element.setDescripcion(jtDescripcion.getText());
         this.element.setIdentificador(jtIdentificador.getText());
-
+        
         try {
             FactoryObject.getInstance().getAlmacenController().saveOrUpdate(this.element);
         } catch (BussinessException ex) {
-            JOptionPane.showMessageDialog(this, "Error al intentar guardar este regsitro", "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPaneJS.showErrorSave(this);
             Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
@@ -601,36 +593,36 @@ public class VwAlmacen extends javax.swing.JDialog {
         setToolBarAndPanel(1, true);
         setDisplacement(false);
     }
-
+    
     private void fireTableDataChanged() {
         jtFilter.setText("");
         tbElements.filterJTable(cbFilter.getSelectedItem(), jtFilter);
     }
-
+    
     public void setSelectEnable(boolean enable) {
         this.consultation = enable;
     }
-
+    
     public InvAlmacen getSelected() {
         return this.element;
     }
-
+    
     public boolean getChange() {
         return change;
     }
-
+    
     private void exit() {
-        int men = JOptionPane.showConfirmDialog(this, "Desea salir?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (men == JOptionPane.YES_OPTION) {
+        
+        if (JOptionPaneJS.showConfirmExit(this) == JOptionPane.YES_OPTION) {
             KeyEventDispatcherJS.remove();
             dispose();
         }
     }
-
+    
     private void keyEvents() {
         KeyEventDispatcherJS.set(new KeyEventDispatcherJS());
         KeyEventDispatcherJS.add();
-
+        
         KeyStroke[] keyStrokes = new KeyStroke[]{
             KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK),
             KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK),
@@ -645,7 +637,7 @@ public class VwAlmacen extends javax.swing.JDialog {
         };
         JButtonJS[] buttons = new JButtonJS[]{btSave, btDelete, btNew, btPrint,
             btConsultation, btEdit, btFirts, btBack, btNext, btLast};
-
+        
         int ks = 0;
         for (final JButtonJS bt : buttons) {
             KeyEventDispatcherJS.get().addActionMap(
@@ -659,7 +651,7 @@ public class VwAlmacen extends javax.swing.JDialog {
                     });
         }
     }
-
+    
     private void setElement(InvAlmacen element) {
         if (element != null) {
             this.element = element;

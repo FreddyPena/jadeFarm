@@ -8,6 +8,7 @@ package com.js.inv.controllers;
 import com.js.exception.BussinessException;
 import com.js.inv.dao.interfaces.ArticuloDAO;
 import com.js.shared.models.InvArticulo;
+import com.js.shared.models.InvArticuloPresentacion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,11 @@ public class ArticuloController implements ArticuloDAO {
     @Override
     public List<InvArticulo> findAll() throws BussinessException {
         return articuloDAO.findAll();
+    }
+
+    @Override
+    public List<InvArticuloPresentacion> lArticuloPresentacions(InvArticulo articulo) throws BussinessException {
+        return articuloDAO.lArticuloPresentacions(articulo);
     }
 
 }

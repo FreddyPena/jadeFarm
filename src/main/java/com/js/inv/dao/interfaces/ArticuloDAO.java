@@ -6,7 +6,10 @@
 package com.js.inv.dao.interfaces;
 
 import com.js.GenericDAO;
+import com.js.exception.BussinessException;
 import com.js.shared.models.InvArticulo;
+import com.js.shared.models.InvArticuloPresentacion;
+import java.util.List;
 
 /**
  *
@@ -14,4 +17,5 @@ import com.js.shared.models.InvArticulo;
  */
 public interface ArticuloDAO extends GenericDAO<InvArticulo, Integer> {
 
+    List<InvArticuloPresentacion> lArticuloPresentacions(InvArticulo articulo) throws BussinessException;
 }

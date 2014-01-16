@@ -1109,11 +1109,11 @@ public class VwArticulo extends javax.swing.JDialog {
         displacement.setDisplacement(tbArticulos.getElements());
         if (evt.getClickCount() == 2) {
             try {
-                element = FactoryObject.getInstance().getArticuloController().get(tbArticulos.getSelectedElement().getCodigo());
+                this.element = FactoryObject.getInstance().getArticuloController().get(tbArticulos.getSelectedElement().getCodigo());      
+                this.element.setInvArticuloPresentacionList(FactoryObject.getInstance().getArticuloController().lArticuloPresentacions(this.element));
             } catch (BussinessException ex) {
                 Logger.getLogger(VwArticulo.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //  element.setPresentaciones(ManejoArticuloPresentacion.getInstance().listItemPresentation(element));
             setElement(element);
             if (!consultation) {
                 setToolBarAndPanel(0, false);
@@ -1358,14 +1358,14 @@ public class VwArticulo extends javax.swing.JDialog {
     private void delete() {
         if (this.element != null) {
 
-            if (JOptionPaneJS.showConfirmDelete(rootPane) == JOptionPane.NO_OPTION) {
+            if (JOptionPaneJS.deleteConfirm(rootPane) == JOptionPane.NO_OPTION) {
                 return;
             }
 
             try {
                 FactoryObject.getInstance().getArticuloController().delete(this.element.getCodigo());
             } catch (BussinessException ex) {
-                JOptionPaneJS.showErrorDelete(rootPane);
+                JOptionPaneJS.deleteError(rootPane);
                 Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
@@ -1392,7 +1392,7 @@ public class VwArticulo extends javax.swing.JDialog {
                 try {
                     tbArticulos.setElements(FactoryObject.getInstance().getArticuloController().findAll());
                 } catch (BussinessException ex) {
-                    JOptionPaneJS.showErrorFind(rootPane);
+                    JOptionPaneJS.findError(rootPane);
                     Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 getGlassPane().setVisible(false);
@@ -1406,7 +1406,7 @@ public class VwArticulo extends javax.swing.JDialog {
                 cbFamilia, cbRenglon, cbMarca, cbClasificacion)) {
             return;
         }
-        if (JOptionPaneJS.showConfirmSave(rootPane, this) == JOptionPane.NO_OPTION) {
+        if (JOptionPaneJS.saveConfirm(rootPane, this) == JOptionPane.NO_OPTION) {
             return;
         }
 
@@ -1434,7 +1434,7 @@ public class VwArticulo extends javax.swing.JDialog {
         try {
             FactoryObject.getInstance().getArticuloController().saveOrUpdate(this.element);
         } catch (BussinessException ex) {
-            JOptionPaneJS.showErrorSave(rootPane);
+            JOptionPaneJS.saveError(rootPane);
             Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
@@ -1462,7 +1462,7 @@ public class VwArticulo extends javax.swing.JDialog {
     }
 
     private void exit() {
-        if (JOptionPaneJS.showConfirmExit(rootPane) == JOptionPane.YES_OPTION) {
+        if (JOptionPaneJS.exitConfirm(rootPane) == JOptionPane.YES_OPTION) {
             KeyEventDispatcherJS.remove();
             dispose();
         }

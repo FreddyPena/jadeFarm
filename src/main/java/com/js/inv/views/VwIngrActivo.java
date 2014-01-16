@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import com.js.swing.button.JButtonJS;
+import com.js.swing.optionpane.JOptionPaneJS;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -512,19 +513,14 @@ public class VwIngrActivo extends javax.swing.JDialog {
 
     private void delete() {
         if (this.element != null) {
-            int men = JOptionPane.showConfirmDialog(this,
-                    "Desea eliminar el registro?", null,
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-            if (men == JOptionPane.NO_OPTION) {
+            if (JOptionPaneJS.deleteConfirm(rootPane) == JOptionPane.NO_OPTION) {
                 return;
             }
 
             try {
                 FactoryObject.getInstance().getIngrActivoController().delete(this.element.getCodigo());
             } catch (BussinessException ex) {
-                JOptionPane.showMessageDialog(this, "Error al intentar borrar este regsitro", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPaneJS.deleteError(rootPane);
                 Logger.getLogger(VwIngrActivo.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
@@ -551,8 +547,7 @@ public class VwIngrActivo extends javax.swing.JDialog {
                 try {
                     tbElements.setElements(FactoryObject.getInstance().getIngrActivoController().findAll());
                 } catch (BussinessException ex) {
-                    JOptionPane.showMessageDialog(null, "Error al intentar recorrer los regsitros", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
+                    JOptionPaneJS.findError(rootPane);
                     Logger.getLogger(VwIngrActivo.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 getGlassPane().setVisible(false);
@@ -566,10 +561,7 @@ public class VwIngrActivo extends javax.swing.JDialog {
             return;
         }
 
-        int men = JOptionPane.showConfirmDialog(this, this.element == null ? "Desea guardar el nuevo registro?"
-                : "Desea guardar los cambios?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-        if (men == JOptionPane.NO_OPTION) {
+        if (JOptionPaneJS.saveConfirm(rootPane, this.element) == JOptionPane.NO_OPTION) {
             return;
         }
 
@@ -584,8 +576,7 @@ public class VwIngrActivo extends javax.swing.JDialog {
         try {
             FactoryObject.getInstance().getIngrActivoController().saveOrUpdate(this.element);
         } catch (BussinessException ex) {
-            JOptionPane.showMessageDialog(this, "Error al intentar guardar este regsitro", "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPaneJS.saveError(rootPane);
             Logger.getLogger(VwIngrActivo.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
@@ -617,8 +608,7 @@ public class VwIngrActivo extends javax.swing.JDialog {
     }
 
     private void exit() {
-        int men = JOptionPane.showConfirmDialog(this, "Desea salir?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (men == JOptionPane.YES_OPTION) {
+        if (JOptionPaneJS.exitConfirm(rootPane) == JOptionPane.YES_OPTION) {
             KeyEventDispatcherJS.remove();
             dispose();
         }

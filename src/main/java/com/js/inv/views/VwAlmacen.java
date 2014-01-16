@@ -517,14 +517,14 @@ public class VwAlmacen extends javax.swing.JDialog {
     private void delete() {
         if (this.element != null) {
             
-            if (JOptionPaneJS.showConfirmDelete(this) == JOptionPane.NO_OPTION) {
+            if (JOptionPaneJS.deleteConfirm(this) == JOptionPane.NO_OPTION) {
                 return;
             }
             
             try {
                 FactoryObject.getInstance().getAlmacenController().delete(this.element.getCodigo());
             } catch (BussinessException ex) {
-                JOptionPaneJS.showErrorDelete(this);
+                JOptionPaneJS.deleteError(this);
                 Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
@@ -551,7 +551,7 @@ public class VwAlmacen extends javax.swing.JDialog {
                 try {
                     tbElements.setElements(FactoryObject.getInstance().getAlmacenController().findAll());
                 } catch (BussinessException ex) {
-                    JOptionPaneJS.showErrorFind(rootPane);
+                    JOptionPaneJS.findError(rootPane);
                     Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 getGlassPane().setVisible(false);
@@ -565,7 +565,7 @@ public class VwAlmacen extends javax.swing.JDialog {
             return;
         }
         
-        if (JOptionPaneJS.showConfirmSave(this, this.element) == JOptionPane.NO_OPTION) {
+        if (JOptionPaneJS.saveConfirm(this, this.element) == JOptionPane.NO_OPTION) {
             return;
         }
         
@@ -580,7 +580,7 @@ public class VwAlmacen extends javax.swing.JDialog {
         try {
             FactoryObject.getInstance().getAlmacenController().saveOrUpdate(this.element);
         } catch (BussinessException ex) {
-            JOptionPaneJS.showErrorSave(this);
+            JOptionPaneJS.saveError(this);
             Logger.getLogger(VwAlmacen.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
@@ -613,7 +613,7 @@ public class VwAlmacen extends javax.swing.JDialog {
     
     private void exit() {
         
-        if (JOptionPaneJS.showConfirmExit(this) == JOptionPane.YES_OPTION) {
+        if (JOptionPaneJS.exitConfirm(this) == JOptionPane.YES_OPTION) {
             KeyEventDispatcherJS.remove();
             dispose();
         }
